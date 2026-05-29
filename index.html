@@ -1,0 +1,1205 @@
+import React, { useState, useMemo } from 'react';
+
+// Base expandida de competidores com metadados de Curadoria e Origem
+const INITIAL_COMPETITORS = [
+  {
+    id: 'adyen',
+    name: 'Adyen (Benchmark)',
+    isBenchmark: true,
+    logoText: 'ADY',
+    type: 'Global / Omnichannel',
+    pricingModel: 'Interchange++ (IC++) Real transparente',
+    approvalRate: 94.5,
+    omnichannel: 'Excelente (Plataforma Única Real / Single Contract)',
+    antifraud: 'Nativo (RevenueProtect) com IA Global unificada',
+    pixFeature: 'Instantâneo via Open Finance, reconciliação em tempo real na mesma API',
+    settlementSpeed: 'D+1 padrão para Pix, Flexível para cartões',
+    devExperience: 'APIs robustas, SDKs modernos, logs completos e unificados',
+    weaknesses: 'Menor flexibilidade para Micro/Pequenas empresas; sem foco em POS físico de baixo volume.',
+    strengths: 'Maior taxa de aprovação técnica do mercado, reconciliação unificada verdadeira, transparência total de custos.',
+    status: 'approved', // approved, pending
+    verifiedBy: 'PMM Team (Global & Local)',
+    dataSource: 'Relatórios Financeiros Globais, Documentação Técnica da API Adyen v69',
+    battlecard: {
+      whyWeWin: 'A plataforma única e direta elimina intermediários e otimiza taxas de aprovação através de Smart Routing nativo.',
+      vulnerabilities: 'Fale sobre a fragmentação deles (gateway + adquirente + conciliadora separados) e a falta de transparência nas taxas flat.',
+      script: 'Seu adquirente atual pode até oferecer uma taxa flat baixa, mas quantos clientes legítimos você está perdendo na recusa do antifraude? Na Adyen, aumentamos sua aprovação em média de 3% a 5%, o que cobre qualquer diferença de taxa e traz dinheiro real para o seu caixa.'
+    }
+  },
+  {
+    id: 'stripe',
+    name: 'Stripe',
+    isBenchmark: false,
+    logoText: 'STR',
+    type: 'Global Tech',
+    pricingModel: 'Flat-Rate (MDR Fixo, IC++ sob consulta para grandes volumes)',
+    approvalRate: 91.2,
+    omnichannel: 'Médio (Terminal disponível, mas focado no digital no BR)',
+    antifraud: 'Nativo (Radar) com boa assertividade digital',
+    pixFeature: 'Disponível na API com boa conciliação, mas integração separada',
+    settlementSpeed: 'D+30 padrão, antecipação disponível sob demanda',
+    devExperience: 'Excelente (Documentação de referência de mercado global)',
+    weaknesses: 'Falta de presença física omnichannel robusta e madura no mercado brasileiro; taxas flat proibitivas para escala Enterprise.',
+    strengths: 'Velocidade de onboarding para startups e ecossistema de produtos SaaS robusto.',
+    status: 'approved',
+    verifiedBy: 'PMM LatAm Team',
+    dataSource: 'Site oficial Stripe BR, Testes de API Pública, Feedback de Clientes Migrados',
+    battlecard: {
+      whyWeWin: 'Nossa adquirência direta no Brasil traz melhor custo-benefício em escala (IC++) e suporte local de contas dedicado para Enterprise.',
+      vulnerabilities: 'Custo de processamento altíssimo em volumes Enterprise e suporte de engenharia focado em autoatendimento.',
+      script: 'A Stripe é excelente para validar produtos rapidamente. Mas conforme seu volume escala, o modelo flat-rate se torna ineficiente. Além disso, se você quer unificar as vendas do e-commerce com as lojas físicas no Brasil, a infraestrutura local da Adyen é infinitamente mais madura.'
+    }
+  },
+  {
+    id: 'cielo',
+    name: 'Cielo + Braspag',
+    isBenchmark: false,
+    logoText: 'CIE',
+    type: 'Legado Nacional',
+    pricingModel: 'MDR Flat Altamente Negociável / Sob volume físico',
+    approvalRate: 88.5,
+    omnichannel: 'Fragmentado (Gateway Braspag separado do adquirente físico)',
+    antifraud: 'Terceirizado (Exige integração de CyberSource/Konduto externa)',
+    pixFeature: 'Disponível, mas com reconciliação apartada e manual entre canais',
+    settlementSpeed: 'D+2 para Débito/Pix, D+30 para Crédito',
+    devExperience: 'Complexo (APIs de legado herdadas, suporte técnico lento)',
+    weaknesses: 'Arquitetura de sistemas legados, múltiplos dashboards para físico e digital, atrito técnico operacional.',
+    strengths: 'Marca extremamente forte no varejo físico, relacionamento bancário profundo.',
+    status: 'approved',
+    verifiedBy: 'PMM Brasil Team',
+    dataSource: 'Balanços Públicos Cielo, Documentação Braspag API, Inteligência de Campo',
+    battlecard: {
+      whyWeWin: 'Unificamos a captura física e digital, reduzindo o custo operacional de conciliação financeira para zero.',
+      vulnerabilities: 'Dependência de múltiplos intermediários, gateways instáveis e taxas de aprovação online abaixo da média.',
+      script: 'Para vender no físico e digital hoje com a Cielo, sua equipe gerencia a Braspag para o gateway, uma ferramenta externa de antifraude e uma conciliadora terceirizada. Na Adyen, uma única tela controla tudo, economizando centenas de horas de auditoria e eliminando falhas.'
+    }
+  },
+  {
+    id: 'rede',
+    name: 'Rede Itaú',
+    isBenchmark: false,
+    logoText: 'RED',
+    type: 'Banco Nacional',
+    pricingModel: 'MDR Flat / Taxa agressiva para correntistas Itaú',
+    approvalRate: 89.0,
+    omnichannel: 'Médio (In-store consolidado, gateway digital focado em parceiros)',
+    antifraud: 'Terceirizado (Parcerias externas com intermediários)',
+    pixFeature: 'Disponível com excelente estabilidade ligada ao ecossistema Itaú',
+    settlementSpeed: 'D+2 padrão para crédito parcelado sob condições bancárias',
+    devExperience: 'Regular (Focado em canais de integração tradicionais)',
+    weaknesses: 'Dependência de relacionamento bancário e reciprocidade financeira; suporte focado em atendimento bancário comum.',
+    strengths: 'Acesso a linhas de crédito baratas e antecipação imediata integrada ao banco Itaú.',
+    status: 'approved',
+    verifiedBy: 'PMM Brasil Team',
+    dataSource: 'Análises de Mercado Itaú Unibanco, Feedback de Contas Enterprise da Adyen',
+    battlecard: {
+      whyWeWin: 'Independência bancária e tecnologia pura que otimiza taxas de aprovação independentemente de taxas de juros de bancos.',
+      vulnerabilities: 'Ambiência puramente bancária de negociação; tecnologia engessada para integração de sistemas globais.',
+      script: 'A Rede oferece taxas agressivas baseadas em relacionamento, mas lembre-se: taxas de processamento baixas não compensam transações legítimas recusadas por um sistema de risco engessado. A Adyen foca em aumentar a conversão técnica, o que gera muito mais receita líquida no fim do mês.'
+    }
+  },
+  {
+    id: 'getnet',
+    name: 'Getnet (Santander)',
+    isBenchmark: false,
+    logoText: 'GET',
+    type: 'Banco Nacional',
+    pricingModel: 'MDR Flat negociado com pacote Santander',
+    approvalRate: 88.0,
+    omnichannel: 'Fragmentado (Auttar / Carat para fluxos digitais)',
+    antifraud: 'Terceirizado (Integrações com Cybersource e ClearSale)',
+    pixFeature: 'Disponível na API com forte dependência do ecossistema Santander',
+    settlementSpeed: 'D+2 para Débito/Pix, Flexibilidade bancária',
+    devExperience: 'Complexo (Múltiplas plataformas adquiridas integradas no mesmo fluxo)',
+    weaknesses: 'Suporte complexo e segmentado por canais de venda física e digital separados.',
+    strengths: 'Forte presença no comércio internacional através do grupo PagoNxt (Santander).',
+    status: 'approved',
+    verifiedBy: 'PMM Team LatAm',
+    dataSource: 'Relatórios do Grupo PagoNxt, Feedbacks Técnicos de Clientes Varejistas',
+    battlecard: {
+      whyWeWin: 'A simplicidade de uma única integração sem pacotes bancários atrelados ou reciprocidades complexas.',
+      vulnerabilities: 'Integrações de adquirentes e gateways legados (Auttar) trazem alta complexidade de manutenção.',
+      script: 'Se seu time técnico precisa lidar com portais de conciliação diferentes para o varejo físico e para o e-commerce, há custo operacional oculto. Com a Adyen, você reduz o tempo de reconciliação a zero usando nossa plataforma verdadeiramente unificada.'
+    }
+  },
+  {
+    id: 'stone',
+    name: 'Stone / Pagar.me',
+    isBenchmark: false,
+    logoText: 'STN',
+    type: 'Nacional / Desafiante',
+    pricingModel: 'Flat-Rate agressivo com antecipação integrada',
+    approvalRate: 89.8,
+    omnichannel: 'Parcial (Terminais POS e gateway Pagar.me com alguma integração)',
+    antifraud: 'Parcialmente integrado via APIs parceiras',
+    pixFeature: 'Disponível na API com liquidação ágil e conciliação aceitável',
+    settlementSpeed: 'D+1 sob demanda para alavancar fluxo de caixa',
+    devExperience: 'Bom (Estrutura de APIs limpas no Pagar.me)',
+    weaknesses: 'Não possui rede global própria de processamento; suporte focado em PMEs de varejo e fraco para grandes contas Enterprise.',
+    strengths: 'Excelente capilaridade de suporte de campo "pé no barro" no Brasil.',
+    status: 'approved',
+    verifiedBy: 'PMM Brasil Team',
+    dataSource: 'Earnings Release StoneCo Q4 2025, Documentação Pagar.me',
+    battlecard: {
+      whyWeWin: 'Capacidade global robusta e expertise para processar grandes transações globais e fluxos complexos em escala Enterprise.',
+      vulnerabilities: 'Falta de inteligência de dados globais (Cross-Border legítimo) e menor maturidade em segurança física corporativa.',
+      script: 'A Stone atende muito bem o comércio local de rua brasileiro. Mas para um ecossistema Enterprise que precisa de estabilidade nas maiores liquidações, inteligência de fraude de nível mundial e integração com mercados externos, a Adyen é a única plataforma preparada.'
+    }
+  },
+  {
+    id: 'pagbank',
+    name: 'PagBank',
+    isBenchmark: false,
+    logoText: 'PAG',
+    type: 'Nacional / Wallet & Acq',
+    pricingModel: 'Flat-Rate por canais de intermediação',
+    approvalRate: 87.5,
+    omnichannel: 'Médio (POS físico conectado a ecossistema de carteira digital)',
+    antifraud: 'Nativo da plataforma, focado em alta proteção (alto atrito)',
+    pixFeature: 'Instantâneo integrado à conta digital PagBank',
+    settlementSpeed: 'Imediato para Pix, D+14/D+30 para Cartão',
+    devExperience: 'Regular (Foco maior em facilidade de onboarding de PME)',
+    weaknesses: 'Forte atrito de aprovação (antifraude agressivo); APIs menos flexíveis para fluxos complexos de marketplace.',
+    strengths: 'Facilidade de onboarding instantâneo e conta digital PJ nativa integrada.',
+    status: 'approved',
+    verifiedBy: 'PMM Brasil Team',
+    dataSource: 'Relatórios do Banco Central do Brasil, Earnings PagSeguro/PagBank',
+    battlecard: {
+      whyWeWin: 'A Adyen não intermedia o dinheiro, ela processa diretamente. Isso se traduz em taxas de aprovação superiores e menos transações negadas erroneamente.',
+      vulnerabilities: 'O antifraude deles tende a bloquear transações legítimas para evitar estornos, penalizando a receita operacional do cliente.',
+      script: 'Se o PagBank está protegendo muito o seu negócio de fraudes, ele pode estar matando suas boas vendas. Na Adyen, o RevenueProtect atua cirurgicamente: bloqueia a fraude real sem recusar os bons clientes.'
+    }
+  },
+  {
+    id: 'mercadopago',
+    name: 'Mercado Pago',
+    isBenchmark: false,
+    logoText: 'MPA',
+    type: 'Regional LatAm Tech / Wallet',
+    pricingModel: 'MDR Flat com descontos progressivos por ecossistema',
+    approvalRate: 90.5,
+    omnichannel: 'Parcial (Foco digital gigante, maquininhas Point integradas à conta)',
+    antifraud: 'Nativo (Mercado Pago Shield) alimentado pela base do Mercado Livre',
+    pixFeature: 'Excelente (Pioneiros em Pix, liquidação imediata)',
+    settlementSpeed: 'D+0 para Pix, Opções de liquidação acelerada',
+    devExperience: 'Excelente (Documentação e SDKs muito amigáveis)',
+    weaknesses: 'Suporte humanizado difícil no nível Enterprise; ecossistema atrelado ao ecossistema do Mercado Livre.',
+    strengths: 'Dados comportamentais gigantes baseados na maior plataforma de e-commerce da LatAm.',
+    status: 'approved',
+    verifiedBy: 'PMM LatAm Team',
+    dataSource: 'Relatórios Anuais MercadoLibre Inc, Testes Operacionais em Sandboxes',
+    battlecard: {
+      whyWeWin: 'Atendimento e suporte corporativo humanizado e dedicado; independência total em relação a marketplaces concorrentes.',
+      vulnerabilities: 'Se o cliente vende fora do ecossistema do Mercado Livre, perde muito dos benefícios de dados integrados.',
+      script: 'O Mercado Pago tem uma base de dados fantástica no varejo de consumo. No entanto, o atendimento deles para grandes contas frequentemente deixa a desejar em flexibilidade. Além disso, se sua empresa precisa de conexões com mercados europeus ou americanos, a Adyen oferece adquirência direta global sob o mesmo trilho técnico.'
+    }
+  },
+  {
+    id: 'ebanx',
+    name: 'EBANX',
+    isBenchmark: false,
+    logoText: 'EBX',
+    type: 'Especialista Cross-Border',
+    pricingModel: 'Markup de Câmbio / Comissão de Remessa Internacional',
+    approvalRate: 85.0,
+    omnichannel: 'Não aplicável (Apenas fluxo digital)',
+    antifraud: 'Nativo focado em padrões regulatórios locais LatAm',
+    pixFeature: 'Otimizado para pagamentos internacionais com conversão de câmbio',
+    settlementSpeed: 'Liquidação internacional estruturada por remessa',
+    devExperience: 'Bom (Focado em integrações de cross-border puras)',
+    weaknesses: 'Total incapacidade de processar adquirência doméstica física (in-store) no Brasil; custos de câmbio elevados.',
+    strengths: 'Expertise pioneira em conectar merchants gigantes globais ao mercado de varejo brasileiro local.',
+    status: 'approved',
+    verifiedBy: 'PMM Cross-Border Team',
+    dataSource: 'Comunicados à Imprensa EBANX, Estudos de Casos de Comércio Internacional',
+    battlecard: {
+      whyWeWin: 'A Adyen processa tanto transações locais domésticas quanto cross-border em uma única API sem a necessidade de múltiplos contratos redundantes.',
+      vulnerabilities: 'A dependência exclusiva do canal transfronteiriço encarece as transações domésticas de grandes players.',
+      script: 'Se sua empresa quer testar o Brasil de fora, o EBANX ajuda. Mas no momento em que você decide nacionalizar sua marca ou abrir lojas físicas locais, a Adyen é a única plataforma que garante uma transição suave sem retrabalho técnico.'
+    }
+  },
+  {
+    id: 'dlocal',
+    name: 'dLocal',
+    isBenchmark: false,
+    logoText: 'DLO',
+    type: 'Especialista Cross-Border',
+    pricingModel: 'Markup de Câmbio + Taxas por mercado emergente',
+    approvalRate: 84.5,
+    omnichannel: 'Não aplicável (Foco exclusivamente digital)',
+    antifraud: 'Nativo modular adaptado para economias emergentes',
+    pixFeature: 'Processamento integrado ao canal internacional de câmbio',
+    settlementSpeed: 'Liquidação estruturada internacional',
+    devExperience: 'Regular (Documentação focado na cobertura geográfica de múltiplos países)',
+    weaknesses: 'Instabilidade técnica ocasional de processadores locais parceiros secundários.',
+    strengths: 'Forte presença em mais de 40 mercados emergentes na Ásia, África e LatAm.',
+    status: 'approved',
+    verifiedBy: 'PMM LatAm Team',
+    dataSource: 'Relatórios Financeiros dLocal NASDAQ, Logs de Transações em Clientes Compartilhados',
+    battlecard: {
+      whyWeWin: 'Nossa rede de adquirência direta própria no Brasil garante SLAs de disponibilidade e aprovação muito mais altos do que o modelo agregador deles.',
+      vulnerabilities: 'As reclamações frequentes de falhas pontuais de processamento devido ao modelo de sub-adquirência local indireta em múltiplos mercados.',
+      script: 'A dLocal oferece cobertura massiva para muitos países exóticos. No entanto, para o mercado brasileiro — que exige performance técnica robusta —, o modelo de adquirência direta da Adyen entrega estabilidade insuperável de infraestrutura própria, sem intermediários agregando pontos de falha.'
+    }
+  },
+  {
+    id: 'paypal',
+    name: 'PayPal / Braintree',
+    isBenchmark: false,
+    logoText: 'PAY',
+    type: 'Global Wallet / Checkout',
+    pricingModel: 'Flat-Rate + Tarifa Fixa por transação',
+    approvalRate: 88.0,
+    omnichannel: 'Não aplicável (Muito restrito ao e-commerce clássico no Brasil)',
+    antifraud: 'Nativo baseado em contas verificadas PayPal',
+    pixFeature: 'Disponível como opção complementar no fluxo de carteira digital',
+    settlementSpeed: 'D+30 padrão para carteira digital no Brasil',
+    devExperience: 'Regular (APIs Braintree de boa qualidade, mas poucas atualizações locais)',
+    weaknesses: 'Falta de adaptação rápida para novos fluxos locais brasileiros (ex: Pix parcelado, QR codes dinâmicos).',
+    strengths: 'Marca de confiança global imbatível em checkout expresso e alta aceitação em transações estrangeiras.',
+    status: 'approved',
+    verifiedBy: 'PMM Global Team',
+    dataSource: 'Relatórios Anuais SEC PayPal Inc, Documentação de Integração Braintree',
+    battlecard: {
+      whyWeWin: 'Nossos fluxos focam na conversão direta e sem atrito do cartão do usuário, enquanto o PayPal é otimizado para sua própria carteira digital.',
+      vulnerabilities: 'Taxas altíssimas e atrito no checkout quando o usuário final é obrigado a ter uma conta do PayPal para finalizar a transação.',
+      script: 'O PayPal é muito bom para compradores internacionais que exigem segurança de carteira. Contudo, para o dia a dia do consumidor brasileiro, a Adyen entrega uma experiência de checkout muito mais limpa, integrada diretamente com as bandeiras de cartões e o Pix local.'
+    }
+  }
+];
+
+// Notícias fictícias super realistas focadas no mercado brasileiro de pagamentos (Referência: Maio de 2026)
+const RECENT_NEWS = [
+  {
+    id: 1,
+    competitorId: 'adyen',
+    title: 'Adyen expande adquirência de Pix via Open Finance com novos SDKs para PDV Android',
+    date: '12/05/2026',
+    source: 'Valor Econômico',
+    snippet: 'Nova funcionalidade simplifica pagamentos corporativos e melhora a velocidade de fechamento financeiro nas lojas brasileiras de grande porte.'
+  },
+  {
+    id: 2,
+    competitorId: 'stripe',
+    title: 'Stripe lança módulo de Cobrança Recorrente adaptado às novas regras regulatórias do Pix Automático',
+    date: '24/05/2026',
+    source: 'Meio & Mensagem Tech',
+    snippet: 'Atualização das APIs permite que empresas que utilizam a Stripe cobrem assinaturas no Brasil sem atrito, focando no novo Pix de recorrência.'
+  },
+  {
+    id: 3,
+    competitorId: 'cielo',
+    title: 'Cielo foca em valor agregado no varejo após fechamento de capital',
+    date: '02/05/2026',
+    source: 'Estadão Economia',
+    snippet: 'A empresa anunciou investimentos focados em BI integrado e suporte regional para combater a expansão de competidores de plataforma única de tecnologia.'
+  },
+  {
+    id: 4,
+    competitorId: 'rede',
+    title: 'Itaú lança ofensiva comercial com isenção de tarifas Pix PJ para novos correntistas',
+    date: '18/04/2026',
+    source: 'NeoFeed',
+    snippet: 'Rede busca fidelizar grandes comerciantes atrelando taxas de maquininha e tarifas Pix à contratação de pacotes de crédito estruturado do banco.'
+  },
+  {
+    id: 5,
+    competitorId: 'mercadopago',
+    title: 'Mercado Pago expande ferramentas de proteção contra fraude alimentadas por IA Generativa local',
+    date: '08/05/2026',
+    source: 'Exame',
+    snippet: 'O novo motor analisa dados em tempo real para reduzir fraudes de roubo de conta, buscando aumentar as taxas de aprovação técnica no varejo digital LatAm.'
+  }
+];
+
+export default function App() {
+  const [competitors, setCompetitors] = useState(INITIAL_COMPETITORS);
+  const [selectedSlot1, setSelectedSlot1] = useState('adyen');
+  const [selectedSlot2, setSelectedSlot2] = useState('stripe');
+  const [selectedSlot3, setSelectedSlot3] = useState('cielo');
+  const [activeBattlecardId, setActiveBattlecardId] = useState('stripe');
+  const [activeTab, setActiveTab] = useState('compare'); // compare | curation | news
+
+  // Modal para criar concorrente personalizado
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newCompName, setNewCompName] = useState('');
+  const [newCompType, setNewCompType] = useState('Nacional');
+  const [newCompPricing, setNewCompPricing] = useState('MDR Flat');
+  const [newCompApproval, setNewCompApproval] = useState(88);
+  const [newCompOmni, setNewCompOmni] = useState('Básico');
+  const [newCompAntifraud, setNewCompAntifraud] = useState('Terceirizado');
+  const [newCompWeaknesses, setNewCompWeaknesses] = useState('');
+  const [newCompStrengths, setNewCompStrengths] = useState('');
+  const [newCompSource, setNewCompSource] = useState('');
+
+  // Notificação de cópia de script
+  const [showCopiedAlert, setShowCopiedAlert] = useState(false);
+
+  // Manipulação de adicionar concorrente (entra como rascunho temporário/aguardando curadoria)
+  const handleAddCompetitor = (e) => {
+    e.preventDefault();
+    if (!newCompName.trim()) return;
+
+    const newId = newCompName.toLowerCase().replace(/\s+/g, '-');
+    const newCompetitor = {
+      id: newId,
+      name: `${newCompName} (Draft)`,
+      isBenchmark: false,
+      logoText: newCompName.substring(0, 3).toUpperCase(),
+      type: newCompType,
+      pricingModel: newCompPricing,
+      approvalRate: parseFloat(newCompApproval),
+      omnichannel: newCompOmni,
+      antifraud: newCompAntifraud,
+      pixFeature: 'Funcionalidades básicas de Pix',
+      settlementSpeed: 'D+30 padrão',
+      devExperience: 'APIs padrão de mercado',
+      weaknesses: newCompWeaknesses || 'Sem mapeamento oficial de fraqueza.',
+      strengths: newCompStrengths || 'Forte relacionamento de campo local.',
+      status: 'pending', // Entra como pendente de aprovação de PMM
+      verifiedBy: 'Aguardando Aprovação de PMM / Curadoria Interna',
+      dataSource: newCompSource || 'Informação inserida manualmente por Sales Manager',
+      battlecard: {
+        whyWeWin: 'A Adyen possui inteligência direta de dados e taxas de aprovação superiores comparadas ao modelo deste player no Brasil.',
+        vulnerabilities: 'Atendimento corporativo genérico e falta de controle do fluxo completo de transação (gateway/adquirência de parceiros).',
+        script: `Ao negociar contra o ${newCompName}, foque na nossa estabilidade de SLA. Nós controlamos a nossa rede própria, enquanto eles dependem de terceiros.`
+      }
+    };
+
+    setCompetitors(prev => [...prev, newCompetitor]);
+    setIsModalOpen(false);
+    setSelectedSlot3(newId);
+    setActiveBattlecardId(newId);
+    
+    // Limpa campos
+    setNewCompName('');
+    setNewCompWeaknesses('');
+    setNewCompStrengths('');
+    setNewCompSource('');
+  };
+
+  // Aprova o concorrente pendente simulando a curadoria do PMM
+  const handleApproveCompetitor = (id) => {
+    setCompetitors(prev => prev.map(c => {
+      if (c.id === id) {
+        return {
+          ...c,
+          status: 'approved',
+          name: c.name.replace(' (Draft)', ''),
+          verifiedBy: 'Aprovado por Product Marketing (PMM Local)'
+        };
+      }
+      return c;
+    }));
+  };
+
+  // Rejeita ou exclui o concorrente pendente
+  const handleDeleteCompetitor = (id) => {
+    setCompetitors(prev => prev.filter(c => c.id !== id));
+    // Fallback de slots para evitar quebras
+    if (selectedSlot1 === id) setSelectedSlot1('adyen');
+    if (selectedSlot2 === id) setSelectedSlot2('stripe');
+    if (selectedSlot3 === id) setSelectedSlot3('cielo');
+    if (activeBattlecardId === id) setActiveBattlecardId('stripe');
+  };
+
+  const handleCopyScript = (text) => {
+    navigator.clipboard.writeText(text);
+    setShowCopiedAlert(true);
+    setTimeout(() => setShowCopiedAlert(false), 3000);
+  };
+
+  // Filtros dinâmicos baseados no estado dos slots
+  const comp1 = competitors.find(c => c.id === selectedSlot1) || competitors[0];
+  const comp2 = competitors.find(c => c.id === selectedSlot2) || competitors[1];
+  const comp3 = competitors.find(c => c.id === selectedSlot3) || competitors[2];
+
+  const activeCompetitorForBattlecard = competitors.find(c => c.id === activeBattlecardId) || competitors[1];
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col antialiased selection:bg-emerald-500 selection:text-slate-900">
+      
+      {/* HEADER DO DASHBOARD */}
+      <header className="bg-slate-950 border-b border-slate-800 py-4 px-6 sticky top-0 z-40 shadow-lg">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center font-bold text-slate-950 text-xl tracking-wider shadow-inner">
+              A
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-xl font-bold tracking-tight text-white">Adyen Sales Intel Hub</h1>
+                <span className="bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-2 py-0.5 rounded-full border border-emerald-500/20">
+                  Mercado Brasileiro 2026
+                </span>
+              </div>
+              <p className="text-xs text-slate-400">Dashboard dinâmico, monitoramento de notícias e curadoria de dados concorrentes</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-lg flex items-center gap-2 transition duration-200 shadow-md shadow-emerald-500/10"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+              </svg>
+              ADICIONAR/SUGERIR DADO
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* ÁREA DE ABAS PRINCIPAIS */}
+      <div className="bg-slate-950/40 border-b border-slate-800/80 px-6">
+        <div className="max-w-7xl mx-auto flex gap-4">
+          <button
+            onClick={() => setActiveTab('compare')}
+            className={`py-3 text-xs font-bold border-b-2 tracking-wider transition duration-150 flex items-center gap-2 ${
+              activeTab === 'compare' ? 'border-emerald-500 text-emerald-400' : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 114 0v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            COMPARADOR SIDE-BY-SIDE
+          </button>
+          <button
+            onClick={() => setActiveTab('curation')}
+            className={`py-3 text-xs font-bold border-b-2 tracking-wider transition duration-150 flex items-center gap-2 relative ${
+              activeTab === 'curation' ? 'border-emerald-500 text-emerald-400' : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            CURADORIA & ORIGEM DOS DADOS
+            {competitors.some(c => c.status === 'pending') && (
+              <span className="absolute -top-1 -right-2 bg-amber-500 text-slate-950 text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-pulse">
+                {competitors.filter(c => c.status === 'pending').length}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setActiveTab('news')}
+            className={`py-3 text-xs font-bold border-b-2 tracking-wider transition duration-150 flex items-center gap-2 ${
+              activeTab === 'news' ? 'border-emerald-500 text-emerald-400' : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1M19 20a2 2 0 002-2V8a2 2 0 00-2-2h-5" />
+            </svg>
+            NOTÍCIAS RELEVANTES (ÚLTIMOS 30 DIAS)
+          </button>
+        </div>
+      </div>
+
+      {/* ÁREA PRINCIPAL */}
+      <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+        {/* TOAST DE CÓPIA */}
+        {showCopiedAlert && (
+          <div className="fixed bottom-6 right-6 z-50 bg-emerald-500 text-slate-950 text-sm font-semibold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 border border-emerald-300">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            Script comercial copiado para a área de transferência!
+          </div>
+        )}
+
+        {/* ABA: COMPARADOR LADO A LADO */}
+        {activeTab === 'compare' && (
+          <div className="space-y-6">
+            
+            {/* GRID COMPARATIVO PRINCIPAL */}
+            <section className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+              
+              {/* HEADERS DAS COLUNAS (CONTROLES) */}
+              <div className="grid grid-cols-1 md:grid-cols-4 border-b border-slate-800 bg-slate-950/90 backdrop-blur sticky top-20 z-20">
+                
+                {/* Coluna de Descritores */}
+                <div className="p-4 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-800 bg-slate-900/10">
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Atributos e Métricas</span>
+                  <span className="text-[10px] text-slate-500 mt-1">Comparando a Adyen frente aos demais players no Brasil</span>
+                </div>
+
+                {/* Coluna Slot 1 (Adyen) */}
+                <div className="p-4 border-b md:border-b-0 md:border-r border-slate-800 relative bg-emerald-950/10">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[9px] text-emerald-400 font-bold uppercase tracking-wider">Benchmark Selecionado</span>
+                    {comp1.status === 'pending' && (
+                      <span className="bg-amber-500/20 text-amber-400 text-[8px] font-bold px-1.5 py-0.5 rounded">Rascunho</span>
+                    )}
+                  </div>
+                  <select
+                    value={selectedSlot1}
+                    onChange={(e) => setSelectedSlot1(e.target.value)}
+                    className="w-full bg-slate-900 border border-emerald-500/30 rounded-lg p-2 text-xs font-bold text-white focus:outline-none focus:border-emerald-500 cursor-pointer"
+                  >
+                    {competitors.map(c => (
+                      <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Coluna Slot 2 */}
+                <div className="p-4 border-b md:border-b-0 md:border-r border-slate-800">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Competidor A</span>
+                    {comp2.status === 'pending' && (
+                      <span className="bg-amber-500/20 text-amber-400 text-[8px] font-bold px-1.5 py-0.5 rounded">Rascunho</span>
+                    )}
+                  </div>
+                  <select
+                    value={selectedSlot2}
+                    onChange={(e) => setSelectedSlot2(e.target.value)}
+                    className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-xs font-bold text-slate-100 focus:outline-none focus:border-blue-500 cursor-pointer"
+                  >
+                    {competitors.map(c => (
+                      <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Coluna Slot 3 */}
+                <div className="p-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Competidor B</span>
+                    {comp3.status === 'pending' && (
+                      <span className="bg-amber-500/20 text-amber-400 text-[8px] font-bold px-1.5 py-0.5 rounded">Rascunho</span>
+                    )}
+                  </div>
+                  <select
+                    value={selectedSlot3}
+                    onChange={(e) => setSelectedSlot3(e.target.value)}
+                    className="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-xs font-bold text-slate-100 focus:outline-none focus:border-blue-500 cursor-pointer"
+                  >
+                    {competitors.map(c => (
+                      <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+              </div>
+
+              {/* LINHAS DA MATRIZ */}
+              <div className="divide-y divide-slate-800/80">
+                
+                {/* Linha 1: Foco */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20">
+                  <div className="p-4 font-bold text-slate-300 md:border-r border-slate-800/60 bg-slate-900/5 flex items-center gap-2">
+                    Foco e Operação
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 ${comp1.isBenchmark ? 'bg-emerald-950/5' : ''}`}>
+                    <span className="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded">{comp1.type}</span>
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-300">
+                    <span className="bg-slate-800 text-slate-300 text-[10px] font-semibold px-2 py-0.5 rounded">{comp2.type}</span>
+                  </div>
+                  <div className="p-4 text-slate-300">
+                    <span className="bg-slate-800 text-slate-300 text-[10px] font-semibold px-2 py-0.5 rounded">{comp3.type}</span>
+                  </div>
+                </div>
+
+                {/* Linha 2: Modelo Comercial */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20">
+                  <div className="p-4 font-bold text-slate-300 md:border-r border-slate-800/60 bg-slate-900/5 flex items-center gap-2">
+                    Modelo Comercial
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 font-semibold ${comp1.isBenchmark ? 'text-emerald-400 bg-emerald-950/5' : ''}`}>
+                    {comp1.pricingModel}
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-300">
+                    {comp2.pricingModel}
+                  </div>
+                  <div className="p-4 text-slate-300">
+                    {comp3.pricingModel}
+                  </div>
+                </div>
+
+                {/* Linha 3: Taxa Aprovação */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20">
+                  <div className="p-4 font-bold text-slate-300 md:border-r border-slate-800/60 bg-slate-900/5 flex items-center gap-2">
+                    Aprovação Estimada
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 ${comp1.isBenchmark ? 'bg-emerald-950/5' : ''}`}>
+                    <div className="flex items-center gap-2">
+                      <span className="text-base font-black text-emerald-400">{comp1.approvalRate}%</span>
+                      <span className="text-[9px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.2 rounded font-bold">Líder</span>
+                    </div>
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-300">
+                    <span className="text-base font-black text-slate-300">{comp2.approvalRate}%</span>
+                    <span className="text-[10px] text-slate-500 block">Diferença: -( {(comp1.approvalRate - comp2.approvalRate).toFixed(1)}% )</span>
+                  </div>
+                  <div className="p-4 text-slate-300">
+                    <span className="text-base font-black text-slate-300">{comp3.approvalRate}%</span>
+                    <span className="text-[10px] text-slate-500 block">Diferença: -( {(comp1.approvalRate - comp3.approvalRate).toFixed(1)}% )</span>
+                  </div>
+                </div>
+
+                {/* Linha 4: Omnichannel */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20">
+                  <div className="p-4 font-bold text-slate-300 md:border-r border-slate-800/60 bg-slate-900/5 flex items-center gap-2">
+                    Solução Omnichannel
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 ${comp1.isBenchmark ? 'bg-emerald-950/5 text-emerald-300 font-semibold' : ''}`}>
+                    {comp1.omnichannel}
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-300">
+                    {comp2.omnichannel}
+                  </div>
+                  <div className="p-4 text-slate-300">
+                    {comp3.omnichannel}
+                  </div>
+                </div>
+
+                {/* Linha 5: Antifraude */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20">
+                  <div className="p-4 font-bold text-slate-300 md:border-r border-slate-800/60 bg-slate-900/5 flex items-center gap-2">
+                    Antifraude Integrado
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 ${comp1.isBenchmark ? 'bg-emerald-950/5 text-slate-300' : ''}`}>
+                    {comp1.antifraud}
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-300">
+                    {comp2.antifraud}
+                  </div>
+                  <div className="p-4 text-slate-300">
+                    {comp3.antifraud}
+                  </div>
+                </div>
+
+                {/* Linha 6: Pix */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20">
+                  <div className="p-4 font-bold text-slate-300 md:border-r border-slate-800/60 bg-slate-900/5 flex items-center gap-2">
+                    Funcionalidade Pix
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 ${comp1.isBenchmark ? 'bg-emerald-950/5 text-slate-300' : ''}`}>
+                    {comp1.pixFeature}
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-300">
+                    {comp2.pixFeature}
+                  </div>
+                  <div className="p-4 text-slate-300">
+                    {comp3.pixFeature}
+                  </div>
+                </div>
+
+                {/* Linha 7: Liquidação */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20">
+                  <div className="p-4 font-bold text-slate-300 md:border-r border-slate-800/60 bg-slate-900/5 flex items-center gap-2">
+                    Repasse e Liquidação
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 ${comp1.isBenchmark ? 'bg-emerald-950/5 text-slate-300' : ''}`}>
+                    {comp1.settlementSpeed}
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-300">
+                    {comp2.settlementSpeed}
+                  </div>
+                  <div className="p-4 text-slate-300">
+                    {comp3.settlementSpeed}
+                  </div>
+                </div>
+
+                {/* Linha 8: API */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20">
+                  <div className="p-4 font-bold text-slate-300 md:border-r border-slate-800/60 bg-slate-900/5 flex items-center gap-2">
+                    Developer Experience
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 ${comp1.isBenchmark ? 'bg-emerald-950/5 text-slate-300' : ''}`}>
+                    {comp1.devExperience}
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-300">
+                    {comp2.devExperience}
+                  </div>
+                  <div className="p-4 text-slate-300">
+                    {comp3.devExperience}
+                  </div>
+                </div>
+
+                {/* Linha 9: Fontes (Transparência de Inteligência) */}
+                <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition duration-150 hover:bg-slate-900/20 bg-slate-950/50">
+                  <div className="p-4 font-semibold text-slate-400 md:border-r border-slate-800/60 flex flex-col justify-center">
+                    <span>Proveniência</span>
+                    <span className="text-[10px] text-slate-500 font-normal">Origem desta informação</span>
+                  </div>
+                  <div className={`p-4 md:border-r border-slate-800/60 ${comp1.isBenchmark ? 'bg-emerald-950/5 text-slate-400' : ''}`}>
+                    <p className="text-[10px] italic leading-relaxed">"{comp1.dataSource}"</p>
+                    <span className="text-[9px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded mt-2 inline-block">{comp1.verifiedBy}</span>
+                  </div>
+                  <div className="p-4 md:border-r border-slate-800/60 text-slate-400">
+                    <p className="text-[10px] italic leading-relaxed">"{comp2.dataSource}"</p>
+                    <span className="text-[9px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded mt-2 inline-block">{comp2.verifiedBy}</span>
+                  </div>
+                  <div className="p-4 text-slate-400">
+                    <p className="text-[10px] italic leading-relaxed">"{comp3.dataSource}"</p>
+                    <span className="text-[9px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded mt-2 inline-block">{comp3.verifiedBy}</span>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            {/* BATTLECARDS DE COMBATE COMERCIAL */}
+            <section className="bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-xl">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-4 mb-6">
+                <div>
+                  <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                    <span className="p-1 rounded bg-amber-500/10 text-amber-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </span>
+                    Battlecard Comercial Dinâmico
+                  </h2>
+                  <p className="text-xs text-slate-400">Escolha o concorrente que o seu lead atualmente utiliza para armar seu pitch de vendas.</p>
+                </div>
+
+                {/* Seleção do Player para o Battlecard */}
+                <div className="flex flex-wrap gap-1.5 max-w-full">
+                  {competitors.filter(c => !c.isBenchmark).map(c => (
+                    <button
+                      key={c.id}
+                      onClick={() => setActiveBattlecardId(c.id)}
+                      className={`text-[11px] px-2.5 py-1.5 rounded-lg font-bold border transition duration-200 ${
+                        activeBattlecardId === c.id
+                          ? 'bg-amber-500/15 border-amber-500/35 text-amber-400 shadow-md'
+                          : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Detalhes do Battlecard de Combate */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                {/* 1. Por que vencemos */}
+                <div className="bg-slate-900/40 border border-slate-800/80 rounded-xl p-5 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-black tracking-widest text-emerald-400 uppercase">Nosso Ganho Principal</span>
+                    <h3 className="text-sm font-bold text-white mt-1 mb-2">Como batemos o {activeCompetitorForBattlecard.name}?</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed text-justify">
+                      {activeCompetitorForBattlecard.battlecard?.whyWeWin}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-slate-400">
+                    <span className="font-bold text-slate-300">Ponto Forte Deles:</span> {activeCompetitorForBattlecard.strengths}
+                  </div>
+                </div>
+
+                {/* 2. Vulnerabilidades */}
+                <div className="bg-slate-900/40 border border-slate-800/80 rounded-xl p-5 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-black tracking-widest text-rose-400 uppercase">Gaps e Vulnerabilidades</span>
+                    <h3 className="text-sm font-bold text-white mt-1 mb-2">Onde eles falham no Brasil?</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed text-justify">
+                      {activeCompetitorForBattlecard.battlecard?.vulnerabilities}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-rose-400/80">
+                    <span className="font-bold text-slate-300">Ponto Fraco Deles:</span> {activeCompetitorForBattlecard.weaknesses}
+                  </div>
+                </div>
+
+                {/* 3. Script de Vendas */}
+                <div className="bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between relative overflow-hidden">
+                  <div className="absolute top-0 right-0 h-16 w-16 bg-amber-500/5 rounded-full blur-xl"></div>
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-[10px] font-black tracking-widest text-amber-400 uppercase">Roteiro de Abordagem Comercial</span>
+                      <button
+                        onClick={() => handleCopyScript(activeCompetitorForBattlecard.battlecard?.script)}
+                        className="p-1 hover:bg-slate-800 rounded text-slate-400 hover:text-white transition duration-150"
+                        title="Copiar Roteiro de Conversa"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div className="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] text-slate-300 font-mono italic leading-relaxed h-32 overflow-y-auto">
+                      "{activeCompetitorForBattlecard.battlecard?.script}"
+                    </div>
+                  </div>
+                  <div className="mt-3 text-[10px] text-slate-400 flex items-center gap-1.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Pronto para copiar e enviar por chat/email corporativo.
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+          </div>
+        )}
+
+        {/* ABA: CURADORIA E FLUXO DE APROVAÇÃO */}
+        {activeTab === 'curation' && (
+          <div className="space-y-6">
+            
+            {/* CARD EXPLICATIVO DO TRABALHO DE CURADORIA */}
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+              <div className="space-y-2 max-w-2xl">
+                <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                  <span className="p-1 rounded bg-emerald-500/10 text-emerald-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                  </span>
+                  Processo de Curation & Inteligência PMM
+                </h2>
+                <p className="text-xs text-slate-400 leading-relaxed text-justify">
+                  Garantir que as informações técnicas de competidores não sejam obsoletas é crucial para a integridade comercial. 
+                  Para assegurar que dados inseridos pelo time em campo sejam verídicos, novos inputs entram em estado de <strong>Rascunho (Aguardando Curadoria)</strong>. 
+                  Apenas após a revisão e carimbo da equipe de Product Marketing (PMM) o dado é promovido a Oficial.
+                </p>
+              </div>
+
+              <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1 text-xs">
+                <span className="font-bold text-slate-200">Como funciona o fluxo?</span>
+                <ol className="list-decimal list-inside text-slate-400 space-y-1 mt-1 font-mono">
+                  <li>Sales Manager sugere alteração de campo.</li>
+                  <li>Inclusão entra como "Pendente".</li>
+                  <li>PMM local audita fontes públicas/APIs.</li>
+                  <li>Status muda para "Aprovado" no Hub.</li>
+                </ol>
+              </div>
+            </div>
+
+            {/* TABELA DE CURADORIA DE ENTRADAS DE DADOS */}
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+              <div className="p-4 border-b border-slate-800 bg-slate-900/20">
+                <h3 className="text-sm font-bold text-white">Status de Verificação de Competidores no Brasil</h3>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-800 text-slate-400">
+                      <th className="p-4 font-bold">Competidor</th>
+                      <th className="p-4 font-bold">Tipo</th>
+                      <th className="p-4 font-bold">Origem/Fonte dos Dados</th>
+                      <th className="p-4 font-bold">Última Revisão</th>
+                      <th className="p-4 font-bold">Status</th>
+                      <th className="p-4 font-bold text-right">Ação (Simular PMM)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/60">
+                    {competitors.map(c => (
+                      <tr key={c.id} className="hover:bg-slate-900/10 transition duration-150">
+                        <td className="p-4 font-bold text-white flex items-center gap-2">
+                          <span className="h-6 w-6 rounded bg-slate-800 text-[9px] font-bold text-emerald-400 flex items-center justify-center">
+                            {c.logoText}
+                          </span>
+                          {c.name}
+                        </td>
+                        <td className="p-4 text-slate-400">{c.type}</td>
+                        <td className="p-4 text-slate-300 italic max-w-xs truncate" title={c.dataSource}>
+                          "{c.dataSource}"
+                        </td>
+                        <td className="p-4 text-slate-400">{c.verifiedBy}</td>
+                        <td className="p-4">
+                          {c.status === 'approved' ? (
+                            <span className="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-500/20 flex items-center gap-1 w-max">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              Aprovado PMM
+                            </span>
+                          ) : (
+                            <span className="bg-amber-500/10 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-500/20 flex items-center gap-1 w-max animate-pulse">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                              </svg>
+                              Sob Curadoria (Draft)
+                            </span>
+                          )}
+                        </td>
+                        <td className="p-4 text-right">
+                          {c.status === 'pending' ? (
+                            <div className="flex justify-end gap-2">
+                              <button
+                                onClick={() => handleApproveCompetitor(c.id)}
+                                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded"
+                                title="Aprovar e homologar informações"
+                              >
+                                APROVAR
+                              </button>
+                              <button
+                                onClick={() => handleDeleteCompetitor(c.id)}
+                                className="bg-rose-500/20 hover:bg-rose-500/35 text-rose-400 text-[10px] font-bold px-2 py-1 rounded"
+                                title="Rejeitar entrada"
+                              >
+                                REJEITAR
+                              </button>
+                            </div>
+                          ) : (
+                            <span className="text-slate-600 text-[10px]">Sem pendências</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        )}
+
+        {/* ABA: PAINEL DE NOTÍCIAS DOS ÚLTIMOS 30 DIAS */}
+        {activeTab === 'news' && (
+          <div className="space-y-6">
+            
+            {/* HEADER NOTÍCIAS */}
+            <div className="flex justify-between items-center">
+              <div>
+                <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                  <span className="p-1 rounded bg-blue-500/10 text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1M19 20a2 2 0 002-2V8a2 2 0 00-2-2h-5" />
+                    </svg>
+                  </span>
+                  Radar de Notícias Recentes (Últimos 30 dias)
+                </h2>
+                <p className="text-xs text-slate-400">Notícias de mercado, lançamentos e regulamentações no Brasil com impactos competitivos diretos na Adyen</p>
+              </div>
+              <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-1 rounded font-bold">Filtro: Mercado Brasileiro (Maio 2026)</span>
+            </div>
+
+            {/* GRIDS DE NOTÍCIAS */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {RECENT_NEWS.map(news => {
+                const comp = competitors.find(c => c.id === news.competitorId);
+                return (
+                  <div key={news.id} className="bg-slate-950 border border-slate-800/80 rounded-xl p-5 hover:border-slate-700 transition duration-150 flex flex-col justify-between">
+                    <div>
+                      <div className="flex justify-between items-start gap-4 mb-2">
+                        <span className="text-[10px] bg-slate-900 border border-slate-800 text-emerald-400 font-bold px-2 py-0.5 rounded">
+                          {comp ? comp.name : 'Mercado'}
+                        </span>
+                        <div className="text-right">
+                          <span className="text-[10px] text-slate-500 block">{news.date}</span>
+                          <span className="text-[9px] text-slate-600 block italic">Fonte: {news.source}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-sm font-bold text-white mb-2 hover:text-emerald-400 cursor-pointer transition">
+                        {news.title}
+                      </h3>
+                      <p className="text-xs text-slate-300 leading-relaxed text-justify mb-4">
+                        {news.snippet}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-900 flex justify-between items-center text-[10px]">
+                      <span className="text-slate-500">Impacto competitivo: <strong className="text-emerald-400">Médio/Alto</strong></span>
+                      <button
+                        onClick={() => {
+                          setActiveTab('compare');
+                          setActiveBattlecardId(news.competitorId);
+                        }}
+                        className="text-emerald-400 font-bold hover:underline flex items-center gap-1"
+                      >
+                        Ver Battlecard
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+        )}
+
+      </main>
+
+      {/* FOOTER */}
+      <footer className="bg-slate-950 border-t border-slate-800/80 py-6 px-6 mt-12 text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
+            <span>Adyen Sales Intel Hub - Uso Estritamente Comercial e Interno</span>
+          </div>
+          <div>
+            Projetado de forma responsiva para Desktop, Tablet e Mobile.
+          </div>
+        </div>
+      </footer>
+
+      {/* MODAL: ADICIONAR NOVO CONCORRENTE OU DETALHE */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative animate-in fade-in zoom-in duration-150 max-h-[90vh] overflow-y-auto">
+            
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition duration-150"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <h3 className="text-base font-bold text-white mb-2">Sugerir Entrada de Inteligência Competitiva</h3>
+            <p className="text-xs text-slate-400 mb-4">Adicione um novo concorrente ou detalhe encontrado em campo. Novas entradas passam pelo processo de validação por PMM.</p>
+
+            <form onSubmit={handleAddCompetitor} className="space-y-4 text-xs">
+              
+              {/* Nome */}
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-300 mb-1">Nome da Plataforma Concorrente *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Ex: InfinitePay, PagBank Enterprise, Asaas"
+                  value={newCompName}
+                  onChange={(e) => setNewCompName(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+
+              {/* Origem da Informação */}
+              <div>
+                <label className="block text-[11px] font-semibold text-slate-300 mb-1">Origem / Fonte da Informação *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Ex: Tabela comercial enviada por lead, Site Oficial da API, etc."
+                  value={newCompSource}
+                  onChange={(e) => setNewCompSource(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+
+              {/* Grid 2 colunas */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">Tipo de Operador</label>
+                  <select
+                    value={newCompType}
+                    onChange={(e) => setNewCompType(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-300 focus:outline-none focus:border-emerald-500"
+                  >
+                    <option value="Nacional">Nacional</option>
+                    <option value="Global">Global</option>
+                    <option value="Subadquirente">Subadquirente</option>
+                    <option value="Gateway Puro">Gateway Puro</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">Modelo de Tarifas</label>
+                  <select
+                    value={newCompPricing}
+                    onChange={(e) => setNewCompPricing(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-300 focus:outline-none focus:border-emerald-500"
+                  >
+                    <option value="MDR Flat">MDR Flat</option>
+                    <option value="Interchange++ (IC++)">Interchange++ (IC++)</option>
+                    <option value="Mensalidade + Transação">Mensalidade + Transação</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Slide Aprovação */}
+              <div>
+                <div className="flex justify-between text-[11px] font-semibold text-slate-300 mb-1">
+                  <label>Taxa de Aprovação Estimada</label>
+                  <span className="text-emerald-400 font-bold">{newCompApproval}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="75"
+                  max="98"
+                  step="1"
+                  value={newCompApproval}
+                  onChange={(e) => setNewCompApproval(Number(e.target.value))}
+                  className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+                />
+              </div>
+
+              {/* Grid Capacidades rápidas */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">Omnichannel</label>
+                  <input
+                    type="text"
+                    placeholder="Ex: Fragmentado via adquirente físico"
+                    value={newCompOmni}
+                    onChange={(e) => setNewCompOmni(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">Antifraude</label>
+                  <input
+                    type="text"
+                    placeholder="Ex: Opcional via CyberSource"
+                    value={newCompAntifraud}
+                    onChange={(e) => setNewCompAntifraud(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500"
+                  />
+                </div>
+              </div>
+
+              {/* Pontos de força/fraquezas */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">Vulnerabilidade técnica</label>
+                  <textarea
+                    rows={2}
+                    placeholder="Ex: Altas taxas de estorno e latência de gateway"
+                    value={newCompWeaknesses}
+                    onChange={(e) => setNewCompWeaknesses(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500 resize-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">Força comercial</label>
+                  <textarea
+                    rows={2}
+                    placeholder="Ex: Sem custos iniciais de POS de balcão"
+                    value={newCompStrengths}
+                    onChange={(e) => setNewCompStrengths(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:outline-none focus:border-emerald-500 resize-none"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-3 pt-3">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs px-4 py-2 rounded-lg transition duration-150"
+                >
+                  CANCELAR
+                </button>
+                <button
+                  type="submit"
+                  className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg transition duration-150"
+                >
+                  SUGERIR E VER NO PAINEL
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      )}
+
+    </div>
+  );
+}
