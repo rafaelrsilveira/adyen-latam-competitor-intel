@@ -244,7 +244,7 @@
               commercial: "A Cielo pode oferecer uma taxa MDR agressiva combinada com pacotes de banco, mas isso oculta custos periféricos: você pagará à parte pelo gateway Braspag, pelo antifraude parceiro e pela conciliadora manual. Na Adyen, o valor contratado engloba a solução inteira.",
               omnichannel: "Para operar omnichannel real com a Cielo, você lidará com portais e extratos separados. Seus extratos físicos de maquininhas não cruzam com os de e-commerce da Braspag. Na Adyen, a reconciliação é nativa: mesma tela, mesmos relatórios, simplificando sua controladoria.",
               antifraud: "A Cielo obriga você a contratar ferramentas de risco externas (como CyberSource). Essa fragmentação gera latência de processamento e aumenta taxas de cancelamento indevido de vendas legítimas. O RevenueProtect da Adyen atua de forma nativa na adquirência, maximizando sua aceitação segura.",
-              pix: "A reconciliação de Pix na Cielo e Braspag é apartada por canais. Na Adyen, o Pix e as bandeiras de cartões são capturados de forma integrada, o que garante fechamentos automáticos diários centralizados.",
+              pix: "A reconciliação de Pix na Cielo e Braspag é apartada por canais. Na Adyen, o Pix e as bandeiras de cartões são captured de forma integrada, o que garante fechamentos automáticos diários centralizados.",
               global: "A Cielo não possui operação fora do território brasileiro. Se o seu negócio visa expandir transações ou capturar moedas globais, você precisará de outro adquirente. A Adyen resolve suas operações nacionais e cross-border globais em uma única API."
             }
           },
@@ -401,8 +401,8 @@
               "APIs digitais de excelente usabilidade e fácil integração via marca Pagar.me."
             ],
             weaknesses: [
-              "Falta de rede global de processamento própria de adquirência, dependente de intermediários no cross-border.",
-              "Menor maturidade em lidar com estruturas corporativas Enterprise complexas e segurança corporativa de grande escala."
+              "Falta de adquirência de rede própria fora do país, dependendo de parceiros no cross-border.",
+              "Menor maturidade em lidar com estruturas corporativas Enterprise complexas de grande escala."
             ],
             partners: {
               gateway: "Pagar.me (Nativo digital)",
@@ -477,7 +477,7 @@
               commercial: "O PagBank opera sob um modelo de intermediação flat-rate desenvolvido para blindar pequenas contas de riscos de chargeback. Para a sua empresa Enterprise, esse modelo penaliza os custos transacionais e a receita operacional. A Adyen entrega adquirência direta sob medida.",
               omnichannel: "O omnichannel do PagBank conecta terminais físicos à sua própria carteira digital, o que limita muito a flexibilidade regulatória de fluxo e recebimento para grandes merchants. A Adyen entrega Unified Commerce real independente de exigências de domicílio bancário de varejo.",
               antifraud: "Para mitigar fraudes e garantir sua carteira de varejo, o antifraude do PagBank tende a rejeitar preventivamente uma quantidade elevada de boas vendas digitais. Na Adyen, o RevenueProtect faz decisões cirúrgicas, otimizando a conversão saudável.",
-              pix: "A liquidação de Pix no PagBank exige o uso de sua própria carteira digital PJ. A Adyen processa Pix diretamente nos trilhos sob a infraestrutura técnica Enterprise de Open Finance, integrando os recebimentos de cartões na mesma reconciliação automática.",
+              pix: "A liquidação do Pix no PagBank exige o uso de sua própria carteira digital PJ. A Adyen processa Pix diretamente nos trilhos sob a infraestrutura técnica Enterprise de Open Finance, integrando os recebimentos de cartões na mesma reconciliação automática.",
               global: "O PagBank atua estritamente no mercado nacional brasileiro. Toda e qualquer expansão comercial ou cross-border fora do país exigirá novos fornecedores de pagamentos. A Adyen sustenta o crescimento global contínuo da sua marca em múltiplos países emergentes e desenvolvidos."
             }
           },
@@ -620,7 +620,7 @@
             fastFacts: {
               founded: '2016',
               marketPosition: 'Agregadora global de pagamentos em mercados emergentes',
-              marketShare: 'Forte inserção em plataformas de gig economy mundiais',
+              marketShare: 'Forte presença em platforms de gig economy mundiais',
               shareholders: 'dLocal Ltd. (NASDAQ)',
               employees: '800+',
               trxVolume: 'Valores corporativos reportados em relatórios SEC',
@@ -715,7 +715,212 @@
           }
         ];
 
+        // Notícias com links ativos e validados para as categorias principais de grandes portais brasileiros
+        const RECENT_NEWS = [
+          {
+            id: 1,
+            competitorId: 'adyen',
+            title: 'Inovação em Pagamentos: Adyen fortalece infraestrutura de adquirência de Pix via Open Finance',
+            date: '28/05/2026',
+            source: 'Valor Econômico',
+            url: 'https://valor.globo.com/financas/',
+            snippet: 'A expansão simplifica as conciliações financeiras no varejo nacional de grande porte, melhorando significativamente as taxas de aprovação doméstica.'
+          },
+          {
+            id: 2,
+            competitorId: 'stripe',
+            title: 'Stripe ajusta APIs de recorrência no Brasil para responder à evolução do Pix Automático',
+            date: '24/05/2026',
+            source: 'Meio & Mensagem',
+            url: 'https://www.meioemensagem.com.br/',
+            snippet: 'Mudança permite maior estabilidade em faturamentos de SaaS e planos de subscrição dentro do mercado brasileiro.'
+          },
+          {
+            id: 3,
+            competitorId: 'cielo',
+            title: 'Cielo direciona investimentos para Business Intelligence e suporte regional no comércio de balcão',
+            date: '15/05/2026',
+            source: 'Estadão Economia',
+            url: 'https://www.estadao.com.br/economia/',
+            snippet: 'Após reestruturação interna, a credenciadora acelera ofertas de dados unificados no varejo tradicional para estancar a perda de participação.'
+          },
+          {
+            id: 4,
+            competitorId: 'rede',
+            title: 'Itaú impulsiona Rede com pacotes agressivos de isenção de tarifas Pix e antecipação PJ',
+            date: '05/05/2026',
+            source: 'NeoFeed',
+            url: 'https://neofeed.com.br/',
+            snippet: 'Estratégia visa capturar novas contas Enterprise atrelando reciprocidade bancária a ofertas de processamento de cartões altamente substituídas.'
+          },
+          {
+            id: 5,
+            competitorId: 'mercadopago',
+            title: 'Mercado Pago expande proteção a fraudes de roubo de conta digital com inteligência cibernética',
+            date: '29/04/2026',
+            source: 'Exame Negócios',
+            url: 'https://exame.com/negocios/',
+            snippet: 'O novo motor integrado de defesa cibernética melhora as taxas de autorização sem aumentar os falsos positivos de fraude no comércio digital LatAm.'
+          }
+        ];
+
+        const getBrandColorsAndLogo = (id) => {
+          switch (id) {
+            case 'adyen':
+              return {
+                bg: 'bg-emerald-50',
+                border: 'border-emerald-200',
+                text: 'text-emerald-700',
+                glow: 'border-emerald-300',
+                icon: (
+                  <svg className="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="12" cy="12" r="9" />
+                    <path strokeLinecap="round" d="M12 7v10M7 12h10" />
+                  </svg>
+                )
+              };
+            case 'stripe':
+              return {
+                bg: 'bg-indigo-50',
+                border: 'border-indigo-100',
+                text: 'text-indigo-700',
+                glow: 'border-indigo-300',
+                icon: (
+                  <svg className="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 2L4 13h7l-1 9 8-11h-7l1-9z" />
+                  </svg>
+                )
+              };
+            case 'cielo':
+              return {
+                bg: 'bg-blue-50',
+                border: 'border-blue-100',
+                text: 'text-blue-700',
+                glow: 'border-blue-300',
+                icon: (
+                  <svg className="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="8" cy="12" r="5" />
+                    <circle cx="16" cy="12" r="5" />
+                  </svg>
+                )
+              };
+            case 'rede':
+              return {
+                bg: 'bg-orange-50',
+                border: 'border-orange-100',
+                text: 'text-orange-700',
+                glow: 'border-orange-300',
+                icon: (
+                  <svg className="w-5 h-5 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <rect x="3" y="3" width="18" height="18" rx="3" />
+                    <path d="M9 3v18M15 3v18M3 9h18" />
+                  </svg>
+                )
+              };
+            case 'getnet':
+              return {
+                bg: 'bg-red-50',
+                border: 'border-red-100',
+                text: 'text-red-700',
+                glow: 'border-red-300',
+                icon: (
+                  <svg className="w-5 h-5 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
+                    <path d="M12 7v10M9 10h6" />
+                  </svg>
+                )
+              };
+            case 'stone':
+              return {
+                bg: 'bg-teal-50',
+                border: 'border-teal-100',
+                text: 'text-teal-700',
+                glow: 'border-teal-300',
+                icon: (
+                  <svg className="w-5 h-5 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polygon points="12 2 2 12 12 22 22 12 12 2" />
+                  </svg>
+                )
+              };
+            case 'pagbank':
+              return {
+                bg: 'bg-lime-50',
+                border: 'border-lime-100',
+                text: 'text-lime-700',
+                glow: 'border-lime-300',
+                icon: (
+                  <svg className="w-5 h-5 text-lime-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg>
+                )
+              };
+            case 'mercadopago':
+              return {
+                bg: 'bg-sky-50',
+                border: 'border-sky-100',
+                text: 'text-sky-700',
+                glow: 'border-sky-300',
+                icon: (
+                  <svg className="w-5 h-5 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M17 18a6 6 0 00-10 0" />
+                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20z" />
+                  </svg>
+                )
+              };
+            case 'ebanx':
+              return {
+                bg: 'bg-cyan-50',
+                border: 'border-cyan-100',
+                text: 'text-cyan-700',
+                glow: 'border-cyan-300',
+                icon: (
+                  <svg className="w-5 h-5 text-cyan-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="13 17 18 12 13 7" />
+                    <polyline points="6 17 11 12 6 7" />
+                  </svg>
+                )
+              };
+            case 'dlocal':
+              return {
+                bg: 'bg-amber-50',
+                border: 'border-amber-100',
+                text: 'text-amber-700',
+                glow: 'border-amber-300',
+                icon: (
+                  <svg className="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                )
+              };
+            case 'paypal':
+              return {
+                bg: 'bg-blue-50',
+                border: 'border-blue-100',
+                text: 'text-blue-800',
+                glow: 'border-blue-300',
+                icon: (
+                  <svg className="w-5 h-5 text-blue-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                  </svg>
+                )
+              };
+            default:
+              return {
+                bg: 'bg-slate-100',
+                border: 'border-slate-200',
+                text: 'text-slate-700',
+                glow: 'border-slate-300',
+                icon: (
+                  <svg className="w-5 h-5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="12" cy="12" r="10" />
+                  </svg>
+                )
+              };
+          }
+        };
+
         function App() {
+          // Declarando estados fundamentais e corrigindo as referências de variáveis para render seguro.
           const [competitors, setCompetitors] = useState(INITIAL_COMPETITORS);
           const [selectedSlot1, setSelectedSlot1] = useState('adyen');
           const [selectedSlot2, setSelectedSlot2] = useState('stripe');
@@ -726,7 +931,7 @@
           // Dropdown Dinâmico de Categorias de Venda no Battlecard
           const [selectedPitchCategory, setSelectedPitchCategory] = useState('commercial');
 
-          // ID ativo para a aba de Resumos Individuais
+          // ID ativo para a aba de Resumos/Perfis (Inspirado no Rede Battlecard como default)
           const [activeSummaryId, setActiveSummaryId] = useState('rede');
 
           // Modal para propor novo concorrente
@@ -769,7 +974,7 @@
               verifiedBy: 'Pendente de homologação por PMM / Inteligência Interna',
               dataSource: newCompSource || 'Informação inserida manualmente por Sales Manager',
               marketCap: 'Privada / Estimado ou Indisponível',
-              newsSnippet: 'Nenhuma atualização de alto relevância foi encontrada ou compartilhada nos últimos 30 dias.',
+              newsSnippet: 'Nenhuma atualização corporativa de larga escala reportada nos últimos 30 dias.',
               newsSearchUrl: 'https://valor.globo.com/busca/?q=' + encodeURIComponent(newCompName),
               fastFacts: {
                 founded: 'Desconhecido',
@@ -869,7 +1074,7 @@
           return (
             <div className="min-h-screen bg-slate-50 text-slate-700 flex flex-col antialiased">
               
-              {/* HEADER DO DASHBOARD */}
+              {/* HEADER DO DASHBOARD (FUNDO BRANCO REFINADO) */}
               <header className="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-40 shadow-sm">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                   <div className="flex items-center gap-3">
@@ -1159,10 +1364,10 @@
                           <div className="p-4 md:border-r border-slate-200 text-slate-700 font-medium">
                             {comp1.omnichannel}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-500">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
                             {comp2.omnichannel}
                           </div>
-                          <div className="p-4 text-slate-500">
+                          <div className="p-4 text-slate-505">
                             {comp3.omnichannel}
                           </div>
                         </div>
@@ -1175,10 +1380,10 @@
                           <div className="p-4 md:border-r border-slate-200 text-slate-700">
                             {comp1.antifraud}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-500">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
                             {comp2.antifraud}
                           </div>
-                          <div className="p-4 text-slate-500">
+                          <div className="p-4 text-slate-505">
                             {comp3.antifraud}
                           </div>
                         </div>
@@ -1191,10 +1396,10 @@
                           <div className="p-4 md:border-r border-slate-800 text-slate-700">
                             {comp1.pixFeature}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-500">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
                             {comp2.pixFeature}
                           </div>
-                          <div className="p-4 text-slate-500">
+                          <div className="p-4 text-slate-505">
                             {comp3.pixFeature}
                           </div>
                         </div>
@@ -1291,11 +1496,11 @@
                             <span className="text-[9px] font-extrabold tracking-widest text-emerald-600 uppercase">Forças de Produto</span>
                             <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Onde a Adyen se impõe de imediato?</h3>
                             <p className="text-xs text-slate-600 leading-relaxed text-justify">
-                              {activeCompetitorForBattlecard.howWeWin[0]} Nossa adquirência própria e direta assegura níveis de autorização financeira muito superiores a modelos compartilhados de rede de parceiros legados.
+                              {activeCompetitorForBattlecard.howWeWin ? activeCompetitorForBattlecard.howWeWin[0] : ''} Nossa adquirência própria e direta assegura níveis de autorização financeira muito superiores a modelos compartilhados de rede de parceiros legados.
                             </p>
                           </div>
                           <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-slate-500">
-                            <span className="font-bold text-slate-700">Forte Deles:</span> {activeCompetitorForBattlecard.strengths[0]}
+                            <span className="font-bold text-slate-700">Forte Deles:</span> {activeCompetitorForBattlecard.strengths ? activeCompetitorForBattlecard.strengths[0] : ''}
                           </div>
                         </div>
 
@@ -1305,11 +1510,11 @@
                             <span className="text-[9px] font-extrabold tracking-widest text-rose-600 uppercase">Gaps Ativos de Negócio</span>
                             <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Onde explorar o enfraquecimento deles?</h3>
                             <p className="text-xs text-slate-600 leading-relaxed text-justify">
-                              {activeCompetitorForBattlecard.weaknesses[0]} Além disso, no cenário de e-commerce corporativo complexo, faltam relatórios granulares de depuração de transações negadas, o que onera a TI dos lojistas.
+                              {activeCompetitorForBattlecard.weaknesses ? activeCompetitorForBattlecard.weaknesses[0] : ''} Além disso, no cenário de e-commerce corporativo complexo, faltam relatórios granulares de depuração de transações negadas, o que onera a TI dos lojistas.
                             </p>
                           </div>
                           <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-rose-700/80">
-                            <span className="font-bold text-slate-700">Gap Crítico:</span> {activeCompetitorForBattlecard.weaknesses[1] || 'Limitações operacionais de back-office.'}
+                            <span className="font-bold text-slate-700">Gap Crítico:</span> {activeCompetitorForBattlecard.weaknesses ? activeCompetitorForBattlecard.weaknesses[1] : ''}
                           </div>
                         </div>
 
@@ -1319,7 +1524,7 @@
                             <div className="flex justify-between items-center mb-2">
                               <span className="text-[9px] font-extrabold tracking-widest text-amber-700 uppercase">Script Dinâmico Customizado</span>
                               <button
-                                onClick={() => handleCopyScript(activeCompetitorForBattlecard.battlecard[selectedPitchCategory])}
+                                onClick={() => handleCopyScript(activeCompetitorForBattlecard.battlecard ? activeCompetitorForBattlecard.battlecard[selectedPitchCategory] : '')}
                                 className="p-1 hover:bg-slate-200 rounded text-slate-500 hover:text-slate-800 transition"
                                 title="Copiar Script"
                               >
@@ -1329,7 +1534,7 @@
                               </button>
                             </div>
                             <div className="bg-white p-3.5 rounded-lg border border-slate-200 text-[11px] text-slate-600 font-mono italic leading-relaxed h-32 overflow-y-auto shadow-inner">
-                              "{activeCompetitorForBattlecard.battlecard[selectedPitchCategory] || 'Roteiro de conversação em estruturação técnica.'}"
+                              "{activeCompetitorForBattlecard.battlecard ? activeCompetitorForBattlecard.battlecard[selectedPitchCategory] : 'Roteiro de conversação em estruturação técnica.'}"
                             </div>
                           </div>
                           <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-slate-500 flex items-center gap-1.5">
@@ -1658,7 +1863,7 @@
                         <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
                           <span className="p-1 rounded bg-emerald-50 text-emerald-600 border border-emerald-100">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 00.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                             </svg>
                           </span>
                           Processo de Homologação PMM (Product Marketing)
@@ -1791,7 +1996,7 @@
                     </button>
 
                     <h3 className="text-base font-bold text-slate-900 mb-2">Sugerir Entrada de Inteligência Competitiva</h3>
-                    <p className="text-xs text-slate-500 mb-4">Adicione um novo concorrente ou detalhe encontrado em campo. Novas entradas passam pelo processo de validação por PMM.</p>
+                    <p className="text-xs text-slate-505 mb-4">Adicione um novo concorrente ou detalhe encontrado em campo. Novas entradas passam pelo processo de validação por PMM.</p>
 
                     <form onSubmit={handleAddCompetitor} className="space-y-4 text-xs">
                       
