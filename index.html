@@ -18,8 +18,8 @@
                             200: '#e2e8f0', // Bordas suaves
                             300: '#cbd5e1', // Bordas em destaque
                             400: '#94a3b8',
-                            500: '#64748b', // Texto secundário desvanecido
-                            700: '#334155', // Texto de leitura
+                            500: '#64748b', // Texto de leitura desvanecido
+                            700: '#334155', // Texto de leitura padrão
                             800: '#1e293b', // Texto em destaque
                             900: '#0f172a', // Títulos principais
                         },
@@ -73,7 +73,6 @@
     <script type="text/babel">
         const { useState, useMemo } = React;
 
-        // Base expandida de concorrentes com metadados de Curadoria, Origem e Resumos Executivos
         const INITIAL_COMPETITORS = [
           {
             id: 'adyen',
@@ -86,21 +85,51 @@
             antifraud: 'Nativo (RevenueProtect) com IA Global unificada',
             pixFeature: 'Instantâneo via Open Finance, reconciliação em tempo real na mesma API',
             settlementSpeed: 'D+1 padrão para Pix, Flexível para cartões',
+            globalFootprint: 'Presença própria direta em +100 países com adquirência local própria nos maiores polos mundiais (EUA, Europa, LatAm, APAC).',
             devExperience: 96,
-            companyOverview: 'Plataforma global holandesa de pagamentos unificados que opera como adquirente, gateway e antifraude de forma direta em um único fluxo de dados, eliminando intermediários.',
-            targetAudience: 'Empresas Enterprise, Varejistas Omnichannel complexos e Plataformas Digitais Globais de alta escala.',
-            weaknesses: 'Menor flexibilidade comercial para Micro e Pequenas empresas; sem foco em POS físico de baixo volume para pequenos lojistas.',
-            strengths: 'Maior taxa de aprovação técnica do mercado, reconciliação unificada real (físico + digital), transparência absoluta de custos.',
+            companyOverview: 'A Adyen foi fundada em 2006 com a ambição de substituir as infraestruturas de pagamento legadas e fragmentadas. Opera como uma plataforma única que centraliza adquirência, gateway, antifraude e conciliação em uma única API global.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM (Global & Local)',
             dataSource: 'Relatórios Financeiros Globais, Documentação Técnica da API Adyen v69',
             marketCap: 'Euronext: ADYEN | Cap. de Mercado: ~€41.8 Bilhões',
             newsSnippet: 'Adyen anuncia expansão do ecossistema de terminais Android e novas APIs de processamento integradas com Pix via Open Finance.',
             newsSearchUrl: 'https://valor.globo.com/busca/?q=adyen',
+            fastFacts: {
+              founded: '2006',
+              marketPosition: 'Líder em Adquirência Direta Premium',
+              marketShare: 'Crescimento de duplo dígito constante',
+              shareholders: 'Ações Públicas (Euronext)',
+              employees: '3.000+',
+              trxVolume: '€970 Bilhões (Global)',
+              pricing: 'IC++ transparente',
+              products: 'Unified Commerce, POS, Online, Platforms'
+            },
+            strengths: [
+              "Taxa de aprovação técnica mais alta do mercado com roteamento inteligente nativo.",
+              "Infraestrutura global real sob um único contrato e fluxo de dados.",
+              "Conciliação unificada (Online + POS físico) em tempo real eliminando perdas financeiras."
+            ],
+            weaknesses: [
+              "Menor flexibilidade de taxas de entrada para PMEs e microempreendedores.",
+              "Não foca em POS físico de baixo tíquete ou alta dispersão de varejo de rua sem contrato centralizado."
+            ],
+            partners: {
+              gateway: "Nativo (Sem intermediários ou gateways secundários)",
+              platforms: "VTEX, Salesforce Commerce, SAP, Magento/Adobe, Shopify",
+              antifraud: "RevenueProtect (Nativo com Machine Learning Global)",
+              physical: "Terminais próprios (Android robusto unificado)"
+            },
+            howWeWin: [
+              "Otimização operacional reduzindo o custo total de transação (TCO).",
+              "Aumento direto no faturamento através da elevação de aprovações genuínas.",
+              "Atendimento Enterprise dedicado com engenharia de suporte especializada."
+            ],
             battlecard: {
-              whyWeWin: 'A plataforma única e direta elimina intermediários e otimiza taxas de aprovação através de Smart Routing nativo.',
-              vulnerabilities: 'Fale sobre a fragmentação deles (gateway + adquirente + conciliadora separados) e a falta de transparência nas taxas flat.',
-              script: 'O seu adquirente atual pode até oferecer uma taxa flat baixa, mas quantos clientes legítimos está a perder na recusa do antifraude? Na Adyen, aumentamos a sua aprovação em média de 3% a 5%, o que cobre qualquer diferença de taxa e traz dinheiro real para o seu caixa.'
+              commercial: "Diferente dos concorrentes tradicionais de taxa flat, o nosso modelo IC++ repassa a redução direta de taxas reguladas e intercâmbio de bandeiras para si. Cada centavo economizado vai direto para sua margem líquida, com transparência absoluta em cada fatura.",
+              omnichannel: "Vender no físico e digital hoje não precisa exigir gateways separados, conciliadoras contratadas e extratos conflitantes. Com a Adyen, uma transação física e uma digital compartilham o mesmo token de dados. O seu cliente pode comprar no app e trocar na loja física sem atrito operacional ou reconciliação manual.",
+              antifraud: "O antifraude tradicional rejeita bons clientes para barrar estornos. O RevenueProtect da Adyen trabalha de forma inteligente: usando dados transacionais de nossa rede global, nós identificamos e barramos o fraudador real enquanto aprovamos o consumidor legítimo que outros sistemas recusariam.",
+              pix: "Nosso fluxo Pix Open Finance atua diretamente nos trilhos de liquidação instantânea. Isso reduz o tempo de finalização da compra no checkout e reconcilia a transação de forma totalmente automatizada no mesmo dashboard das bandeiras de cartão.",
+              global: "A expansão internacional exige infraestrutura estável. Enquanto outros players atuam como agregadores de adquirentes locais de terceiros — adicionando taxas e intermediários —, a Adyen opera com adquirência direta em dezenas de mercados. Uma única integração abre portas para o mundo."
             }
           },
           {
@@ -114,21 +143,51 @@
             antifraud: 'Nativo (Radar) com boa assertividade digital',
             pixFeature: 'Disponível na API com boa conciliação, mas integração separada',
             settlementSpeed: 'D+30 padrão, antecipação disponível sob demanda',
+            globalFootprint: 'Ampla presença internacional no e-commerce digital, mas infraestrutura física de POS (Stripe Terminal) limitada no Brasil.',
             devExperience: 95,
-            companyOverview: 'Plataforma de infraestrutura financeira de origem americana, famosa mundialmente por APIs de altíssima qualidade e excelente experiência de self-service para engenheiros de software.',
-            targetAudience: 'Startups de tecnologia, empresas de SaaS, Marketplaces digitais e plataformas de criadores.',
-            weaknesses: 'Falta de presença física omnichannel consolidada e madura no mercado brasileiro; taxas flat proibitivas para escala Enterprise.',
-            strengths: 'Velocidade de onboarding para startups e ecossistema de produtos SaaS de faturamento de assinaturas robusto.',
+            companyOverview: 'A Stripe oferece infraestrutura de pagamentos para a internet. Ficou mundialmente famosa pela excelente experiência de autoatendimento para desenvolvedores, mas foca mais no e-commerce puro no mercado brasileiro.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'Site oficial Stripe BR, Testes de API Pública, Feedback de Clientes Migrados',
             marketCap: 'Capital Fechado (Privada) | Valuation Estimado: ~$70 Bilhões',
             newsSnippet: 'Stripe lança módulo adaptado às novas regras do Pix de faturamento recorrente para simplificar assinaturas no mercado brasileiro.',
             newsSearchUrl: 'https://neofeed.com.br/?s=stripe',
+            fastFacts: {
+              founded: '2010',
+              marketPosition: 'Líder Global em APIs Digitais',
+              marketShare: 'Dominante em Startups e SaaS',
+              shareholders: 'Capital Privado',
+              employees: '8.000+',
+              trxVolume: 'Valores não divulgados oficialmente',
+              pricing: 'Flat-rate padrão',
+              products: 'Stripe Payments, Billing, Connect, Radar'
+            },
+            strengths: [
+              "Forte apelo com times de tecnologia e desenvolvedores.",
+              "Ecossistema robusto para recorrência de assinaturas e SaaS.",
+              "Onboarding digital ágil e facilidade para projetos iniciais."
+            ],
+            weaknesses: [
+              "Taxas flat proibitivas para empresas com faturamento Enterprise escalável.",
+              "Falta de adquirência física omnichannel madura e de terminais POS locais de alto rendimento no Brasil."
+            ],
+            partners: {
+              gateway: "Nativo",
+              platforms: "Shopify, Squarespace, WooCommerce, VTEX",
+              antifraud: "Stripe Radar (IA nativa cobrada por transação)",
+              physical: "Stripe Terminal (Disponibilidade parcial no BR)"
+            },
+            howWeWin: [
+              "Eficiência de custos: Em escala, o Interchange++ da Adyen bate drasticamente a taxa flat da Stripe.",
+              "Parceria local real: Suporte de engenharia local e contas dedicadas para o mercado brasileiro.",
+              "Foco Omnichannel: Solução integrada real com POS físicos consolidados localmente."
+            ],
             battlecard: {
-              whyWeWin: 'A nossa adquirência direta no Brasil traz melhor custo-benefício em escala (IC++) e suporte local de contas dedicado para Enterprise.',
-              vulnerabilities: 'Custo de processamento altíssimo em volumes Enterprise e suporte de engenharia focado em autoatendimento.',
-              script: 'A Stripe é excelente para validar produtos rapidamente. Mas conforme o seu volume escala, o modelo flat-rate torna-se ineficiente. Além disso, se quer unificar as vendas do e-commerce com as lojas físicas no Brasil, a infraestrutura local da Adyen é infinitamente mais madura.'
+              commercial: "A Stripe oferece facilidade com taxas flat, mas à medida que você escala, essa previsibilidade custa caro. Na Adyen, com o modelo IC++, repassamos as taxas de intercâmbio originais. Para o seu volume Enterprise, isso gera uma economia de margem direta imediata na sua conta.",
+              omnichannel: "Se você tem ambições físicas ou presenciais consolidadas no Brasil, a infraestrutura da Stripe ainda é muito incipiente localmente. A Adyen oferece adquirência física direta estabelecida, integrando suas lojas de rua de alta performance com seu e-commerce sob uma única plataforma madura.",
+              antifraud: "O Stripe Radar é um excelente motor digital, mas cobra taxas adicionais por transação processada para grandes contas. Na Adyen, o RevenueProtect avalia o risco sem impor custos marginais agressivos, otimizando seu ROI de segurança.",
+              pix: "A Stripe trata o Pix como um método acessório em sua plataforma global. Na Adyen, o Pix é processado na mesma API de adquirência direta sob Open Finance, garantindo uma reconciliação veloz integrada com cartões de crédito domésticos.",
+              global: "A Stripe depende de bancos e arranjos locais secundários em diversas geografias emergentes. A adquirência própria e global da Adyen elimina esses saltos extras, garantindo taxas de aprovação financeira internacional superiores e menos perdas por fricção de intermediários."
             }
           },
           {
@@ -142,21 +201,51 @@
             antifraud: 'Terceirizado (Exige integração de CyberSource/Konduto externa)',
             pixFeature: 'Disponível, mas com reconciliação apartada e manual entre canais',
             settlementSpeed: 'D+2 para Débito/Pix, D+30 para Crédito',
+            globalFootprint: 'Foco exclusivo doméstico no mercado brasileiro. Sem operação de adquirência internacional.',
             devExperience: 70,
-            companyOverview: 'Maior adquirente de varejo físico legado no mercado brasileiro, controlado historicamente por Banco do Brasil e Bradesco. Atua no e-commerce principalmente pela marca adquirida Braspag.',
-            targetAudience: 'Grandes redes de varejo físico tradicional, supermercados, franquias e comércio eletrônico de médio porte.',
-            weaknesses: 'Arquitetura de sistemas e infraestrutura herdadas, dashboards de conciliação separados por canais de venda físico e digital.',
-            strengths: 'Marca de forte relacionamento comercial no varejo físico, suporte de campo nacional e grande capilaridade bancária.',
+            companyOverview: 'A Cielo é a maior credenciadora de pagamentos físicos do varejo tradicional brasileiro, controlada historicamente pelo BB e Bradesco. Atua no e-commerce através do gateway legado Braspag.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Brasil',
             dataSource: 'Balanços Públicos Cielo, Documentação Braspag API, Inteligência de Campo',
             marketCap: 'Capital Fechado (Delisted) | Controlada por BB & Bradesco',
             newsSnippet: 'Após deslistagem das bolsas, Cielo direciona foco técnico e investimentos para BI de vendas locais de comércio de rua tradicional.',
             newsSearchUrl: 'https://valor.globo.com/busca/?q=cielo',
+            fastFacts: {
+              founded: '1995 (Como VisaNet)',
+              marketPosition: 'Líder em volume de maquininhas físicas tradicionais',
+              marketShare: 'Aproximadamente 30% no físico brasileiro',
+              shareholders: 'Banco do Brasil e Bradesco',
+              employees: '4.000+',
+              trxVolume: 'R$ 700+ Bilhões (Nacional)',
+              pricing: 'MDR Flat negociável por reciprocidade bancária',
+              products: 'Maquininhas Cielo, Gateway Braspag, Super Link'
+            },
+            strengths: [
+              "Forte capilaridade comercial com apoio de gerentes do Bradesco e BB.",
+              "Grande penetração em redes de varejo de rua tradicionais e supermercados.",
+              "Forte ecossistema de antecipação bancária rápida de recebíveis."
+            ],
+            weaknesses: [
+              "Fragmentação extrema: Gateway Braspag opera separado da adquirência física.",
+              "Atraso tecnológico de sistemas legados que geram inconsistências de dados e relatórios complexos."
+            ],
+            partners: {
+              gateway: "Braspag (Legado)",
+              platforms: "VTEX, Magento, Shopify, Loja Integrada",
+              antifraud: "Cybersource, ClearSale, Konduto (Terceirizados)",
+              physical: "Fiserv/Sitef, Paygo, DTEF"
+            },
+            howWeWin: [
+              "Unificação real: Uma única integração, um único portal de conciliação financeira, zero custo de auditoria manual de terceiros.",
+              "Taxas de aprovação digital imbatíveis com o Smart Routing da Adyen.",
+              "Sem taxas de intermediários escondidas (gateway + adquirência + antifraude unificados)."
+            ],
             battlecard: {
-              whyWeWin: 'Unificamos a captura física e digital, reduzindo o custo operacional de conciliação financeira para zero.',
-              vulnerabilities: 'Dependência de múltiplos intermediários, gateways instáveis e taxas de aprovação online abaixo da média.',
-              script: 'Para vender no físico e digital hoje com a Cielo, a sua equipa precisa de gerir a Braspag para o gateway, uma ferramenta externa de antifraude e uma conciliadora terceirizada. Na Adyen, uma única tela controla tudo, economizando centenas de horas de auditoria.'
+              commercial: "A Cielo pode oferecer uma taxa MDR agressiva combinada com pacotes de banco, mas isso oculta custos periféricos: você pagará à parte pelo gateway Braspag, pelo antifraude parceiro e pela conciliadora manual. Na Adyen, o valor contratado engloba a solução inteira.",
+              omnichannel: "Para operar omnichannel real com a Cielo, você lidará com portais e extratos separados. Seus extratos físicos de maquininhas não cruzam com os de e-commerce da Braspag. Na Adyen, a reconciliação é nativa: mesma tela, mesmos relatórios, simplificando sua controladoria.",
+              antifraud: "A Cielo obriga você a contratar ferramentas de risco externas (como CyberSource). Essa fragmentação gera latência de processamento e aumenta taxas de cancelamento indevido de vendas legítimas. O RevenueProtect da Adyen atua de forma nativa na adquirência, maximizando sua aceitação segura.",
+              pix: "A reconciliação de Pix na Cielo e Braspag é apartada por canais. Na Adyen, o Pix e as bandeiras de cartões são capturados de forma integrada, o que garante fechamentos automáticos diários centralizados.",
+              global: "A Cielo não possui operação fora do território brasileiro. Se o seu negócio visa expandir transações ou capturar moedas globais, você precisará de outro adquirente. A Adyen resolve suas operações nacionais e cross-border globais em uma única API."
             }
           },
           {
@@ -170,26 +259,57 @@
             antifraud: 'Terceirizado (Parcerias externas com intermediários)',
             pixFeature: 'Disponível com excelente estabilidade ligada ao ecossistema Itaú',
             settlementSpeed: 'D+2 padrão para crédito parcelado sob condições bancárias',
+            globalFootprint: 'Operação de adquirência focada exclusivamente no mercado doméstico brasileiro, dependente da rede Itaú.',
             devExperience: 65,
-            companyOverview: 'Adquirente proprietário do Banco Itaú Unibanco. É altamente competitivo nas negociações comerciais onde o merchant possui forte relacionamento e dependência de linhas de crédito bancárias.',
-            targetAudience: 'Correntistas PJ do Itaú, redes varejistas com grande volume físico e necessidades de antecipação imediata.',
-            weaknesses: 'Tecnologia engessada e burocrática para integrações de grande escala; dependência direta de reciprocidade com o banco.',
-            strengths: 'Acesso a linhas de crédito baratas e fluxo de antecipação de recebíveis altamente facilitado para caixa.',
+            companyOverview: 'Rede foi incorporada pelo Itaú Unibanco em 2024 e é uma das maiores adquirentes brasileiras em termos de market share físico. Sua história começou em 1970, como Credicard.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Brasil',
             dataSource: 'Análises de Mercado Itaú Unibanco, Feedback de Contas Enterprise da Adyen',
             marketCap: 'Divisão Itaú Unibanco (B3: ITUB4) | Cap. de Mercado Itaú: ~R$ 310 Bilhões',
             newsSnippet: 'Rede Itaú intensifica oferta comercial combinada com antecipação gratuita de recebíveis em crédito rotativo para atrair grandes contas.',
             newsSearchUrl: 'https://neofeed.com.br/?s=rede+itau',
+            fastFacts: {
+              founded: '1970 (Como Credicard / Redecard)',
+              marketPosition: 'Líder nacional ligada ao ecossistema Itaú',
+              marketShare: 'Próxima a 40% no mercado nacional',
+              shareholders: 'Itaú Unibanco',
+              employees: '80.000+ (Grupo Itaú)',
+              trxVolume: 'BRL 1 Tri (Estimado consolidado)',
+              pricing: 'MDR Flat negociável por relacionamento corporativo',
+              products: 'Maquininhas Rede, e-Rede, Gateway Maxipago'
+            },
+            strengths: [
+              "Forte relação bancária facilitando tarifas cruzadas atrativas e linhas de crédito baratas.",
+              "Antecipação instantânea de recebíveis integrada diretamente na conta PJ Itaú.",
+              "Excelente infraestrutura de TEF tradicional e integrações de ERPs de balcão maduras."
+            ],
+            weaknesses: [
+              "Sistemas fragmentados e separados para canais presenciais e online (Maxipago / e-Rede).",
+              "Dificuldade de inovação rápida em métodos alternativos globais.",
+              "Back-office de dados engessado com atraso de conciliação de relatórios digitais."
+            ],
+            partners: {
+              gateway: "Maxipago (adquirida em 2011, hoje E-Rede)",
+              platforms: "VTEX, Magento, Shopify, Loja Integrada",
+              antifraud: "Clearsale, Cybersource, Konduto, Kount (Terceirizados)",
+              physical: "Fiserv/Sitef, Paygo, DTEF"
+            },
+            howWeWin: [
+              "Independência bancária: A Adyen não força reciprocidades ou movimentações de conta bancária.",
+              "Desempenho técnico puro: Conversão digital até 5% superior em faturamentos recorrentes e e-commerce.",
+              "Dados unificados de verdade sem intermediários ou conciliadoras legadas."
+            ],
             battlecard: {
-              whyWeWin: 'Independência bancária e tecnologia pura que otimiza taxas de aprovação independentemente de taxas de juros de bancos.',
-              vulnerabilities: 'Ambiente puramente bancário de negociação; tecnologia engessada para integração de sistemas globais.',
-              script: 'A Rede oferece taxas agressivas baseadas em relacionamento, mas lembre-se: taxas de processamento baixas não compensam transações legítimas recusadas por um sistema de risco engessado. A Adyen foca em aumentar a conversão técnica, o que gera muito mais receita líquida no fim do mês.'
+              commercial: "O Itaú utiliza a Rede para amarrar taxas comerciais com produtos de crédito e reciprocidade PJ bancária. Porém, o custo de rejeições indevidas no online neutraliza qualquer ganho de desconto. O modelo IC++ da Adyen garante que sua empresa pague apenas pelo desempenho real, gerando maior receita líquida.",
+              omnichannel: "Para conectar vendas do in-store com e-commerce usando a Rede, você precisará de duas infraestruturas de dados paralelas. Na Adyen, o e-commerce e os terminais Android físicos usam a mesma API e o mesmo banco de dados, permitindo estornos e relatórios integrados.",
+              antifraud: "A Rede depende de parcerias fragmentadas com motores de risco como Clearsale e Cybersource. A Adyen embarca a segurança no coração da adquirência com o RevenueProtect, o que reduz recusas desnecessárias em pagamentos recorrentes.",
+              pix: "A liquidação do Pix na Rede ocorre de forma excelente se o lojista usa Itaú, mas a conciliação do online com o POS físico ainda é apartada. A Adyen entrega conciliação total em tempo real na mesma API independente da sua conta bancária.",
+              global: "A Rede atua unicamente no Brasil. Se sua empresa atende fluxos internacionais ou quer implementar adquirência doméstica na América Latina ou Europa, precisará de múltiplos fornecedores. A Adyen resolve globalmente sob uma única integração."
             }
           },
           {
             id: 'getnet',
-            name: 'Getnet (Santander)',
+            name: 'Getnet',
             logoText: 'GET',
             type: 'Banco Nacional',
             pricingModel: 'MDR Flat negociado com pacote Santander',
@@ -198,21 +318,51 @@
             antifraud: 'Terceirizado (Integrações com Cybersource e ClearSale)',
             pixFeature: 'Disponível na API com forte dependência do ecossistema Santander',
             settlementSpeed: 'D+2 para Débito/Pix, Flexibilidade bancária',
+            globalFootprint: 'Presença internacional acoplada à marca PagoNxt do Santander na Europa e América Latina, mas com integrações regionais fragmentadas.',
             devExperience: 60,
-            companyOverview: 'Adquirente tradicional controlado globalmente pela PagoNxt do Santander. Atende fortemente o varejo físico de e-commerce nacional acoplado a serviços financeiros do Santander.',
-            targetAudience: 'Empresas vinculadas financeiramente ao Santander e grandes e-commerces que exigem soluções de gateway regionais.',
-            weaknesses: 'Arquitetura com múltiplos sistemas integrados secundariamente (Auttar/Carat), resultando em alta complexidade técnica.',
-            strengths: 'Alinhamento global com a estrutura PagoNxt, permitindo alcance comercial em canais físicos de múltiplos países.',
+            companyOverview: 'A Getnet atua fortemente sob o controle global do grupo PagoNxt do Banco Santander. É altamente focada no varejo tradicional acoplado ao ecossistema do Santander.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'Relatórios do Grupo PagoNxt, Feedbacks Técnicos de Clientes Varejistas',
             marketCap: 'Controlada PagoNxt (Grupo Santander - NYSE: SAN) | Cap. de Mercado: ~€71.5 Bilhões',
             newsSnippet: 'Getnet aposta na consolidação técnica das plataformas Auttar e Carat sob a marca global PagoNxt para otimizar fluxos transfronteiriços.',
             newsSearchUrl: 'https://valor.globo.com/busca/?q=getnet',
+            fastFacts: {
+              founded: '2003',
+              marketPosition: 'Adquirente tradicional focada no ecossistema Santander',
+              marketShare: 'Forte presença no físico corporativo brasileiro',
+              shareholders: 'Santander / PagoNxt',
+              employees: '3.000+',
+              trxVolume: 'Valores corporativos consolidados via PagoNxt',
+              pricing: 'MDR Flat com descontos sob relacionamento comercial',
+              products: 'POS Getnet, Gateway Carat, Auttar'
+            },
+            strengths: [
+              "Forte inserção em contas corporativas globais em mercados hispânicos e europeus.",
+              "Excelente suporte comercial acoplado ao Banco Santander.",
+              "Infraestrutura de conciliação bancária madura para grandes redes físicas."
+            ],
+            weaknesses: [
+              "Múltiplas plataformas adquiridas secundariamente (Auttar, Carat) gerando atrito técnico e logs complexos.",
+              "Falta de APIs integradas modernas, demandando longos ciclos de integração e homologação técnica."
+            ],
+            partners: {
+              gateway: "Carat / Auttar",
+              platforms: "VTEX, Magento, Shopify",
+              antifraud: "Cybersource, ClearSale (Terceirizados)",
+              physical: "POS Getnet nativo, Fiserv/Sitef"
+            },
+            howWeWin: [
+              "Simplicidade real: Uma única API Adyen contra os sistemas legados e portais fracionados da Getnet.",
+              "Menor latência e maior taxa de conversão digital sem gateways intermediários.",
+              "Suporte técnico independente sem exigências de metas de relacionamento bancário."
+            ],
             battlecard: {
-              whyWeWin: 'A simplicidade de uma única integração sem pacotes bancários atrelados ou reciprocidades complexas.',
-              vulnerabilities: 'Integrações de adquirentes e gateways legados (Auttar) trazem alta complexidade de manutenção.',
-              script: 'Se o seu departamento de TI precisa de lidar com portais de conciliação diferentes para o varejo físico e para o e-commerce, há um custo operacional oculto. Com a Adyen, reduz o tempo de reconciliação a zero usando a nossa plataforma unificada.'
+              commercial: "A Getnet atrela ofertas de processamento de cartões a limites de crédito do Santander. Na Adyen, entregamos tecnologia financeira livre de amarras bancárias. O aumento na taxa de conversão técnica compensa qualquer pacote subsidiado pelo banco.",
+              omnichannel: "A Getnet utiliza a Auttar para conciliar lojas físicas e a Carat para o digital. Isso cria fluxos redundantes e silos de dados. A Adyen elimina esses saltos adicionais capturando e processando tudo em uma única base de dados de Unified Commerce.",
+              antifraud: "Na Getnet, o gerenciamento de estornos e disputas exige portais separados e integrações externas de risco. Na Adyen, o RevenueProtect avalia a probabilidade de fraude em tempo real na etapa de autorização, reduzindo disputas no back-office.",
+              pix: "A operação de Pix na Getnet é centralizada na conta do Santander, dificultando fluxos flexíveis com outros bancos de preferência do cliente. A Adyen disponibiliza Pix direto na API, liquidando e conciliando de maneira fluida em qualquer banco parceiro.",
+              global: "Apesar da PagoNxt, as adquirentes Getnet em diferentes países operam de forma isolada, exigindo integrações técnicas paralelas em cada país. A Adyen entrega adquirência global real sob uma única integração de API unificada."
             }
           },
           {
@@ -226,21 +376,51 @@
             antifraud: 'Parcialmente integrado via APIs parceiras',
             pixFeature: 'Disponível na API com liquidação ágil e conciliação aceitável',
             settlementSpeed: 'D+1 sob demanda para alavancar fluxo de caixa',
+            globalFootprint: 'Atuação comercial focada exclusivamente no mercado doméstico do varejo brasileiro.',
             devExperience: 82,
-            companyOverview: 'Desafiante brasileira que se expandiu rapidamente no ecossistema físico nacional. Oferece serviços para o comércio digital por meio do gateway moderno Pagar.me.',
-            targetAudience: 'PMEs nacionais, redes varejistas locais brasileiras, franquias e comércio eletrônico integrado de médio a grande porte.',
-            weaknesses: 'Sem trilhos internacionais robustos de adquirência própria; foco histórico em PME reduz capacidade de atendimento Enterprise complexo.',
-            strengths: 'Excelente capilaridade de suporte comercial em campo "Pé no Barro" e liquidez de antecipação diária veloz.',
+            companyOverview: 'A StoneCo é uma fintech desafiante brasileira de destaque que cresceu aceleradamente nas lojas físicas locais brasileiras. Oferece serviços de processamento online através do gateway de tecnologia Pagar.me.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Brasil',
             dataSource: 'Earnings Release StoneCo Q4 2025, Documentação Pagar.me',
             marketCap: 'Capital Aberto (NASDAQ: STNE) | Cap. de Mercado: ~$4.1 Bilhões',
             newsSnippet: 'StoneCo reporta sólida expansão de margens e cresce base de clientes de médio e grande porte integrando POS físico a novas soluções ERP.',
             newsSearchUrl: 'https://neofeed.com.br/?s=stone+pagarme',
+            fastFacts: {
+              founded: '2012',
+              marketPosition: 'Desafiante nacional focado em varejo de rua e PMEs',
+              marketShare: 'Forte presença em comércio local de médio porte',
+              shareholders: 'StoneCo Ltd. (Ações públicas na NASDAQ)',
+              employees: '15.000+',
+              trxVolume: 'R$ 350+ Bilhões (Nacional)',
+              pricing: 'MDR Flat agressivo com antecipação forçada',
+              products: 'POS Stone, Gateway Pagar.me, Conta Digital PJ Stone'
+            },
+            strengths: [
+              "Excelente capilaridade de suporte comercial em campo 'Pé no Barro' no território brasileiro.",
+              "Taxas comerciais altamente agressivas associadas a fluxos de antecipação facilitada de capital de giro.",
+              "APIs digitais de excelente usabilidade e fácil integração via marca Pagar.me."
+            ],
+            weaknesses: [
+              "Falta de rede global de processamento própria de adquirência, dependente de intermediários no cross-border.",
+              "Menor maturidade em lidar com estruturas corporativas Enterprise complexas e segurança corporativa de grande escala."
+            ],
+            partners: {
+              gateway: "Pagar.me (Nativo digital)",
+              platforms: "VTEX, Magento, Shopify, Loja Integrada",
+              antifraud: "ClearSale, Cybersource, Konduto (Integrados)",
+              physical: "POS Stone proprietário, Sitef"
+            },
+            howWeWin: [
+              "Amadurecimento Enterprise: A Adyen possui engenharia especializada de dados para grandes corporações globais.",
+              "Taxas de aceitação legítima superiores no e-commerce digital complexo.",
+              "Estrutura robusta de segurança, SLAs de disponibilidade imbatíveis e conformidade internacional."
+            ],
             battlecard: {
-              whyWeWin: 'Capacidade global robusta e expertise para processar grandes transações globais e fluxos complexos em escala Enterprise.',
-              vulnerabilities: 'Falta de inteligência de dados globais (Cross-Border legítimo) e menor maturidade em segurança física corporativa.',
-              script: 'A Stone atende muito bem o comércio de rua local brasileiro. Mas para um ecessistema Enterprise que precisa de estabilidade nas maiores liquidações, inteligência de fraude de nível mundial e integração com mercados externos, a Adyen é a única plataforma preparada.'
+              commercial: "A Stone oferece tarifas baixas no físico, mas vincula essas propostas comerciais a taxas elevadas de antecipação de recebíveis no crédito rotativo. O modelo IC++ transparente da Adyen permite que sua empresa controle as despesas sem juros bancários embutidos de forma oculta.",
+              omnichannel: "O omnichannel da Stone consiste na união de sistemas separados (POS físico da Stone + gateway Pagar.me). A Adyen foi arquitetada desde o início de forma verdadeiramente unificada, garantindo que os canais físico e online de fato compartilhem o mesmo fluxo transacional.",
+              antifraud: "A Stone e o Pagar.me dependem de integrações paralelas de motores de antifraude externos para mitigar riscos de e-commerce. O RevenueProtect da Adyen trabalha diretamente na nossa adquirência direta, reduzindo drasticamente as rejeições indevidas de compras legítimas.",
+              pix: "O Pix na Stone é otimizado para o lojista comum e liquidado na conta digital Stone, mas faltam recursos de escala sob Open Finance e tratamento personalizado de APIs. A Adyen entrega recursos de faturamento instantâneo altamente integrados a sistemas Enterprise complexos.",
+              global: "A StoneCo opera exclusivamente no mercado doméstico brasileiro. Para internacionalizar marcas, operar cross-border ou lidar com recebíveis em múltiplos países emergentes ou maduros, a única infraestrutura integrada capaz de sustentar esse crescimento de ponta a ponta é a Adyen."
             }
           },
           {
@@ -254,21 +434,51 @@
             antifraud: 'Nativo da plataforma, focado em alta proteção (alto atrito)',
             pixFeature: 'Instantâneo integrado à conta digital PagBank',
             settlementSpeed: 'Imediato para Pix, D+14/D+30 para Cartão',
+            globalFootprint: 'Atuação comercial e de processamento focada exclusivamente no mercado doméstico do varejo brasileiro.',
             devExperience: 75,
-            companyOverview: 'Pioneiro na democratização das maquininhas no Brasil (PagSeguro), operando hoje como um ecossistema completo de conta bancária digital e intermediação financeira de pagamentos.',
-            targetAudience: 'Microempreendedores, pequenos comerciantes locais, profissionais autônomos e prestadores de serviços de pequeno porte.',
-            weaknesses: 'Forte atrito de recusa de compras (antifraude agressivo para blindar estorno); menor sofisticação técnica de APIs.',
-            strengths: 'Onboarding instantâneo simplificado e liquidez veloz conectada a uma conta bancária PJ ágil.',
+            companyOverview: 'O PagBank (originalmente PagSeguro) foi o pioneiro na democratização do uso de maquininhas de cartão para microempreendedores e PMEs no Brasil. Atualmente atua como banco digital de varejo com soluções básicas de processamento.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Brasil',
             dataSource: 'Relatórios do Banco Central do Brasil, Earnings PagSeguro/PagBank',
             marketCap: 'Capital Aberto (NYSE: PAGS) | Cap. de Mercado: ~$3.4 Bilhões',
             newsSnippet: 'PagBank foca expansão de receita no aumento do take-rate de serviços bancários vinculados à sua ampla conta PJ digital.',
             newsSearchUrl: 'https://valor.globo.com/busca/?q=pagbank',
+            fastFacts: {
+              founded: '2006 (UOL)',
+              marketPosition: 'Pioneiro em maquininhas de entrada para PMEs',
+              marketShare: 'Forte presença em volumes pulverizados nacionais',
+              shareholders: 'Grupo UOL (Ações na NYSE)',
+              employees: '5.000+',
+              trxVolume: 'R$ 300+ Bilhões (Pulverizado)',
+              pricing: 'MDR Flat-rate padrão de intermediação comercial',
+              products: 'Maquininhas Moderninha, Minizinha, Checkout PagBank'
+            },
+            strengths: [
+              "Onboarding instantâneo e desburocratizado para profissionais liberais e PMEs.",
+              "Ecossistema completo de banco digital PJ de fácil acesso e usabilidade.",
+              "Forte capilaridade de marca em território nacional."
+            ],
+            weaknesses: [
+              "Forte atrito de recusa de compras (antifraude agressivo e rígido para blindar a carteira PJ de estornos).",
+              "APIs básicas com limitações técnicas severas de customização para grandes fluxos Enterprise."
+            ],
+            partners: {
+              gateway: "Nativo PagSeguro",
+              platforms: "WooCommerce, Magento, Loja Integrada",
+              antifraud: "Nativo integrado (Atrito elevado para controle interno)",
+              physical: "Maquininhas próprias simplificadas"
+            },
+            howWeWin: [
+              "Adquirência direta limpa sem as burocracias e fricções de uma carteira de intermediação digital.",
+              "Menores taxas de estorno artificial, elevando em até 8% a aprovação de boas vendas no digital.",
+              "Suporte de contas corporativo Enterprise totalmente personalizado."
+            ],
             battlecard: {
-              whyWeWin: 'A Adyen não intermedia o dinheiro, ela processa diretamente. Isso traduz-se em taxas de aprovação superiores e menos transações negadas erroneamente.',
-              vulnerabilities: 'O antifraude deles tende a bloquear transações legítimas para evitar estornos, penalizando a receita operacional do cliente.',
-              script: 'Se o PagBank está a proteger excessivamente o seu negócio de fraudes, pode estar a matar as suas boas vendas. Na Adyen, o RevenueProtect atua cirurgicamente: bloqueia a fraude real sem recusar os bons clientes.'
+              commercial: "O PagBank opera sob um modelo de intermediação flat-rate desenvolvido para blindar pequenas contas de riscos de chargeback. Para a sua empresa Enterprise, esse modelo penaliza os custos transacionais e a receita operacional. A Adyen entrega adquirência direta sob medida.",
+              omnichannel: "O omnichannel do PagBank conecta terminais físicos à sua própria carteira digital, o que limita muito a flexibilidade regulatória de fluxo e recebimento para grandes merchants. A Adyen entrega Unified Commerce real independente de exigências de domicílio bancário de varejo.",
+              antifraud: "Para mitigar fraudes e garantir sua carteira de varejo, o antifraude do PagBank tende a rejeitar preventivamente uma quantidade elevada de boas vendas digitais. Na Adyen, o RevenueProtect faz decisões cirúrgicas, otimizando a conversão saudável.",
+              pix: "A liquidação de Pix no PagBank exige o uso de sua própria carteira digital PJ. A Adyen processa Pix diretamente nos trilhos sob a infraestrutura técnica Enterprise de Open Finance, integrando os recebimentos de cartões na mesma reconciliação automática.",
+              global: "O PagBank atua estritamente no mercado nacional brasileiro. Toda e qualquer expansão comercial ou cross-border fora do país exigirá novos fornecedores de pagamentos. A Adyen sustenta o crescimento global contínuo da sua marca em múltiplos países emergentes e desenvolvidos."
             }
           },
           {
@@ -282,21 +492,51 @@
             antifraud: 'Nativo (Mercado Pago Shield) alimentado pela base do Mercado Livre',
             pixFeature: 'Excelente (Pioneiros em Pix, liquidação imediata)',
             settlementSpeed: 'D+0 para Pix, Opções de liquidação acelerada',
+            globalFootprint: 'Líder regional de mercado na América Latina (LatAm), mas sem rede operacional de processamento fora do bloco latino-americano.',
             devExperience: 88,
-            companyOverview: 'Braço fintech de pagamentos e crédito estruturado do Mercado Livre. Consolida uma excelente presença digital impulsionada pela robusta base de dados comportamentais de consumo regional.',
-            targetAudience: 'Comerciantes digitais de médio porte, marcas de e-commerce e desenvolvedores que já atuam integrados ao ecossistema Mercado Livre.',
-            weaknesses: 'Dificuldade de suporte de contas e atendimento personalizado humanizado para merchants do nível Enterprise.',
-            strengths: 'Inteligência de fraude alimentada pelas transações massivas da maior plataforma de e-commerce da América Latina.',
+            companyOverview: 'O Mercado Pago atua como o principal braço fintech e de concessão de crédito do Mercado Livre. Utiliza a imensa inteligência comportamental da maior plataforma de e-commerce da LatAm para oferecer soluções de aceitação de alto alcance.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'Relatórios Anuais MercadoLibre Inc, Testes Operacionais em Sandboxes',
             marketCap: 'Subsidiária MercadoLibre (NASDAQ: MELI) | Cap. de Mercado MELI: ~$95 Bilhões',
             newsSnippet: 'Mercado Pago impulsiona taxas de aceitação usando algoritmos preditivos que analisam o histórico de compras dentro do Mercado Livre.',
             newsSearchUrl: 'https://exame.com/busca/?q=mercado+pago',
+            fastFacts: {
+              founded: '2003',
+              marketPosition: 'Líder regional em soluções financeiras digitais',
+              marketShare: 'Dominante no ecossistema e-commerce LatAm',
+              shareholders: 'MercadoLibre Inc. (NASDAQ)',
+              employees: '10.000+',
+              trxVolume: 'US$ 150+ Bilhões (Regional)',
+              pricing: 'MDR Flat com agressividade comercial integrada',
+              products: 'Point POS, Wallet Mercado Pago, Checkout Pro'
+            },
+            strengths: [
+              "Sólido ecossistema de risco suportado pelas transações massivas do Mercado Livre.",
+              "Metodologia inovadora e pioneira em fluxos de carteira e Pix de liquidação imediata.",
+              "Forte capilaridade de dados transacionais regionais na América Latina."
+            ],
+            weaknesses: [
+              "Forte dependência do ecossistema do Mercado Livre; perde inteligência de dados em e-commerces externos complexos.",
+              "Suporte técnico e atendimento de contas de grande porte frequentemente criticados pela falta de personalização Enterprise."
+            ],
+            partners: {
+              gateway: "Nativo Mercado Pago",
+              platforms: "VTEX, Shopify, Magento, Mercado Shops",
+              antifraud: "Mercado Pago Shield (Nativo baseado em dados comportamentais do marketplace)",
+              physical: "Terminais Point e QR Codes físicos"
+            },
+            howWeWin: [
+              "Suporte Enterprise Premium: Oferecemos atendimento de engenharia local e de contas dedicado para grandes merchants.",
+              "Arquitetura independente de gateways: Conexões de adquirência direta globais sem barreiras regionais.",
+              "Transparência absoluta e ausência de atritos de canais concorrentes (neutralidade comercial)."
+            ],
             battlecard: {
-              whyWeWin: 'Atendimento e suporte corporativo humanizado e dedicado; independência total em relação a marketplaces concorrentes.',
-              vulnerabilities: 'Se o cliente vende fora do ecossistema do Mercado Livre, perde muito dos benefícios de dados integrados.',
-              script: 'O Mercado Pago tem uma base de dados fantástica no varejo de consumo. No entanto, o atendimento deles para grandes contas frequentemente deixa a desejar em flexibilidade. Além disso, se a sua empresa precisa de conexões internacionais, a Adyen oferece adquirência direta global sob o mesmo trilho técnico.'
+              commercial: "O Mercado Pago foca em atrair lojistas para o ecossistema e ferramentas de faturamento do Mercado Livre. Na Adyen, somos uma plataforma puramente focada em processamento técnico independente de canais concorrentes, repassando economias reais via IC++.",
+              omnichannel: "O omnichannel do Mercado Pago integra maquininhas Point à conta digital, mas não cruza dados do POS físico com o e-commerce externo de forma nativa e customizada. A Adyen entrega Unified Commerce de referência, permitindo estornos integrados em múltiplos canais.",
+              antifraud: "O Mercado Pago Shield é imbatível se o comprador transaciona frequentemente no Mercado Livre. Mas se o seu público-alvo atua fora desse nicho, a precisão do sistema cai. O RevenueProtect da Adyen avalia o risco transacional em bases de dados globais de múltiplos adquirentes direct.",
+              pix: "O Mercado Pago possui excelente capilaridade de Pix na conta digital, mas peca na reconciliação unificada em ERPs Enterprise complexos de terceiros. A Adyen automatiza a conciliação total de Pix e cartões no mesmo fluxo e API técnica.",
+              global: "A cobertura do Mercado Pago limita-se regionalmente à América Latina. Se sua marca quer vender na América do Norte, Europa ou Ásia sob o mesmo padrão de integração, você precisará migrar sistemas. A Adyen processa suas transações no Brasil e no mundo sob uma única API."
             }
           },
           {
@@ -310,21 +550,51 @@
             antifraud: 'Nativo focado em padrões regulatórios locais LatAm',
             pixFeature: 'Otimizado para pagamentos internacionais com conversão de câmbio',
             settlementSpeed: 'Liquidação internacional estruturada por remessa',
+            globalFootprint: 'Foco técnico na América Latina (LatAm), Leste Europeu, África e Ásia, conectando merchants globais sem presença jurídica local.',
             devExperience: 80,
-            companyOverview: 'Fintech brasileira líder no nicho de processamento de pagamentos locais para comerciantes globais transfronteiriços sem presença jurídica constituída na América Latina.',
-            targetAudience: 'Gigantes globais de software (SaaS), plataformas de streaming, gaming e e-commerces estrangeiros vendendo para a América Latina.',
-            weaknesses: 'Zero infraestrutura técnica para canais físicos (in-store) no Brasil; altas taxas de intermediação devido ao markup de câmbio.',
-            strengths: 'Domínio absoluto da regulação de remessas e ampla cobertura de meios de pagamento locais na LatAm.',
+            companyOverview: 'O EBANX é pioneiro em conectar marcas gigantes internacionais ao mercado emergente de consumo local na América Latina, facilitando o recebimento em moedas locais e repassando o câmbio remetido.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Cross-Border',
             dataSource: 'Comunicados à Imprensa EBANX, Estudos de Casos de Comércio Internacional',
             marketCap: 'Capital Fechado (Privada) | Valuation Estimado: ~$1.5 Bilhão',
             newsSnippet: 'EBANX fortalece presença técnica em mercados africanos e asiáticos de rápido crescimento para diversificar receita fora do Brasil.',
             newsSearchUrl: 'https://neofeed.com.br/?s=ebanx',
+            fastFacts: {
+              founded: '2012',
+              marketPosition: 'Líder regional em pagamentos Cross-Border',
+              marketShare: 'Dominante em faturamento transfronteiriço LatAm',
+              shareholders: 'Capital Fechado (Fundadores e Fundos de Venture Capital)',
+              employees: '1.000+',
+              trxVolume: 'Valores confidenciais de comércio internacional',
+              pricing: ' Markup cambial expressivo por operação',
+              products: 'EBANX Pay, Local-to-Local digital'
+            },
+            strengths: [
+              "Liderança absoluta em compliance e regulação cambial em dezenas de geografias emergentes complexas.",
+              "Excelente capacidade de agregar métodos alternativos locais (APMs) em mercados de difícil acesso.",
+              "Facilidade para marcas internacionais processarem pagamentos sem criar CNPJ nacional brasileiro."
+            ],
+            weaknesses: [
+              "Falta de infraestrutura para canais físicos (Unified Commerce in-store) no Brasil.",
+              "Custos operacionais elevados de markup cambial de remessas e processamento de adquirência local indireta."
+            ],
+            partners: {
+              gateway: "Nativo Cross-Border",
+              platforms: "Magento, WooCommerce, Shopify",
+              antifraud: "EBANX Shield (Nativo adaptado para riscos regulatórios locais)",
+              physical: "Sem POS físico (Apenas digital)"
+            },
+            howWeWin: [
+              "Hibridismo real: A Adyen suporta adquirência direta doméstica no Brasil e Cross-Border em um único contrato técnico.",
+              "Velocidade e estabilidade: Nossa adquirência direta e própria traz SLAs de autorização financeira superiores.",
+              "Eficiência cambial: Redução direta de tarifas através de processamento local direto de cartões domésticos."
+            ],
             battlecard: {
-              whyWeWin: 'A Adyen processa tanto transações locais domésticas quanto cross-border numa única API sem a necessidade de múltiplos contratos redundantes.',
-              vulnerabilities: 'A dependência exclusiva do canal transfronteiriço encarece as transações domésticas de grandes marcas.',
-              script: 'Se a sua empresa quer testar o Brasil a partir do estrangeiro, o EBANX ajuda. Mas no momento em que decidir nacionalizar a sua marca ou abrir lojas físicas locais, a Adyen é a única plataforma que garante uma transição suave sem retrabalho técnico.'
+              commercial: "O EBANX cobra markup cambial implícito sobre a remessa do capital faturado, o que onera as transações. A Adyen suporta o processamento direto de cartões nacionais e liquida em território brasileiro de forma transparente, reduzindo despesas operacionais ocultas.",
+              omnichannel: "O EBANX opera estritamente canais online. Se você deseja abrir lojas físicas no Brasil ou consolidar vendas híbridas, precisará de outra credenciadora e outro gateway. A Adyen resolve e-commerce doméstico, cross-border e POS físicos sob o mesmo trilho técnico.",
+              antifraud: "O antifraude do EBANX é focado em riscos regulatórios específicos de faturamento transfronteiriço, o que gera rigidez no e-commerce doméstico de alta performance. O RevenueProtect da Adyen se adapta de maneira cirúrgica a ambos os ambientes sob a nossa adquirência própria.",
+              pix: "O Pix no EBANX é processado para remessas internacionais, o que limita sua flexibilidade operacional doméstica. A Adyen entrega processamento direto de Pix no mesmo dashboard de recebimentos locais de cartões.",
+              global: "O EBANX conecta marcas internacionais a mercados emergentes específicos, mas não processa transações locais domésticas de e-commerces brasileiros. A Adyen oferece adquirência direta no Brasil e nos maiores mercados do mundo (EUA, Europa, LatAm) sob a mesma integração."
             }
           },
           {
@@ -338,21 +608,51 @@
             antifraud: 'Nativo modular adaptado para economias emergentes',
             pixFeature: 'Processamento integrado ao canal internacional de câmbio',
             settlementSpeed: 'Liquidação estruturada internacional',
+            globalFootprint: 'Forte presença em mais de 40 mercados emergentes na Ásia, África e América Latina, conectando multinacionais digitais.',
             devExperience: 72,
-            companyOverview: 'Plataforma de processamento de pagamentos focada em mercados emergentes globais. Atua conectando grandes multinacionais a consumidores na LatAm, África e Ásia.',
-            targetAudience: 'Empresas multinacionais de economia digital que buscam um parceiro único de agregação de métodos locais em múltiplas regiões geográficas.',
-            weaknesses: 'Dependência técnica de adquirentes e parceiros locais indiretos, resultando ocasionalmente em instabilidades operacionais.',
-            strengths: 'Portfólio unificado e agressivo com cobertura regulatória em dezenas de geografias complexas e exóticas.',
+            companyOverview: 'A dLocal foca em atuar como agregadora técnica e regulatória em dezenas de mercados emergentes globais de difícil acesso físico, oferecendo processamento para marcas digitais globais de faturamento transfronteiriço.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'Relatórios Financeiros dLocal NASDAQ, Logs de Transações em Clientes Compartilhados',
             marketCap: 'Capital Aberto (NASDAQ: DLO) | Cap. de Mercado: ~$2.7 Bilhões',
             newsSnippet: 'dLocal anuncia novas integrações para canais alternativos de recebimento instantâneo em mercados emergentes na África Central e LatAm.',
             newsSearchUrl: 'https://valor.globo.com/busca/?q=dlocal',
+            fastFacts: {
+              founded: '2016',
+              marketPosition: 'Agregadora global de pagamentos em mercados emergentes',
+              marketShare: 'Forte inserção em plataformas de gig economy mundiais',
+              shareholders: 'dLocal Ltd. (NASDAQ)',
+              employees: '800+',
+              trxVolume: 'Valores corporativos reportados em relatórios SEC',
+              pricing: 'Markup cambial e taxas por mercado emergente integrado',
+              products: 'dLocal One API, dLocal Merchant Portal'
+            },
+            strengths: [
+              "Ampla e rápida inserção de dezenas de métodos alternativos em países de difícil acesso.",
+              "Infraestrutura de integração facilitada para multinacionais gigantes americanas e asiáticas.",
+              "Domínio de compliance local em economias em desenvolvimento."
+            ],
+            weaknesses: [
+              "Falta de adquirência direta própria em diversos mercados secundários (opera de forma indireta via credenciadores terceirizados).",
+              "Taxas de autorização financeira inconsistentes devido ao uso de múltiplos adquirentes locais agregados."
+            ],
+            partners: {
+              gateway: "One API dLocal",
+              platforms: "Magento, WooCommerce",
+              antifraud: "dLocal Fraud Engine (Nativo modular)",
+              physical: "Sem POS físico (Apenas digital)"
+            },
+            howWeWin: [
+              "Estabilidade técnica imbatível: A Adyen opera com rede de adquirência direta própria no Brasil, eliminando instabilidades de subadquirentes.",
+              "Taxas de aprovação consistentemente superiores em cartões nacionais brasileiros.",
+              "Atendimento Enterprise dedicado com suporte técnico local real."
+            ],
             battlecard: {
-              whyWeWin: 'A nossa rede de adquirência direta própria no Brasil garante SLAs de disponibilidade e aprovação muito mais altos do que o modelo agregador deles.',
-              vulnerabilities: 'As reclamações frequentes de falhas pontuais de processamento devido ao modelo de subadquirência local indireta em múltiplos mercados.',
-              script: 'A dLocal oferece cobertura massiva para muitos países exóticos. No entanto, para o mercado brasileiro — que exige alta performance técnica —, o modelo de adquirência direta da Adyen entrega estabilidade insuperável de infraestrutura própria, sem intermediários agregando pontos de falha.'
+              commercial: "A dLocal cobra margens cambiais complexas para repassar fundos de mercados emergentes. No Brasil, o modelo de adquirência direta própria da Adyen garante o menor TCO transacional possível, sem taxas agregadoras ocultas de múltiplos intermediários.",
+              omnichannel: "A dLocal opera estritamente o ambiente digital de e-commerce. Para crescer canais de Unified Commerce em território brasileiro, a infraestrutura integrada da Adyen é a única solução capaz de unificar e-commerce doméstico e maquininhas de loja física.",
+              antifraud: "A dLocal enfrenta dificuldades para customizar regras de fraude contra fraudadores locais de forma granular no e-commerce brasileiro, gerando atritos na aprovação de bons clientes. O RevenueProtect da Adyen atua com precisão cirúrgica na adquirência.",
+              pix: "O Pix na dLocal é tratado sob o fluxo cambial de faturamento internacional, o que retarda a conciliação financeira local de varejo doméstico. A Adyen entrega automação total integrada de Pix e cartões locais.",
+              global: "A dLocal é excelente para agregação em mercados emergentes exóticos, mas não possui rede própria de adquirência doméstica em mercados maduros e consolidados como a Europa. A Adyen entrega adquirência própria de performance robusta globalmente."
             }
           },
           {
@@ -366,180 +666,54 @@
             antifraud: 'Nativo baseado em contas verificadas PayPal',
             pixFeature: 'Disponível como opção complementar no fluxo de carteira digital',
             settlementSpeed: 'D+30 padrão para carteira digital no Brasil',
+            globalFootprint: 'Presença digital massiva e consolidada globalmente, operando como carteira digital de checkout expresso ou gateway Braintree secundário no Brasil.',
             devExperience: 78,
             companyOverview: 'A marca pioneira mundial em carteiras digitais. Para grandes canais e-commerce corporativos, o PayPal comercializa a plataforma gateway Braintree de alta robustez técnica.',
-            targetAudience: 'Comércios digitais focados em transações transfronteiriças com compradores habituados a checkouts expressos seguros.',
-            weaknesses: 'Altas tarifas fixas por transações domésticas brasileiras; atrito na experiência se o usuário é obrigado a criar conta PayPal.',
-            strengths: 'Marca de alta confiança de conversão digital global de checkout rápido em cartões estrangeiros.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Global',
             dataSource: 'Relatórios Anuais SEC PayPal Inc, Documentação de Integração Braintree',
             marketCap: 'Capital Aberto (NASDAQ: PYPL) | Cap. de Mercado: ~$65.0 Bilhões',
             newsSnippet: 'PayPal acelera reformulação global de sua solução Braintree focando em inteligência artificial para o checkout rápido de um clique.',
             newsSearchUrl: 'https://exame.com/busca/?q=paypal',
+            fastFacts: {
+              founded: '1998',
+              marketPosition: 'Líder Global em Carteira Digital de Consumo',
+              marketShare: 'Dominante em checkout transfronteiriço express',
+              shareholders: 'PayPal Holdings Inc. (NASDAQ)',
+              employees: '22.000+',
+              trxVolume: 'US$ 1.5 Tri (Global consolidado)',
+              pricing: 'Flat-rate padrão + tarifa fixa por transação',
+              products: 'PayPal Wallet, Braintree Gateway, PayPal Hyper'
+            },
+            strengths: [
+              "Alta confiabilidade de marca internacional facilitando o checkout expresso.",
+              "Forte apelo com compradores estrangeiros habituados a checkouts seguros.",
+              "Solução integrada Braintree gateway de excelente robustez técnica."
+            ],
+            weaknesses: [
+              "Altas tarifas de processamento doméstico brasileiro e custos fixos elevados.",
+              "Falta de adaptação rápida para novos fluxos locais brasileiros (Pix de recorrência, faturamentos parcelados locais)."
+            ],
+            partners: {
+              gateway: "Braintree Gateway",
+              platforms: "Shopify, Magento, VTEX, WooCommerce",
+              antifraud: "PayPal Risk Control (Nativo baseado em contas verificadas)",
+              physical: "Sem POS físico no mercado brasileiro"
+            },
+            howWeWin: [
+              "Foco na conversão direta do cartão doméstico do utilizador sem obrigação de criar carteiras digitais.",
+              "Melhor custo-benefício (TCO) através do modelo de adquirência direta própria da Adyen.",
+              "Agilidade técnica na implementação de novos fluxos de Pix locais integrados de faturamento."
+            ],
             battlecard: {
-              whyWeWin: 'Os nossos fluxos focam na conversão direta e sem atrito do cartão do utilizador, enquanto o PayPal é otimizado para a sua própria carteira digital.',
-              vulnerabilities: 'Taxas altíssimas e atrito no checkout quando o utilizador final é obrigado a ter uma conta do PayPal para finalizar a compra.',
-              script: 'O PayPal é muito bom para compradores internacionais que exigem segurança de carteira digital. Contudo, para o dia a dia do consumidor brasileiro, a Adyen entrega uma experiência de checkout muito mais limpa, integrada diretamente com as bandeiras de cartões e o Pix local.'
+              commercial: "O PayPal cobra tarifas expressivas sobre o faturamento doméstico e exige custos adicionais fixos por transação. A Adyen, como adquirente direta própria sob o modelo IC++, elimina intermediários adicionais de checkout, minimizando seu custo de processamento total.",
+              omnichannel: "O PayPal e a Braintree operam estritamente o canal e-commerce digital no mercado brasileiro. A Adyen entrega Unified Commerce de referência, permitindo consolidar os recebíveis físicos e online de forma verdadeiramente unificada sob a mesma API.",
+              antifraud: "O antifraude do PayPal foca em proteger as contas e transações da própria carteira digital, gerando fricção e recusas desnecessárias se o usuário final paga diretamente via cartão comum. A Adyen avalia o risco de forma neutra e cirúrgica com o RevenueProtect.",
+              pix: "A Braintree trata o Pix como um fluxo anexo ao gateway, o que dificulta integrações nativas de faturamento em tempo real. A Adyen entrega Pix de performance madura e integrada diretamente nos mesmos trilhos transacionais.",
+              global: "Apesar de sua presença global robusta, no mercado doméstico brasileiro o PayPal exige adquirentes e gateways separados em diversos fluxos de e-commerce. A Adyen entrega processamento doméstico e cross-border internacional em um único fluxo de adquirência próprio."
             }
           }
         ];
-
-        // Renderizador de Logos Estilizados
-        const getBrandColorsAndLogo = (id) => {
-          switch (id) {
-            case 'adyen':
-              return {
-                bg: 'bg-emerald-50',
-                border: 'border-emerald-200',
-                text: 'text-emerald-700',
-                glow: 'border-emerald-300',
-                icon: (
-                  <svg className="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <circle cx="12" cy="12" r="9" />
-                    <path strokeLinecap="round" d="M12 7v10M7 12h10" />
-                  </svg>
-                )
-              };
-            case 'stripe':
-              return {
-                bg: 'bg-indigo-50',
-                border: 'border-indigo-100',
-                text: 'text-indigo-700',
-                glow: 'border-indigo-300',
-                icon: (
-                  <svg className="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 2L4 13h7l-1 9 8-11h-7l1-9z" />
-                  </svg>
-                )
-              };
-            case 'cielo':
-              return {
-                bg: 'bg-blue-50',
-                border: 'border-blue-100',
-                text: 'text-blue-700',
-                glow: 'border-blue-300',
-                icon: (
-                  <svg className="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <circle cx="8" cy="12" r="5" />
-                    <circle cx="16" cy="12" r="5" />
-                  </svg>
-                )
-              };
-            case 'rede':
-              return {
-                bg: 'bg-orange-50',
-                border: 'border-orange-100',
-                text: 'text-orange-700',
-                glow: 'border-orange-300',
-                icon: (
-                  <svg className="w-5 h-5 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <rect x="3" y="3" width="18" height="18" rx="3" />
-                    <path d="M9 3v18M15 3v18M3 9h18" />
-                  </svg>
-                )
-              };
-            case 'getnet':
-              return {
-                bg: 'bg-red-50',
-                border: 'border-red-100',
-                text: 'text-red-700',
-                glow: 'border-red-300',
-                icon: (
-                  <svg className="w-5 h-5 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
-                    <path d="M12 7v10M9 10h6" />
-                  </svg>
-                )
-              };
-            case 'stone':
-              return {
-                bg: 'bg-teal-50',
-                border: 'border-teal-100',
-                text: 'text-teal-700',
-                glow: 'border-teal-300',
-                icon: (
-                  <svg className="w-5 h-5 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polygon points="12 2 2 12 12 22 22 12 12 2" />
-                  </svg>
-                )
-              };
-            case 'pagbank':
-              return {
-                bg: 'bg-lime-50',
-                border: 'border-lime-100',
-                text: 'text-lime-700',
-                glow: 'border-lime-300',
-                icon: (
-                  <svg className="w-5 h-5 text-lime-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                  </svg>
-                )
-              };
-            case 'mercadopago':
-              return {
-                bg: 'bg-sky-50',
-                border: 'border-sky-100',
-                text: 'text-sky-700',
-                glow: 'border-sky-300',
-                icon: (
-                  <svg className="w-5 h-5 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M17 18a6 6 0 00-10 0" />
-                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20z" />
-                  </svg>
-                )
-              };
-            case 'ebanx':
-              return {
-                bg: 'bg-cyan-50',
-                border: 'border-cyan-100',
-                text: 'text-cyan-700',
-                glow: 'border-cyan-300',
-                icon: (
-                  <svg className="w-5 h-5 text-cyan-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="13 17 18 12 13 7" />
-                    <polyline points="6 17 11 12 6 7" />
-                  </svg>
-                )
-              };
-            case 'dlocal':
-              return {
-                bg: 'bg-amber-50',
-                border: 'border-amber-100',
-                text: 'text-amber-700',
-                glow: 'border-amber-300',
-                icon: (
-                  <svg className="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  </svg>
-                )
-              };
-            case 'paypal':
-              return {
-                bg: 'bg-blue-50',
-                border: 'border-blue-100',
-                text: 'text-blue-800',
-                glow: 'border-blue-300',
-                icon: (
-                  <svg className="w-5 h-5 text-blue-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                  </svg>
-                )
-              };
-            default:
-              return {
-                bg: 'bg-slate-100',
-                border: 'border-slate-200',
-                text: 'text-slate-700',
-                glow: 'border-slate-300',
-                icon: (
-                  <svg className="w-5 h-5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <circle cx="12" cy="12" r="10" />
-                  </svg>
-                )
-              };
-          }
-        };
 
         function App() {
           const [competitors, setCompetitors] = useState(INITIAL_COMPETITORS);
@@ -549,8 +723,11 @@
           const [activeBattlecardId, setActiveBattlecardId] = useState('stripe');
           const [activeTab, setActiveTab] = useState('compare'); // compare | summary | news | curation
           
+          // Dropdown Dinâmico de Categorias de Venda no Battlecard
+          const [selectedPitchCategory, setSelectedPitchCategory] = useState('commercial');
+
           // ID ativo para a aba de Resumos Individuais
-          const [activeSummaryId, setActiveSummaryId] = useState('stripe');
+          const [activeSummaryId, setActiveSummaryId] = useState('rede');
 
           // Modal para propor novo concorrente
           const [isModalOpen, setIsModalOpen] = useState(false);
@@ -584,21 +761,44 @@
               antifraud: newCompAntifraud,
               pixFeature: 'Funcionalidades básicas de Pix',
               settlementSpeed: 'D+30 padrão',
+              globalFootprint: 'Presença internacional sob consulta regulatória cambial.',
               devExperience: 70,
               companyOverview: `Empresa adicionada manualmente pelo time de campo. Perfil pendente de revisão estrutural de marketing.`,
               targetAudience: 'Não mapeado oficialmente pela inteligência de produto.',
-              weaknesses: newCompWeaknesses || 'Sem mapeamento oficial de vulnerabilidade.',
-              strengths: newCompStrengths || 'Forte presença de campo comercial local.',
               status: 'pending',
               verifiedBy: 'Pendente de homologação por PMM / Inteligência Interna',
               dataSource: newCompSource || 'Informação inserida manualmente por Sales Manager',
               marketCap: 'Privada / Estimado ou Indisponível',
               newsSnippet: 'Nenhuma atualização de alto relevância foi encontrada ou compartilhada nos últimos 30 dias.',
               newsSearchUrl: 'https://valor.globo.com/busca/?q=' + encodeURIComponent(newCompName),
+              fastFacts: {
+                founded: 'Desconhecido',
+                marketPosition: 'Não mapeado',
+                marketShare: 'Menos de 2% no Brasil',
+                shareholders: 'Não divulgado',
+                employees: '100+',
+                trxVolume: 'Valores confidenciais',
+                pricing: ' MDR Flat padrão de intermediação comercial',
+                products: 'POS e checkout digital básico'
+              },
+              strengths: [newCompStrengths || 'Forte presença de campo comercial local.'],
+              weaknesses: [newCompWeaknesses || 'Sem mapeamento oficial de vulnerabilidade.'],
+              partners: {
+                gateway: ' Gateway de parceiros terceirizados',
+                platforms: 'Compatibilidade padrão',
+                antifraud: ' Soluções de risco sob consulta',
+                physical: ' Terminais sob locação comercial'
+              },
+              howWeWin: [
+                "A Adyen possui inteligência direta de dados e taxas de aprovação superiores comparadas ao modelo deste player no Brasil.",
+                "Atendimento corporativo dedicado de engenharia contra suporte genérico."
+              ],
               battlecard: {
-                whyWeWin: 'A Adyen possui inteligência direta de dados e taxas de aprovação superiores comparadas ao modelo deste player no Brasil.',
-                vulnerabilities: 'Atendimento corporativo genérico e falta de controle do fluxo completo de transação (dependência de gateways/adquirência terceiros).',
-                script: `Ao negociar contra o ${newCompName}, foque na nossa estabilidade de SLA. Nós controlamos a nossa rede própria, enquanto eles dependem de terceiros parceiros.`
+                commercial: `O modelo de intermediação flat-rate deles repassa custos inflacionados ocultos. A Adyen entrega economia real via IC++ de adquirência direta.`,
+                omnichannel: `Para Unified Commerce real, este player carece de soluções integradas físicas. A Adyen unifica canais de venda nativamente.`,
+                antifraud: `O antifraude deles tende a rejeitar preventivamente uma quantidade elevada de boas vendas digitais. A Adyen otimiza a conversão com o RevenueProtect.`,
+                pix: `Nosso Pix Open Finance atua diretamente nos trilhos de liquidação instantânea.`,
+                global: `Eles atuam estritamente no mercado nacional brasileiro. A Adyen sustenta o crescimento global contínuo da sua marca em múltiplos países.`
               }
             };
 
@@ -678,7 +878,7 @@
                     </div>
                     <div>
                       <h1 className="text-lg font-bold tracking-tight text-slate-900">Adyen Brasil Competitor Intel</h1>
-                      <p className="text-xs text-slate-500">Painel operacional e analítico do ecossistema de pagamentos enterprise no Brasil</p>
+                      <p className="text-xs text-slate-505">Painel operacional e analítico do ecossistema de pagamentos enterprise no Brasil</p>
                     </div>
                   </div>
 
@@ -719,7 +919,7 @@
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                       </svg>
-                      RESUMO DOS COMPETIDORES
+                      RESUMO DOS COMPETIDORES (BATTLE CARDS)
                     </button>
 
                     <button
@@ -844,10 +1044,10 @@
 
                       </div>
 
-                      {/* MATRIZ DE ATRIBUTOS */}
+                      {/* MATRIZ DE ATRIBUTOS COM "GLOBAL FOOTPRINT" */}
                       <div className="divide-y divide-slate-200 text-slate-700">
                         
-                        {/* Linha 1: Foco e Operação */}
+                        {/* Linha: Foco e Operação */}
                         <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
                             Foco e Operação
@@ -869,7 +1069,23 @@
                           </div>
                         </div>
 
-                        {/* Linha 2: Modelo Comercial */}
+                        {/* Linha: Global Footprint */}
+                        <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
+                          <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
+                            Global Footprint (Atuação)
+                          </div>
+                          <div className="p-4 md:border-r border-slate-200 text-slate-700">
+                            {comp1.globalFootprint}
+                          </div>
+                          <div className="p-4 md:border-r border-slate-200 text-slate-600">
+                            {comp2.globalFootprint}
+                          </div>
+                          <div className="p-4 text-slate-600">
+                            {comp3.globalFootprint}
+                          </div>
+                        </div>
+
+                        {/* Linha: Modelo Comercial */}
                         <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
                             Modelo Comercial
@@ -885,7 +1101,7 @@
                           </div>
                         </div>
 
-                        {/* Linha 3: Taxa de Aprovação */}
+                        {/* Linha: Taxa de Aprovação */}
                         <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
                             Aprovação Técnica Média
@@ -935,23 +1151,23 @@
                           </div>
                         </div>
 
-                        {/* Linha 4: Omnichannel */}
+                        {/* Linha: Omnichannel */}
                         <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
                             Solução Omnichannel
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-700">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-700 font-medium">
                             {comp1.omnichannel}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-500">
                             {comp2.omnichannel}
                           </div>
-                          <div className="p-4 text-slate-505">
+                          <div className="p-4 text-slate-500">
                             {comp3.omnichannel}
                           </div>
                         </div>
 
-                        {/* Linha 5: Antifraude */}
+                        {/* Linha: Antifraude */}
                         <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
                             Antifraude e Risco
@@ -959,15 +1175,15 @@
                           <div className="p-4 md:border-r border-slate-200 text-slate-700">
                             {comp1.antifraud}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-500">
                             {comp2.antifraud}
                           </div>
-                          <div className="p-4 text-slate-505">
+                          <div className="p-4 text-slate-500">
                             {comp3.antifraud}
                           </div>
                         </div>
 
-                        {/* Linha 6: Pix */}
+                        {/* Linha: Pix */}
                         <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
                             Operação Pix no Brasil
@@ -975,15 +1191,15 @@
                           <div className="p-4 md:border-r border-slate-800 text-slate-700">
                             {comp1.pixFeature}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-500">
                             {comp2.pixFeature}
                           </div>
-                          <div className="p-4 text-slate-505">
+                          <div className="p-4 text-slate-500">
                             {comp3.pixFeature}
                           </div>
                         </div>
 
-                        {/* Linha 7: Developer Experience */}
+                        {/* Linha: Developer Experience */}
                         <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
                             Developer Experience
@@ -996,7 +1212,7 @@
                               </div>
                             </div>
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
+                          <div className="p-4 md:border-r border-slate-800 text-slate-505">
                             <div className="flex items-center gap-3">
                               <span className="font-bold text-slate-700">{comp2.devExperience || 'N/A'}/100</span>
                               <div className="flex-1 bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200/50">
@@ -1017,7 +1233,7 @@
                       </div>
                     </section>
 
-                    {/* SEÇÃO BATTLECARD DE VENDAS */}
+                    {/* SEÇÃO BATTLECARD DE VENDAS COM DISCURSO DINÂMICO PERSONALIZADO POR CATEGORIA */}
                     <section className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm relative overflow-hidden">
                       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 border-b border-slate-200 pb-5 mb-6">
                         <div>
@@ -1029,72 +1245,83 @@
                             </span>
                             Battlecard Comercial de Negociação
                           </h2>
-                          <p className="text-xs text-slate-500 mt-1">Selecione o concorrente sob análise para calibrar os discursos de venda</p>
+                          <p className="text-xs text-slate-500 mt-1">Selecione o concorrente e a categoria para gerar um roteiro de conversa personalizado em tempo real</p>
                         </div>
 
-                        {/* Abas de Seleção de Concorrente no Battlecard */}
-                        <div className="flex flex-wrap gap-1.5 max-w-full">
-                          {competitors.filter(c => c.id !== 'adyen').map(c => {
-                            const badge = getBrandColorsAndLogo(c.id);
-                            const isActive = activeBattlecardId === c.id;
-                            return (
-                              <button
-                                key={c.id}
-                                onClick={() => setActiveBattlecardId(c.id)}
-                                className={`text-[11px] px-3 py-1.5 rounded-lg font-bold border transition duration-200 flex items-center gap-1.5 ${
-                                  isActive
-                                    ? 'bg-amber-50 border-amber-300 text-amber-700 shadow-sm'
-                                    : 'bg-white border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-50'
-                                }`}
-                              >
-                                {badge.icon}
-                                <span>{c.name}</span>
-                              </button>
-                            );
-                          })}
+                        {/* Controles para estruturar o pitch de faturamento dinâmico */}
+                        <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+                          {/* Dropdown de Competidor */}
+                          <div className="flex flex-col gap-1 w-full sm:w-48">
+                            <label className="text-[10px] font-bold text-slate-400 uppercase">Concorrente Atual</label>
+                            <select
+                              value={activeBattlecardId}
+                              onChange={(e) => setActiveBattlecardId(e.target.value)}
+                              className="bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-500 cursor-pointer"
+                            >
+                              {competitors.filter(c => c.id !== 'adyen').map(c => (
+                                <option key={c.id} value={c.id}>{c.name}</option>
+                              ))}
+                            </select>
+                          </div>
+
+                          {/* Dropdown de Categoria de Vendas */}
+                          <div className="flex flex-col gap-1 w-full sm:w-56">
+                            <label className="text-[10px] font-bold text-slate-400 uppercase">Foco de Discurso</label>
+                            <select
+                              value={selectedPitchCategory}
+                              onChange={(e) => setSelectedPitchCategory(e.target.value)}
+                              className="bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-500 cursor-pointer"
+                            >
+                              <option value="commercial">Modelo Comercial (IC++ vs MDR Flat)</option>
+                              <option value="omnichannel">Omnichannel Real (Físico + Digital)</option>
+                              <option value="antifraud">Antifraude e Risco (Nativo vs Terceiros)</option>
+                              <option value="pix">Pix & Open Finance</option>
+                              <option value="global">Expansão e Global Footprint</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Grade de Informações de Batalha */}
+                      {/* Grade de Informações de Batalha de Negociação Dinâmica */}
                       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         
-                        {/* Como Vencemos */}
+                        {/* Card 1: Diferenciais Críticos de Produto */}
                         <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between">
                           <div>
-                            <span className="text-[9px] font-extrabold tracking-widest text-emerald-600 uppercase">Diferencial Crítico</span>
-                            <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Como a Adyen supera o {activeCompetitorForBattlecard.name}?</h3>
+                            <span className="text-[9px] font-extrabold tracking-widest text-emerald-600 uppercase">Forças de Produto</span>
+                            <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Onde a Adyen se impõe de imediato?</h3>
                             <p className="text-xs text-slate-600 leading-relaxed text-justify">
-                              {activeCompetitorForBattlecard.battlecard?.whyWeWin}
+                              {activeCompetitorForBattlecard.howWeWin[0]} Nossa adquirência própria e direta assegura níveis de autorização financeira muito superiores a modelos compartilhados de rede de parceiros legados.
                             </p>
                           </div>
                           <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-slate-500">
-                            <span className="font-bold text-slate-700">Ponto de Força Deles:</span> {activeCompetitorForBattlecard.strengths}
+                            <span className="font-bold text-slate-700">Forte Deles:</span> {activeCompetitorForBattlecard.strengths[0]}
                           </div>
                         </div>
 
-                        {/* Vulnerabilidade */}
+                        {/* Card 2: Vulnerabilidade Ativa do Concorrente */}
                         <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between">
                           <div>
-                            <span className="text-[9px] font-extrabold tracking-widest text-rose-600 uppercase">Gaps Operacionais</span>
-                            <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Vulnerabilidade para explorar:</h3>
+                            <span className="text-[9px] font-extrabold tracking-widest text-rose-600 uppercase">Gaps Ativos de Negócio</span>
+                            <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Onde explorar o enfraquecimento deles?</h3>
                             <p className="text-xs text-slate-600 leading-relaxed text-justify">
-                              {activeCompetitorForBattlecard.battlecard?.vulnerabilities}
+                              {activeCompetitorForBattlecard.weaknesses[0]} Além disso, no cenário de e-commerce corporativo complexo, faltam relatórios granulares de depuração de transações negadas, o que onera a TI dos lojistas.
                             </p>
                           </div>
                           <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-rose-700/80">
-                            <span className="font-bold text-slate-700">Ponto Fraco Técnico:</span> {activeCompetitorForBattlecard.weaknesses}
+                            <span className="font-bold text-slate-700">Gap Crítico:</span> {activeCompetitorForBattlecard.weaknesses[1] || 'Limitações operacionais de back-office.'}
                           </div>
                         </div>
 
-                        {/* Roteiro Prático de Vendas */}
+                        {/* Card 3: Pitch Dinâmico Gerado pelo Dropdown */}
                         <div className="bg-gradient-to-br from-slate-100 to-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between relative overflow-hidden">
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-[9px] font-extrabold tracking-widest text-amber-700 uppercase">Discurso Prático</span>
+                              <span className="text-[9px] font-extrabold tracking-widest text-amber-700 uppercase">Script Dinâmico Customizado</span>
                               <button
-                                onClick={() => handleCopyScript(activeCompetitorForBattlecard.battlecard?.script)}
+                                onClick={() => handleCopyScript(activeCompetitorForBattlecard.battlecard[selectedPitchCategory])}
                                 className="p-1 hover:bg-slate-200 rounded text-slate-500 hover:text-slate-800 transition"
-                                title="Copiar Roteiro"
+                                title="Copiar Script"
                               >
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -1102,14 +1329,14 @@
                               </button>
                             </div>
                             <div className="bg-white p-3.5 rounded-lg border border-slate-200 text-[11px] text-slate-600 font-mono italic leading-relaxed h-32 overflow-y-auto shadow-inner">
-                              "{activeCompetitorForBattlecard.battlecard?.script}"
+                              "{activeCompetitorForBattlecard.battlecard[selectedPitchCategory] || 'Roteiro de conversação em estruturação técnica.'}"
                             </div>
                           </div>
                           <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-slate-500 flex items-center gap-1.5">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-amber-600 stroke-[2.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            Discurso focado em otimização de conversão e ROI.
+                            Foco de Discurso: <strong className="text-slate-800 uppercase tracking-wide">{selectedPitchCategory}</strong>
                           </div>
                         </div>
 
@@ -1119,12 +1346,12 @@
                   </div>
                 )}
 
-                {/* ABA: RESUMO INDIVIDUAL DOS COMPETIDORES (NOVA ABA REQUISITADA) */}
+                {/* ABA: RESUMO INDIVIDUAL DOS COMPETIDORES (PROJETO FIEL A image_e0fd8c.jpg) */}
                 {activeTab === 'summary' && (
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     
                     {/* Lista de Seleção Lateral (Esquerda - 4 colunas no lg) */}
-                    <div className="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-2">
+                    <div className="lg:col-span-3 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-2">
                       <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest px-2 block mb-2">Selecione o Competidor</span>
                       <div className="space-y-1 overflow-y-auto max-h-[650px] pr-1">
                         {competitors.map(c => {
@@ -1136,7 +1363,7 @@
                               onClick={() => setActiveSummaryId(c.id)}
                               className={`w-full text-left p-3 rounded-xl border flex items-center justify-between transition ${
                                 isSelected 
-                                  ? 'bg-emerald-50 border-emerald-300 text-emerald-900 shadow-sm' 
+                                  ? 'bg-slate-100 border-slate-300 text-slate-900 shadow-sm font-bold' 
                                   : 'bg-white border-slate-100 text-slate-600 hover:bg-slate-50 hover:border-slate-200'
                               }`}
                             >
@@ -1145,11 +1372,11 @@
                                   {badge.icon}
                                 </div>
                                 <div>
-                                  <span className="text-xs font-bold block">{c.name}</span>
+                                  <span className="text-xs block">{c.name}</span>
                                   <span className="text-[9px] text-slate-400 block mt-0.5">{c.type}</span>
                                 </div>
                               </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform ${isSelected ? 'translate-x-1 text-emerald-600' : 'text-slate-300'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                              <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform ${isSelected ? 'translate-x-1 text-slate-800' : 'text-slate-300'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                               </svg>
                             </button>
@@ -1158,108 +1385,172 @@
                       </div>
                     </div>
 
-                    {/* Painel de Exibição de Perfil (Direita - 8 colunas no lg) */}
-                    <div className="lg:col-span-8 space-y-6">
+                    {/* Painel de Exibição de Perfil Layout Adyen LatAm (Direita - 9 colunas no lg) */}
+                    <div className="lg:col-span-9 bg-white border border-slate-300 rounded-lg p-5 shadow-md text-slate-900 space-y-4">
                       
-                      {/* Cartão de Identificação Principal */}
-                      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5 mb-5">
-                          <div className="flex items-center gap-3.5">
-                            <div className={`p-3 rounded-2xl ${activeSummaryBadge.bg} border ${activeSummaryBadge.border} shadow-sm`}>
-                              {activeSummaryBadge.icon}
-                            </div>
-                            <div>
-                              <h2 className="text-lg font-bold text-slate-900">{activeSummaryCompetitor.name}</h2>
-                              <span className="text-xs text-slate-400 font-medium">Segmento: {activeSummaryCompetitor.type}</span>
-                            </div>
+                      {/* Cabeçalho da Ficha de Solução (Como o Rede Header do Battle Card) */}
+                      <div className="border border-slate-300 rounded-lg p-4 bg-slate-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className={`p-3 rounded-xl border ${activeSummaryBadge.border} ${activeSummaryBadge.bg} shadow-inner`}>
+                            {activeSummaryBadge.icon}
                           </div>
-
-                          <div className="text-sm bg-slate-50 border border-slate-200 px-4 py-2 rounded-xl text-right sm:max-w-xs">
-                            <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Estrutura de Capital</span>
-                            <span className="text-xs font-bold text-slate-800 block mt-0.5">{activeSummaryCompetitor.marketCap}</span>
-                          </div>
-                        </div>
-
-                        {/* Visão Geral */}
-                        <div className="space-y-2">
-                          <span className="text-[9px] uppercase tracking-wider font-extrabold text-emerald-600 block">Visão Geral Corporativa</span>
-                          <p className="text-xs text-slate-600 leading-relaxed text-justify">
-                            {activeSummaryCompetitor.companyOverview}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Métricas e ICP (Ideal Customer Profile) */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        
-                        {/* Gráficos Rápidos */}
-                        <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
-                          <span className="text-[9px] uppercase tracking-wider font-extrabold text-slate-400 block">Performance Estimada</span>
-                          
-                          {/* Taxa de Aprovação */}
-                          <div className="space-y-1.5">
-                            <div className="flex justify-between items-center text-xs font-bold text-slate-700">
-                              <span>Taxa de Aprovação</span>
-                              <span className="text-emerald-600">{activeSummaryCompetitor.approvalRate}%</span>
-                            </div>
-                            <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                              <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${activeSummaryCompetitor.approvalRate}%` }}></div>
-                            </div>
-                          </div>
-
-                          {/* DX (Developer Experience) */}
-                          <div className="space-y-1.5">
-                            <div className="flex justify-between items-center text-xs font-bold text-slate-700">
-                              <span>Developer Experience</span>
-                              <span className="text-slate-800">{activeSummaryCompetitor.devExperience}/100</span>
-                            </div>
-                            <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                              <div className="bg-slate-400 h-full rounded-full" style={{ width: `${activeSummaryCompetitor.devExperience}%` }}></div>
-                            </div>
-                          </div>
-
-                          {/* Modelo Comercial Curto */}
-                          <div className="pt-2 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
-                            <span className="font-semibold">Modelo Tarifário:</span>
-                            <span className="text-slate-800 font-bold">{activeSummaryCompetitor.pricingModel}</span>
-                          </div>
-                        </div>
-
-                        {/* ICP Público Alvo */}
-                        <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
                           <div>
-                            <span className="text-[9px] uppercase tracking-wider font-extrabold text-slate-400 block">ICP (Público-Alvo)</span>
-                            <h4 className="text-xs font-bold text-slate-800 mt-1 mb-2">Quem compra esse player no mercado?</h4>
-                            <p className="text-xs text-slate-600 leading-relaxed text-justify">
-                              {activeSummaryCompetitor.targetAudience}
-                            </p>
+                            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">{activeSummaryCompetitor.name}</h2>
+                            <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">{activeSummaryCompetitor.type}</p>
                           </div>
-                          <div className="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-500 font-medium">
-                            <span className="font-bold text-slate-700">Repasse financeiro:</span> {activeSummaryCompetitor.settlementSpeed}
+                        </div>
+                        <div className="text-xs text-slate-500 bg-white border border-slate-300 rounded-lg p-3 max-w-sm">
+                          <span className="font-extrabold uppercase text-slate-400 text-[9px] block tracking-widest mb-1">Company and Solution Overview</span>
+                          {activeSummaryCompetitor.companyOverview}
+                        </div>
+                      </div>
+
+                      {/* Layout de Corpo do Battle Card (Fast Facts + Strengths, Weaknesses, Partners e How we Win) */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        {/* Coluna 1: Fast Facts (Light Slate box) */}
+                        <div className="bg-slate-100/80 border border-slate-300 rounded-lg p-4 space-y-3">
+                          <h3 className="text-sm font-extrabold text-slate-900 uppercase border-b border-slate-300 pb-1.5 flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Fast Facts
+                          </h3>
+                          
+                          {activeSummaryCompetitor.fastFacts ? (
+                            <div className="space-y-2 text-xs">
+                              <div className="flex justify-between py-1 border-b border-slate-200">
+                                <span className="font-bold text-slate-600">Fundação:</span>
+                                <span className="font-mono text-slate-800">{activeSummaryCompetitor.fastFacts.founded}</span>
+                              </div>
+                              <div className="flex justify-between py-1 border-b border-slate-200">
+                                <span className="font-bold text-slate-600">Posicionamento:</span>
+                                <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.marketPosition}</span>
+                              </div>
+                              <div className="flex justify-between py-1 border-b border-slate-200">
+                                <span className="font-bold text-slate-600">Market Share:</span>
+                                <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.marketShare}</span>
+                              </div>
+                              <div className="flex justify-between py-1 border-b border-slate-200">
+                                <span className="font-bold text-slate-600">Controladores:</span>
+                                <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.shareholders}</span>
+                              </div>
+                              <div className="flex justify-between py-1 border-b border-slate-200">
+                                <span className="font-bold text-slate-600">Faturamento:</span>
+                                <span className="font-mono text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.trxVolume}</span>
+                              </div>
+                              <div className="flex justify-between py-1 border-b border-slate-200">
+                                <span className="font-bold text-slate-600">Modelo Comercial:</span>
+                                <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.pricing}</span>
+                              </div>
+                              <div className="flex flex-col pt-1.5">
+                                <span className="font-bold text-slate-600 mb-1">Key Products:</span>
+                                <span className="text-slate-700 bg-white p-2 rounded border border-slate-200 text-[11px] leading-relaxed">
+                                  {activeSummaryCompetitor.fastFacts.products}
+                                </span>
+                              </div>
+                            </div>
+                          ) : (
+                            <p className="text-xs text-slate-500 italic">Fast facts em curadoria comercial por PMM.</p>
+                          )}
+                        </div>
+
+                        {/* Colunas 2 & 3: Matriz 2x2 do Battle Card original */}
+                        <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          
+                          {/* Bloco 1: Competitor Strengths (Verde) */}
+                          <div className="border border-slate-300 rounded-lg overflow-hidden flex flex-col">
+                            <div className="bg-emerald-600 text-white font-bold text-xs p-2 text-center uppercase tracking-wider">
+                              Competitor Strengths
+                            </div>
+                            <div className="p-3 bg-emerald-50/20 flex-1">
+                              {activeSummaryCompetitor.strengths ? (
+                                <ul className="list-disc list-inside text-xs text-slate-800 space-y-2 leading-relaxed">
+                                  {activeSummaryCompetitor.strengths.map((str, idx) => (
+                                    <li key={idx} className="text-justify"><span className="font-semibold">{str.split(":")[0]}:</span>{str.split(":")[1] || str}</li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="text-xs text-slate-500 italic">Mapeamento em andamento.</p>
+                              )}
+                            </div>
                           </div>
+
+                          {/* Bloco 2: Partners & Integrations (Azul) */}
+                          <div className="border border-slate-300 rounded-lg overflow-hidden flex flex-col">
+                            <div className="bg-blue-600 text-white font-bold text-xs p-2 text-center uppercase tracking-wider">
+                              Partners and Integrations
+                            </div>
+                            <div className="p-3 bg-blue-50/20 flex-1 space-y-2.5 text-xs">
+                              {activeSummaryCompetitor.partners ? (
+                                <div className="space-y-2">
+                                  <div className="flex flex-col sm:flex-row sm:justify-between py-1 border-b border-slate-200">
+                                    <span className="font-extrabold text-slate-500 uppercase text-[9px] tracking-wider">Gateway</span>
+                                    <span className="text-slate-800 font-medium text-right">{activeSummaryCompetitor.partners.gateway}</span>
+                                  </div>
+                                  <div className="flex flex-col sm:flex-row sm:justify-between py-1 border-b border-slate-200">
+                                    <span className="font-extrabold text-slate-500 uppercase text-[9px] tracking-wider">Platforms</span>
+                                    <span className="text-slate-800 font-medium text-right">{activeSummaryCompetitor.partners.platforms}</span>
+                                  </div>
+                                  <div className="flex flex-col sm:flex-row sm:justify-between py-1 border-b border-slate-200">
+                                    <span className="font-extrabold text-slate-500 uppercase text-[9px] tracking-wider">Anti Fraud</span>
+                                    <span className="text-slate-800 font-medium text-right">{activeSummaryCompetitor.partners.antifraud}</span>
+                                  </div>
+                                  <div className="flex flex-col sm:flex-row sm:justify-between py-1">
+                                    <span className="font-extrabold text-slate-500 uppercase text-[9px] tracking-wider">Physical</span>
+                                    <span className="text-slate-800 font-medium text-right">{activeSummaryCompetitor.partners.physical}</span>
+                                  </div>
+                                </div>
+                              ) : (
+                                <p className="text-xs text-slate-500 italic">Parcerias em homologação regulatória.</p>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Bloco 3: Competitor Weaknesses (Vermelho) */}
+                          <div className="border border-slate-300 rounded-lg overflow-hidden flex flex-col">
+                            <div className="bg-rose-600 text-white font-bold text-xs p-2 text-center uppercase tracking-wider">
+                              Competitor Weaknesses
+                            </div>
+                            <div className="p-3 bg-rose-50/20 flex-1">
+                              {activeSummaryCompetitor.weaknesses ? (
+                                <ul className="list-disc list-inside text-xs text-slate-800 space-y-2 leading-relaxed">
+                                  {activeSummaryCompetitor.weaknesses.map((wk, idx) => (
+                                    <li key={idx} className="text-justify"><span className="font-semibold">{wk.split(":")[0]}:</span>{wk.split(":")[1] || wk}</li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="text-xs text-slate-500 italic">Vulnerabilidades sob levantamento.</p>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Bloco 4: How we Win (Cinza/Grafite) */}
+                          <div className="border border-slate-300 rounded-lg overflow-hidden flex flex-col">
+                            <div className="bg-slate-700 text-white font-bold text-xs p-2 text-center uppercase tracking-wider">
+                              How we Win
+                            </div>
+                            <div className="p-3 bg-slate-50/50 flex-1">
+                              {activeSummaryCompetitor.howWeWin ? (
+                                <ul className="list-disc list-inside text-xs text-slate-800 space-y-2 leading-relaxed">
+                                  {activeSummaryCompetitor.howWeWin.map((win, idx) => (
+                                    <li key={idx} className="text-justify"><span className="font-semibold">{win.split(":")[0]}:</span>{win.split(":")[1] || win}</li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="text-xs text-slate-500 italic">Estratégias de vendas em revisão técnica.</p>
+                              )}
+                            </div>
+                          </div>
+
                         </div>
 
                       </div>
 
-                      {/* Forças & Fraquezas no Brasil */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        
-                        {/* Onde Brilha */}
-                        <div className="bg-emerald-50/20 border border-emerald-100 rounded-2xl p-5 shadow-sm">
-                          <span className="text-[9px] uppercase tracking-wider font-extrabold text-emerald-600 block">Diferenciais e Forças</span>
-                          <p className="text-xs text-slate-600 leading-relaxed text-justify mt-2">
-                            {activeSummaryCompetitor.strengths}
-                          </p>
-                        </div>
-
-                        {/* Onde Falha */}
-                        <div className="bg-rose-50/20 border border-rose-100 rounded-2xl p-5 shadow-sm">
-                          <span className="text-[9px] uppercase tracking-wider font-extrabold text-rose-600 block">Fraquezas e Gaps</span>
-                          <p className="text-xs text-slate-600 leading-relaxed text-justify mt-2">
-                            {activeSummaryCompetitor.weaknesses}
-                          </p>
-                        </div>
-
+                      {/* Footer do Battle Card com carimbo de Atualização de Produto */}
+                      <div className="flex justify-between items-center text-[10px] text-slate-400 pt-2 border-t border-slate-200">
+                        <span>Aprovado para uso interno na Adyen LatAm.</span>
+                        <span className="font-bold">Última Revisão: Junho-2026</span>
                       </div>
 
                     </div>
@@ -1430,7 +1721,7 @@
                                       </span>
                                     ) : (
                                       <span className="bg-amber-50 text-amber-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1 w-max animate-pulse">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-amber-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-amber-505" viewBox="0 0 20 20" fill="currentColor">
                                           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                                         </svg>
                                         Rascunho (Draft)
