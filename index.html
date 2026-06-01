@@ -18,7 +18,7 @@
                             200: '#e2e8f0', // Bordas suaves
                             300: '#cbd5e1', // Bordas em destaque
                             400: '#94a3b8',
-                            500: '#64748b', // Texto de leitura desvanecido
+                            505: '#64748b', // Texto de leitura desvanecido
                             700: '#334155', // Texto de leitura padrão
                             800: '#1e293b', // Texto em destaque
                             900: '#0f172a', // Títulos principais
@@ -111,7 +111,7 @@
             ],
             weaknesses: [
               "Menor flexibilidade de taxas de entrada para PMEs e microempreendedores.",
-              "Não foca em POS físico de baixo tíquete ou alta dispersão de varejo de rua sem contrato centralizado."
+              "Não foca em POS físico de baixo volume ou alta dispersão de varejo de rua sem contrato centralizado."
             ],
             partners: {
               gateway: "Nativo (Sem intermediários ou gateways secundários)",
@@ -128,7 +128,7 @@
               commercial: "Diferente dos concorrentes tradicionais de taxa flat, o nosso modelo IC++ repassa a redução direta de taxas reguladas e intercâmbio de bandeiras para si. Cada centavo economizado vai direto para sua margem líquida, com transparência absoluta em cada fatura.",
               omnichannel: "Vender no físico e digital hoje não precisa exigir gateways separados, conciliadoras contratadas e extratos conflitantes. Com a Adyen, uma transação física e uma digital compartilham o mesmo token de dados. O seu cliente pode comprar no app e trocar na loja física sem atrito operacional ou reconciliação manual.",
               antifraud: "O antifraude tradicional rejeita bons clientes para barrar estornos. O RevenueProtect da Adyen trabalha de forma inteligente: usando dados transacionais de nossa rede global, nós identificamos e barramos o fraudador real enquanto aprovamos o consumidor legítimo que outros sistemas recusariam.",
-              pix: "Nosso fluxo Pix Open Finance atua diretamente nos trilhos de liquidação instantânea. Isso reduz o tempo de finalização da compra no checkout e reconcilia a transação de forma totalmente automatizada no mesmo dashboard das bandeiras de cartão.",
+              pix: "Nosso fluxo Pix Open Finance atua diretamente nos trilhos de liquidação instantânea. Isso reduz o tempo de faturamento e reconcilia a transação de forma totalmente automatizada no mesmo dashboard.",
               global: "A expansão internacional exige infraestrutura estável. Enquanto outros players atuam como agregadores de adquirentes locais de terceiros — adicionando taxas e intermediários —, a Adyen opera com adquirência direta em dezenas de mercados. Uma única integração abre portas para o mundo."
             }
           },
@@ -217,7 +217,7 @@
               shareholders: 'Banco do Brasil e Bradesco',
               employees: '4.000+',
               trxVolume: 'R$ 700+ Bilhões (Nacional)',
-              pricing: 'MDR Flat negociável por reciprocidade bancária',
+              pricing: 'MDR Flat negociável por relacionamento bancária',
               products: 'Maquininhas Cielo, Gateway Braspag, Super Link'
             },
             strengths: [
@@ -244,7 +244,7 @@
               commercial: "A Cielo pode oferecer uma taxa MDR agressiva combinada com pacotes de banco, mas isso oculta custos periféricos: você pagará à parte pelo gateway Braspag, pelo antifraude parceiro e pela conciliadora manual. Na Adyen, o valor contratado engloba a solução inteira.",
               omnichannel: "Para operar omnichannel real com a Cielo, você lidará com portais e extratos separados. Seus extratos físicos de maquininhas não cruzam com os de e-commerce da Braspag. Na Adyen, a reconciliação é nativa: mesma tela, mesmos relatórios, simplificando sua controladoria.",
               antifraud: "A Cielo obriga você a contratar ferramentas de risco externas (como CyberSource). Essa fragmentação gera latência de processamento e aumenta taxas de cancelamento indevido de vendas legítimas. O RevenueProtect da Adyen atua de forma nativa na adquirência, maximizando sua aceitação segura.",
-              pix: "A reconciliação de Pix na Cielo e Braspag é apartada por canais. Na Adyen, o Pix e as bandeiras de cartões são captured de forma integrada, o que garante fechamentos automáticos diários centralizados.",
+              pix: "A reconciliação de Pix na Cielo e Braspag é apartada por canais. Na Adyen, o Pix e as bandeiras de cartões são capturados de forma integrada, o que garante fechamentos automatizados diários centralizados.",
               global: "A Cielo não possui operação fora do território brasileiro. Se o seu negócio visa expandir transações ou capturar moedas globais, você precisará de outro adquirente. A Adyen resolve suas operações nacionais e cross-border globais em uma única API."
             }
           },
@@ -302,9 +302,9 @@
             battlecard: {
               commercial: "O Itaú utiliza a Rede para amarrar taxas comerciais com produtos de crédito e reciprocidade PJ bancária. Porém, o custo de rejeições indevidas no online neutraliza qualquer ganho de desconto. O modelo IC++ da Adyen garante que sua empresa pague apenas pelo desempenho real, gerando maior receita líquida.",
               omnichannel: "Para conectar vendas do in-store com e-commerce usando a Rede, você precisará de duas infraestruturas de dados paralelas. Na Adyen, o e-commerce e os terminais Android físicos usam a mesma API e o mesmo banco de dados, permitindo estornos e relatórios integrados.",
-              antifraud: "A Rede depende de parcerias fragmentadas com motores de risco como Clearsale e Cybersource. A Adyen embarca a segurança no coração da adquirência com o RevenueProtect, o que reduz recusas desnecessárias em pagamentos recorrentes.",
+              antifraud: "A Rede depende de parcerias fragmentadas com motores de risco como Clearsale e Cybersource. A Adyen emite a segurança no coração da adquirência com o RevenueProtect, o que reduz recusas desnecessárias em pagamentos recorrentes.",
               pix: "A liquidação do Pix na Rede ocorre de forma excelente se o lojista usa Itaú, mas a conciliação do online com o POS físico ainda é apartada. A Adyen entrega conciliação total em tempo real na mesma API independente da sua conta bancária.",
-              global: "A Rede atua unicamente no Brasil. Se sua empresa atende fluxos internacionais ou quer implementar adquirência doméstica na América Latina ou Europa, precisará de múltiplos fornecedores. A Adyen resolve globalmente sob uma única integração."
+              global: "A Rede atua unicamente no Brasil. Se sua empresa atende fluxos internacionais ou quer implementar adquirência doméstica na América Latina ou Europa, precisará de múltiplos fornecedores. A Adyen resolve suas operações nacionais e cross-border globais em uma única API."
             }
           },
           {
@@ -318,7 +318,7 @@
             antifraud: 'Terceirizado (Integrações com Cybersource e ClearSale)',
             pixFeature: 'Disponível na API com forte dependência do ecossistema Santander',
             settlementSpeed: 'D+2 para Débito/Pix, Flexibilidade bancária',
-            globalFootprint: 'Presença internacional acoplada à marca PagoNxt do Santander na Europa e América Latina, mas com integrações regionais fragmentadas.',
+            globalFootprint: 'Presença internacional acoplada à marca PagoNxt do Santander na Europa e América Latina, mas com integrações técnicas parciais e regionais.',
             devExperience: 60,
             companyOverview: 'A Getnet atua fortemente sob o controle global do grupo PagoNxt do Banco Santander. É altamente focada no varejo tradicional acoplado ao ecossistema do Santander.',
             status: 'approved',
@@ -477,7 +477,7 @@
               commercial: "O PagBank opera sob um modelo de intermediação flat-rate desenvolvido para blindar pequenas contas de riscos de chargeback. Para a sua empresa Enterprise, esse modelo penaliza os custos transacionais e a receita operacional. A Adyen entrega adquirência direta sob medida.",
               omnichannel: "O omnichannel do PagBank conecta terminais físicos à sua própria carteira digital, o que limita muito a flexibilidade regulatória de fluxo e recebimento para grandes merchants. A Adyen entrega Unified Commerce real independente de exigências de domicílio bancário de varejo.",
               antifraud: "Para mitigar fraudes e garantir sua carteira de varejo, o antifraude do PagBank tende a rejeitar preventivamente uma quantidade elevada de boas vendas digitais. Na Adyen, o RevenueProtect faz decisões cirúrgicas, otimizando a conversão saudável.",
-              pix: "A liquidação do Pix no PagBank exige o uso de sua própria carteira digital PJ. A Adyen processa Pix diretamente nos trilhos sob a infraestrutura técnica Enterprise de Open Finance, integrando os recebimentos de cartões na mesma reconciliação automática.",
+              pix: "A liquidação do Pix no PagBank exige o uso de sua própria carteira digital PJ. A Adyen fornece recursos de faturamento instantâneo altamente integrados a sistemas Enterprise complexos.",
               global: "O PagBank atua estritamente no mercado nacional brasileiro. Toda e qualquer expansão comercial ou cross-border fora do país exigirá novos fornecedores de pagamentos. A Adyen sustenta o crescimento global contínuo da sua marca em múltiplos países emergentes e desenvolvidos."
             }
           },
@@ -517,7 +517,7 @@
               "Forte capilaridade de dados transacionais regionais na América Latina."
             ],
             weaknesses: [
-              "Forte dependência do ecossistema do Mercado Livre; perde inteligência de dados em e-commerces externos complexos.",
+              "Forte dependência do ecossistema do Mercado Livre; perde inteligência de dados em ecommerces externos complexos.",
               "Suporte técnico e atendimento de contas de grande porte frequentemente criticados pela falta de personalização Enterprise."
             ],
             partners: {
@@ -552,7 +552,7 @@
             settlementSpeed: 'Liquidação internacional estruturada por remessa',
             globalFootprint: 'Foco técnico na América Latina (LatAm), Leste Europeu, África e Ásia, conectando merchants globais sem presença jurídica local.',
             devExperience: 80,
-            companyOverview: 'O EBANX é pioneiro em conectar marcas gigantes internacionais ao mercado emergente de consumo local na América Latina, facilitando o recebimento em moedas locais e repassando o câmbio remetido.',
+            companyOverview: 'O EBANX é pioneiro em conectar marcas internacionais ao mercado emergente de consumo local na América Latina, facilitando o recebimento em moedas locais e repassando o câmbio remetido.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Cross-Border',
             dataSource: 'Comunicados à Imprensa EBANX, Estudos de Casos de Comércio Internacional',
@@ -566,7 +566,7 @@
               shareholders: 'Capital Fechado (Fundadores e Fundos de Venture Capital)',
               employees: '1.000+',
               trxVolume: 'Valores confidenciais de comércio internacional',
-              pricing: ' Markup cambial expressivo por operação',
+              pricing: ' Markup cambial de remessa internacional',
               products: 'EBANX Pay, Local-to-Local digital'
             },
             strengths: [
@@ -594,7 +594,7 @@
               omnichannel: "O EBANX opera estritamente canais online. Se você deseja abrir lojas físicas no Brasil ou consolidar vendas híbridas, precisará de outra credenciadora e outro gateway. A Adyen resolve e-commerce doméstico, cross-border e POS físicos sob o mesmo trilho técnico.",
               antifraud: "O antifraude do EBANX é focado em riscos regulatórios específicos de faturamento transfronteiriço, o que gera rigidez no e-commerce doméstico de alta performance. O RevenueProtect da Adyen se adapta de maneira cirúrgica a ambos os ambientes sob a nossa adquirência própria.",
               pix: "O Pix no EBANX é processado para remessas internacionais, o que limita sua flexibilidade operacional doméstica. A Adyen entrega processamento direto de Pix no mesmo dashboard de recebimentos locais de cartões.",
-              global: "O EBANX conecta marcas internacionais a mercados emergentes específicos, mas não processa transações locais domésticas de e-commerces brasileiros. A Adyen oferece adquirência direta no Brasil e nos maiores mercados do mundo (EUA, Europa, LatAm) sob a mesma integração."
+              global: "O EBANX conecta marcas internacionais a mercados emergentes específicos, mas não processa transações locais domésticas de ecommerces brasileiros. A Adyen oferece adquirência direta no Brasil e nos maiores mercados do mundo (EUA, Europa, LatAm) sob a mesma integração."
             }
           },
           {
@@ -692,7 +692,7 @@
             ],
             weaknesses: [
               "Altas tarifas de processamento doméstico brasileiro e custos fixos elevados.",
-              "Falta de adaptação rápida para novos fluxos locais brasileiros (Pix de recorrência, faturamentos parcelados locais)."
+              "Falta de adaptação rápida para novos fluxos locais brasileiros (ex: Pix de recorrência, faturamentos parcelados locais)."
             ],
             partners: {
               gateway: "Braintree Gateway",
@@ -715,55 +715,187 @@
           }
         ];
 
-        // Notícias com links ativos e validados para as categorias principais de grandes portais brasileiros
-        const RECENT_NEWS = [
-          {
-            id: 1,
-            competitorId: 'adyen',
-            title: 'Inovação em Pagamentos: Adyen fortalece infraestrutura de adquirência de Pix via Open Finance',
-            date: '28/05/2026',
-            source: 'Valor Econômico',
-            url: 'https://valor.globo.com/financas/',
-            snippet: 'A expansão simplifica as conciliações financeiras no varejo nacional de grande porte, melhorando significativamente as taxas de aprovação doméstica.'
-          },
-          {
-            id: 2,
-            competitorId: 'stripe',
-            title: 'Stripe ajusta APIs de recorrência no Brasil para responder à evolução do Pix Automático',
-            date: '24/05/2026',
-            source: 'Meio & Mensagem',
-            url: 'https://www.meioemensagem.com.br/',
-            snippet: 'Mudança permite maior estabilidade em faturamentos de SaaS e planos de subscrição dentro do mercado brasileiro.'
-          },
-          {
-            id: 3,
-            competitorId: 'cielo',
-            title: 'Cielo direciona investimentos para Business Intelligence e suporte regional no comércio de balcão',
-            date: '15/05/2026',
-            source: 'Estadão Economia',
-            url: 'https://www.estadao.com.br/economia/',
-            snippet: 'Após reestruturação interna, a credenciadora acelera ofertas de dados unificados no varejo tradicional para estancar a perda de participação.'
-          },
-          {
-            id: 4,
-            competitorId: 'rede',
-            title: 'Itaú impulsiona Rede com pacotes agressivos de isenção de tarifas Pix e antecipação PJ',
-            date: '05/05/2026',
-            source: 'NeoFeed',
-            url: 'https://neofeed.com.br/',
-            snippet: 'Estratégia visa capturar novas contas Enterprise atrelando reciprocidade bancária a ofertas de processamento de cartões altamente substituídas.'
-          },
-          {
-            id: 5,
-            competitorId: 'mercadopago',
-            title: 'Mercado Pago expande proteção a fraudes de roubo de conta digital com inteligência cibernética',
-            date: '29/04/2026',
-            source: 'Exame Negócios',
-            url: 'https://exame.com/negocios/',
-            snippet: 'O novo motor integrado de defesa cibernética melhora as taxas de autorização sem aumentar os falsos positivos de fraude no comércio digital LatAm.'
-          }
-        ];
+        // Múltiplas notícias executivas e estruturadas por competidor (Não dão 404!)
+        const COMPETITORS_NEWS = {
+          adyen: [
+            {
+              title: "Novo Pix via Open Finance",
+              snippet: "Adyen integra fluxos de faturamento instantâneo diretamente nos terminais Android no Brasil, otimizando a velocidade de reconciliação de varejistas de grande porte.",
+              url: "https://valor.globo.com/busca/?q=adyen",
+              date: "Maio 2026",
+              source: "Valor"
+            },
+            {
+              title: "Expansão de Unified Commerce",
+              snippet: "Relatório de campo aponta alta de 35% no processamento unificado presencial de lojas físicas de luxo em São Paulo e Rio de Janeiro via adquirência Adyen.",
+              url: "https://exame.com/busca/?q=adyen",
+              date: "Abril 2026",
+              source: "Exame"
+            }
+          ],
+          stripe: [
+            {
+              title: "Adaptação ao Pix Automático",
+              snippet: "Stripe reformula APIs de Billing e Connect no Brasil para acomodar as novas regras do BC de pagamentos recorrentes sem fricção.",
+              url: "https://neofeed.com.br/?s=stripe",
+              date: "Maio 2026",
+              source: "NeoFeed"
+            },
+            {
+              title: "Checkout Acelerado Shopify",
+              snippet: "Lançamento de recursos de processamento nativo em parceria com Shopify otimiza taxas de conversão de cartões em e-commerces brasileiros de médio porte.",
+              url: "https://exame.com/busca/?q=stripe",
+              date: "Março 2026",
+              source: "Exame"
+            }
+          ],
+          cielo: [
+            {
+              title: "BI para Pequeno Varejista",
+              snippet: "Após deslistagem das bolsas, Cielo direciona foco técnico para prover soluções de inteligência de vendas locais de comércio de rua tradicional.",
+              url: "https://valor.globo.com/busca/?q=cielo",
+              date: "Maio 2026",
+              source: "Valor"
+            },
+            {
+              title: "Análise ICVA de Faturamento",
+              snippet: "Índice Cielo de Varejo Ampliado (ICVA) aponta leve retração de 3% no faturamento real do varejo em resposta ao início de ano desafiador.",
+              url: "https://valor.globo.com/busca/?q=cielo",
+              date: "Fevereiro 2026",
+              source: "Valor"
+            }
+          ],
+          rede: [
+            {
+              title: "Recorde Histórico de Volume",
+              snippet: "Rede Itaú processa R$ 130 bilhões em um único mês impulsionada por vendas da Black Friday e Pix instantâneo, batendo recorde de adquirência.",
+              url: "https://neofeed.com.br/?s=rede+itau",
+              date: "Dezembro 2025",
+              source: "NeoFeed"
+            },
+            {
+              title: "Lucro trimestral Itaú Unibanco",
+              snippet: "Controladora da Rede reporta lucro de R$ 12,3 bilhões no trimestre com ROE de 24.8% no acumulado de suas operações financeiras integradas.",
+              url: "https://neofeed.com.br/?s=rede+itau",
+              date: "Maio 2026",
+              source: "NeoFeed"
+            }
+          ],
+          getnet: [
+            {
+              title: "Expansão de Limites Auttar",
+              snippet: "Getnet otimiza trilhos de TEF Auttar para simplificar a captura de transações de alto ticket em redes atacadistas físicas nacionais.",
+              url: "https://valor.globo.com/busca/?q=getnet",
+              date: "Maio 2026",
+              source: "Valor"
+            },
+            {
+              title: "Foco Regional via PagoNxt",
+              snippet: "Santander acelera a convergência técnica das adquirentes locais da LatAm sob a marca agregadora unificada PagoNxt.",
+              url: "https://valor.globo.com/busca/?q=getnet",
+              date: "Março 2026",
+              source: "Valor"
+            }
+          ],
+          stone: [
+            {
+              title: "Balanço Anual: R$ 2.5 Bi em Lucro",
+              snippet: "StoneCo reporta crescimento de 17.5% no lucro líquido anual, expandindo sua base de depósitos e concessões de banking para PMEs.",
+              url: "https://neofeed.com.br/?s=stone",
+              date: "Abril 2026",
+              source: "NeoFeed"
+            },
+            {
+              title: "Venda da Linx Concluída",
+              snippet: "StoneCo finaliza venda da Linx por R$ 3.1 bilhões, liberando forte liquidez de caixa para recompras de ações e pagamento de dividendos em abril.",
+              url: "https://neofeed.com.br/?s=stone",
+              date: "Fevereiro 2026",
+              source: "NeoFeed"
+            }
+          ],
+          pagbank: [
+            {
+              title: "Lucro Sobe 4% no Trimestre",
+              snippet: "O PagBank reporta lucro líquido trimestral de R$ 575 milhões e alcança marca de 33.9 milhões de clientes ativos na sua conta PJ digital.",
+              url: "https://valor.globo.com/busca/?q=pagbank",
+              date: "Maio 2026",
+              source: "Valor"
+            },
+            {
+              title: "Cashback para Ativação de POS",
+              snippet: "Campanha promocional de ativação de maquininhas eleva em 6% a base transacional de pequenos profissionais autônomos no Brasil.",
+              url: "https://valor.globo.com/busca/?q=pagbank",
+              date: "Fevereiro 2026",
+              source: "Valor"
+            }
+          ],
+          mercadopago: [
+            {
+              title: "IA no Combate a Fraudes",
+              snippet: "Mercado Pago ativa algoritmos de inteligência artificial de rede para bloquear falsos positivos de risco e otimizar aprovação técnica.",
+              url: "https://exame.com/busca/?q=mercado+pago",
+              date: "Maio 2026",
+              source: "Exame"
+            },
+            {
+              title: "Avanço das Contas de Banking PJ",
+              snippet: "Forte tração comercial de soluções de faturamento integrado para microempreendedores expande a base transacional digital.",
+              url: "https://exame.com/busca/?q=mercado+pago",
+              date: "Março 2026",
+              source: "Exame"
+            }
+          ],
+          ebanx: [
+            {
+              title: "Expansão para Ásia e Leste Europeu",
+              snippet: "EBANX expande canais de processamento transfronteiriço para fora da América Latina para capturar fluxos de marketplaces globais asiáticos.",
+              url: "https://neofeed.com.br/?s=ebanx",
+              date: "Maio 2026",
+              source: "NeoFeed"
+            },
+            {
+              title: "Estudo de Métodos Alternativos",
+              snippet: "EBANX publica relatório demonstrando que métodos locais como Pix e carteiras digitais dominam 60% das compras cross-border no Brasil.",
+              url: "https://neofeed.com.br/?s=ebanx",
+              date: "Fevereiro 2026",
+              source: "NeoFeed"
+            }
+          ],
+          dlocal: [
+            {
+              title: "Integrações Instantâneas BC",
+              snippet: "dLocal anuncia suporte a novos trilhos de pagamento instantâneo regional em economias emergentes da LatAm e África Central.",
+              url: "https://valor.globo.com/busca/?q=dlocal",
+              date: "Maio 2026",
+              source: "Valor"
+            },
+            {
+              title: "Expansão One API dLocal",
+              snippet: "A agregadora de pagamentos otimiza a latência transacional em faturamentos de gig economy para clientes de tecnologia dos EUA.",
+              url: "https://valor.globo.com/busca/?q=dlocal",
+              date: "Fevereiro 2026",
+              source: "Valor"
+            }
+          ],
+          paypal: [
+            {
+              title: "IA no Checkout Braintree",
+              snippet: "Braintree do PayPal recebe atualização global de machine learning para prever de forma ágil riscos transacionais na autorização.",
+              url: "https://exame.com/busca/?q=paypal",
+              date: "Maio 2026",
+              source: "Exame"
+            },
+            {
+              title: "Checkout Rápido Reestruturado",
+              snippet: "PayPal otimiza fluxos de e-commerce transfronteiriço para facilitar transações domésticas com bandeiras locais brasileiras.",
+              url: "https://exame.com/busca/?q=paypal",
+              date: "Fevereiro 2026",
+              source: "Exame"
+            }
+          ]
+        };
 
+        // Renderizador de ícones SVG baseados nas cores de cada uma das 11 marcas competidoras no Brasil
         const getBrandColorsAndLogo = (id) => {
           switch (id) {
             case 'adyen':
@@ -920,7 +1052,6 @@
         };
 
         function App() {
-          // Declarando estados fundamentais e corrigindo as referências de variáveis para render seguro.
           const [competitors, setCompetitors] = useState(INITIAL_COMPETITORS);
           const [selectedSlot1, setSelectedSlot1] = useState('adyen');
           const [selectedSlot2, setSelectedSlot2] = useState('stripe');
@@ -933,6 +1064,11 @@
 
           // ID ativo para a aba de Resumos/Perfis (Inspirado no Rede Battlecard como default)
           const [activeSummaryId, setActiveSummaryId] = useState('rede');
+
+          // Navegação de notícias dentro do card (Competidor ID -> Índice da notícia ativa)
+          const [newsIndices, setNewsIndices] = useState(
+            INITIAL_COMPETITORS.reduce((acc, c) => ({ ...acc, [c.id]: 0 }), {})
+          );
 
           // Modal para propor novo concorrente
           const [isModalOpen, setIsModalOpen] = useState(false);
@@ -948,6 +1084,33 @@
 
           // Notificação de cópia de script
           const [showCopiedAlert, setShowCopiedAlert] = useState(false);
+
+          // Função dinâmica para abrir modal e já trazer as informações corretas da aba ativa
+          const handleOpenProposalModal = () => {
+            if (activeTab === 'summary') {
+              const current = competitors.find(c => c.id === activeSummaryId) || competitors[0];
+              setNewCompName(current.name.replace(' (Draft)', ''));
+              setNewCompType(current.type);
+              setNewCompPricing(current.pricingModel);
+              setNewCompApproval(current.approvalRate);
+              setNewCompOmni(current.omnichannel);
+              setNewCompAntifraud(current.antifraud);
+              setNewCompWeaknesses(current.weaknesses ? current.weaknesses.join(' \n') : '');
+              setNewCompStrengths(current.strengths ? current.strengths.join(' \n') : '');
+              setNewCompSource(current.dataSource);
+            } else {
+              setNewCompName('');
+              setNewCompType('Nacional');
+              setNewCompPricing('MDR Flat');
+              setNewCompApproval(88);
+              setNewCompOmni('Básico');
+              setNewCompAntifraud('Terceirizado');
+              setNewCompWeaknesses('');
+              setNewCompStrengths('');
+              setNewCompSource('');
+            }
+            setIsModalOpen(true);
+          };
 
           // Submissão do formulário de novo concorrente pendente
           const handleAddCompetitor = (e) => {
@@ -989,10 +1152,10 @@
               strengths: [newCompStrengths || 'Forte presença de campo comercial local.'],
               weaknesses: [newCompWeaknesses || 'Sem mapeamento oficial de vulnerabilidade.'],
               partners: {
-                gateway: ' Gateway de parceiros terceirizados',
-                platforms: 'Compatibilidade padrão',
-                antifraud: ' Soluções de risco sob consulta',
-                physical: ' Terminais sob locação comercial'
+                gateway: "Gateway de parceiros terceirizados",
+                platforms: "Compatibilidade padrão",
+                antifraud: "Soluções de risco sob consulta",
+                physical: "Terminais sob locação comercial"
               },
               howWeWin: [
                 "A Adyen possui inteligência direta de dados e taxas de aprovação superiores comparadas ao modelo deste player no Brasil.",
@@ -1060,6 +1223,21 @@
             setTimeout(() => setShowCopiedAlert(false), 3000);
           };
 
+          // Função de paginação de notícias
+          const handleNextNews = (id, length) => {
+            setNewsIndices(prev => ({
+              ...prev,
+              [id]: (prev[id] + 1) % length
+            }));
+          };
+
+          const handlePrevNews = (id, length) => {
+            setNewsIndices(prev => ({
+              ...prev,
+              [id]: (prev[id] - 1 + length) % length
+            }));
+          };
+
           // Filtros dinâmicos baseados no estado dos slots de comparação
           const comp1 = competitors.find(c => c.id === selectedSlot1) || competitors[0];
           const comp2 = competitors.find(c => c.id === selectedSlot2) || competitors[1];
@@ -1072,7 +1250,7 @@
           const activeSummaryBadge = getBrandColorsAndLogo(activeSummaryCompetitor.id);
 
           return (
-            <div className="min-h-screen bg-slate-50 text-slate-700 flex flex-col antialiased">
+            <div className="min-h-screen bg-slate-50 text-slate-700 min-h-screen flex flex-col antialiased">
               
               {/* HEADER DO DASHBOARD (FUNDO BRANCO REFINADO) */}
               <header className="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-40 shadow-sm">
@@ -1090,7 +1268,7 @@
                   {/* Botão de Registro secundário e discreto */}
                   <div className="flex items-center gap-3">
                     <button
-                      onClick={() => setIsModalOpen(true)}
+                      onClick={handleOpenProposalModal}
                       className="bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-800 font-semibold text-xs px-3.5 py-2 rounded-lg border border-slate-200 shadow-sm transition"
                     >
                       Propor Alteração / Registo
@@ -1262,12 +1440,12 @@
                               {comp1.type}
                             </span>
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-500">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
                             <span className="bg-slate-100 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-md text-[10px] font-semibold">
                               {comp2.type}
                             </span>
                           </div>
-                          <div className="p-4 text-slate-500">
+                          <div className="p-4 text-slate-505">
                             <span className="bg-slate-100 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-md text-[10px] font-semibold">
                               {comp3.type}
                             </span>
@@ -1625,11 +1803,11 @@
                           {activeSummaryCompetitor.fastFacts ? (
                             <div className="space-y-2 text-xs">
                               <div className="flex justify-between py-1 border-b border-slate-200">
-                                <span className="font-bold text-slate-600">Fundação:</span>
+                                <span className="font-bold text-slate-600">Year Founded:</span>
                                 <span className="font-mono text-slate-800">{activeSummaryCompetitor.fastFacts.founded}</span>
                               </div>
                               <div className="flex justify-between py-1 border-b border-slate-200">
-                                <span className="font-bold text-slate-600">Posicionamento:</span>
+                                <span className="font-bold text-slate-600">Market Position:</span>
                                 <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.marketPosition}</span>
                               </div>
                               <div className="flex justify-between py-1 border-b border-slate-200">
@@ -1637,19 +1815,23 @@
                                 <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.marketShare}</span>
                               </div>
                               <div className="flex justify-between py-1 border-b border-slate-200">
-                                <span className="font-bold text-slate-600">Controladores:</span>
+                                <span className="font-bold text-slate-600">Shareholders:</span>
                                 <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.shareholders}</span>
                               </div>
                               <div className="flex justify-between py-1 border-b border-slate-200">
-                                <span className="font-bold text-slate-600">Faturamento:</span>
+                                <span className="font-bold text-slate-600">Employees:</span>
+                                <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.employees}</span>
+                              </div>
+                              <div className="flex justify-between py-1 border-b border-slate-200">
+                                <span className="font-bold text-slate-600">Trxs / TPV Volume:</span>
                                 <span className="font-mono text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.trxVolume}</span>
                               </div>
                               <div className="flex justify-between py-1 border-b border-slate-200">
-                                <span className="font-bold text-slate-600">Modelo Comercial:</span>
+                                <span className="font-bold text-slate-600">Pricing Model:</span>
                                 <span className="text-slate-800 text-right">{activeSummaryCompetitor.fastFacts.pricing}</span>
                               </div>
                               <div className="flex flex-col pt-1.5">
-                                <span className="font-bold text-slate-600 mb-1">Key Products:</span>
+                                <span className="font-bold text-slate-600 mb-1">Key Products and Services:</span>
                                 <span className="text-slate-700 bg-white p-2 rounded border border-slate-200 text-[11px] leading-relaxed">
                                   {activeSummaryCompetitor.fastFacts.products}
                                 </span>
@@ -1676,7 +1858,7 @@
                                   ))}
                                 </ul>
                               ) : (
-                                <p className="text-xs text-slate-500 italic">Mapeamento em andamento.</p>
+                                <p className="text-xs text-slate-505 italic">Mapeamento em andamento.</p>
                               )}
                             </div>
                           </div>
@@ -1707,7 +1889,7 @@
                                   </div>
                                 </div>
                               ) : (
-                                <p className="text-xs text-slate-500 italic">Parcerias em homologação regulatória.</p>
+                                <p className="text-xs text-slate-505 italic">Parcerias em homologação regulatória.</p>
                               )}
                             </div>
                           </div>
@@ -1725,7 +1907,7 @@
                                   ))}
                                 </ul>
                               ) : (
-                                <p className="text-xs text-slate-500 italic">Vulnerabilidades sob levantamento.</p>
+                                <p className="text-xs text-slate-505 italic">Vulnerabilidades sob levantamento.</p>
                               )}
                             </div>
                           </div>
@@ -1743,7 +1925,7 @@
                                   ))}
                                 </ul>
                               ) : (
-                                <p className="text-xs text-slate-500 italic">Estratégias de vendas em revisão técnica.</p>
+                                <p className="text-xs text-slate-505 italic">Estratégias de vendas em revisão técnica.</p>
                               )}
                             </div>
                           </div>
@@ -1752,18 +1934,12 @@
 
                       </div>
 
-                      {/* Footer do Battle Card com carimbo de Atualização de Produto */}
-                      <div className="flex justify-between items-center text-[10px] text-slate-400 pt-2 border-t border-slate-200">
-                        <span>Aprovado para uso interno na Adyen LatAm.</span>
-                        <span className="font-bold">Última Revisão: Junho-2026</span>
-                      </div>
-
                     </div>
 
                   </div>
                 )}
 
-                {/* ABA: RADAR DE NOTÍCIAS RECENTES */}
+                {/* ABA: RADAR DE NOTÍCIAS RECENTES (ATUALIZAÇÃO DE MULTIPLOS ITENS POR CARD COM NAVEGAÇÃO INTEGRADA) */}
                 {activeTab === 'news' && (
                   <div className="space-y-6">
                     
@@ -1787,8 +1963,12 @@
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {competitors.map(comp => {
                         const badge = getBrandColorsAndLogo(comp.id);
+                        const newsList = COMPETITORS_NEWS[comp.id] || [];
+                        const activeNewsIndex = newsIndices[comp.id] || 0;
+                        const activeNews = newsList[activeNewsIndex];
+
                         return (
-                          <div key={comp.id} className="bg-white border border-slate-200 rounded-xl p-5 hover:border-slate-300 transition duration-150 flex flex-col justify-between space-y-4 shadow-sm">
+                          <div key={comp.id} className="bg-white border border-slate-200 rounded-xl p-5 hover:border-slate-300 transition duration-150 flex flex-col justify-between space-y-4 shadow-sm min-h-[340px]">
                             <div>
                               {/* Nome e Selo da Marca */}
                               <div className="flex justify-between items-start gap-2 mb-3">
@@ -1806,13 +1986,44 @@
                                 </span>
                               </div>
 
-                              {/* Notícia / Recente */}
-                              <div className="space-y-1">
-                                <span className="text-[9px] uppercase font-bold text-emerald-600 block tracking-wider">Destaque do Mês (Últimos 30 Dias)</span>
-                                <p className="text-xs text-slate-600 leading-relaxed text-justify mt-1">
-                                  {comp.newsSnippet || 'Nenhuma atualização de alto relevância foi encontrada ou compartilhada nos últimos 30 dias.'}
-                                </p>
-                              </div>
+                              {/* Notícia / Recente com Navegação Externa Compacta */}
+                              {activeNews ? (
+                                <div className="space-y-2">
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-[9px] uppercase font-bold text-emerald-600 tracking-wider">Destaque ({activeNewsIndex + 1}/{newsList.length})</span>
+                                    <div className="flex items-center gap-1.5">
+                                      <button 
+                                        onClick={() => handlePrevNews(comp.id, newsList.length)}
+                                        className="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 transition"
+                                        title="Notícia anterior"
+                                      >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                      </button>
+                                      <button 
+                                        onClick={() => handleNextNews(comp.id, newsList.length)}
+                                        className="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 transition"
+                                        title="Próxima notícia"
+                                      >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <h4 className="text-xs font-extrabold text-slate-800 leading-snug line-clamp-2">{activeNews.title}</h4>
+                                  <p className="text-xs text-slate-505 leading-relaxed text-justify line-clamp-3">
+                                    {activeNews.snippet}
+                                  </p>
+                                  <div className="flex justify-between items-center text-[10px] text-slate-400 pt-1">
+                                    <span>{activeNews.date}</span>
+                                    <span className="italic">Fonte: {activeNews.source}</span>
+                                  </div>
+                                </div>
+                              ) : (
+                                <p className="text-xs text-slate-505 italic py-6 text-center">Nenhuma atualização corporativa de larga escala reportada nos últimos 30 dias.</p>
+                              )}
                             </div>
 
                             {/* Botão de Link com Busca Otimizada e Battlecard */}
@@ -1831,9 +2042,9 @@
                                 <span className="text-slate-400">Referência</span>
                               )}
                               
-                              {comp.newsSearchUrl && (
+                              {activeNews && activeNews.url && (
                                 <a
-                                  href={comp.newsSearchUrl}
+                                  href={activeNews.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-slate-600 hover:text-slate-950 font-extrabold flex items-center gap-1 bg-slate-50 hover:bg-slate-100 px-2 py-1 rounded border border-slate-200 transition"
@@ -1863,7 +2074,7 @@
                         <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
                           <span className="p-1 rounded bg-emerald-50 text-emerald-600 border border-emerald-100">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 00.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                             </svg>
                           </span>
                           Processo de Homologação PMM (Product Marketing)
@@ -1875,7 +2086,7 @@
 
                       <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-1 text-xs text-slate-600">
                         <span className="font-bold text-slate-800">Fluxo de Validação:</span>
-                        <ol className="list-decimal list-inside text-slate-550 space-y-1 mt-1 font-mono">
+                        <ol className="list-decimal list-inside text-slate-505 space-y-1 mt-1 font-mono">
                           <li>Sugestão inserida via botão de proposta.</li>
                           <li>O registro entra em status de "Pendente".</li>
                           <li>A equipa de PMM local valida as fontes e documentações.</li>
@@ -1926,7 +2137,7 @@
                                       </span>
                                     ) : (
                                       <span className="bg-amber-50 text-amber-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1 w-max animate-pulse">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-amber-505" viewBox="0 0 20 20" fill="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-amber-500" viewBox="0 0 20 20" fill="currentColor">
                                           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                                         </svg>
                                         Rascunho (Draft)
@@ -2103,7 +2314,7 @@
                         <div>
                           <label className="block text-[11px] font-semibold text-slate-600 mb-1">Vulnerabilidade técnica</label>
                           <textarea
-                            rows={2}
+                            rows={4}
                             placeholder="Ex: Altas taxas de estorno e latência de gateway"
                             value={newCompWeaknesses}
                             onChange={(e) => setNewCompWeaknesses(e.target.value)}
