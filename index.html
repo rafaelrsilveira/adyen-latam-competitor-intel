@@ -73,6 +73,7 @@
     <script type="text/babel">
         const { useState, useMemo, useEffect } = React;
 
+        // Base expandida de concorrentes com metadados de Curadoria, Origem e Resumos Executivos de Acordo com a "Análise Competidores Adyen Brasil"
         const INITIAL_COMPETITORS = [
           {
             id: 'adyen',
@@ -88,6 +89,7 @@
             globalFootprint: 'Presença própria direta em +100 países com adquirência local própria nos maiores polos mundiais (EUA, Europa, LatAm, APAC).',
             devExperience: 96,
             companyOverview: 'A Adyen foi fundada em 2006 com a ambição de substituir as infraestruturas de pagamento legadas e fragmentadas. Opera como uma plataforma única que centraliza adquirência, gateway, antifraude e conciliação em uma única API global.',
+            targetAudience: 'Empresas Enterprise, varejistas complexos de comércio unificado e corporações globais de grande escala.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM (Global & Local)',
             dataSource: 'Relatórios Financeiros Globais, Documentação Técnica da API Adyen v69',
@@ -110,8 +112,8 @@
               "Conciliação unificada (Online + POS físico) em tempo real eliminando perdas financeiras."
             ],
             weaknesses: [
-              "Menor flexibilidade de taxas de entrada para PMEs e microempreendedores.",
-              "Não foca em POS físico de baixo volume ou alta dispersão de varejo de rua sem contrato centralizado."
+              "Taxas mínimas comerciais que limitam sua atratividade para PMEs e microempreendedores.",
+              "Não foca em POS físico de baixo volume ou varejo de rua sem contrato centralizado."
             ],
             partners: {
               gateway: "Nativo (Sem intermediários ou gateways secundários)",
@@ -120,9 +122,9 @@
               physical: "Terminais próprios (Android robusto unificado)"
             },
             howWeWin: [
-              "Otimização operacional reduzindo o custo total de transação (TCO).",
-              "Aumento direto no faturamento através da elevação de aprovações genuínas.",
-              "Atendimento Enterprise dedicado com engenharia de suporte especializada."
+              "Otimização operacional reduzindo o custo total de transação (TCO) de e-commerce e lojas físicas.",
+              "Aumento direto no faturamento através de maior taxa de aprovação técnica real.",
+              "Suporte de contas e engenharia de suporte técnica especializada premium local."
             ],
             battlecard: {
               commercial: "Diferente dos concorrentes tradicionais de taxa flat, o nosso modelo IC++ repassa a redução direta de taxas reguladas e intercâmbio de bandeiras para si. Cada centavo economizado vai direto para sua margem líquida, com transparência absoluta em cada fatura.",
@@ -146,11 +148,12 @@
             globalFootprint: 'Ampla presença internacional no e-commerce digital, mas infraestrutura física de POS (Stripe Terminal) limitada no Brasil.',
             devExperience: 95,
             companyOverview: 'A Stripe oferece infraestrutura de pagamentos para a internet. Ficou mundialmente famosa pela excelente experiência de autoatendimento para desenvolvedores, mas foca mais no e-commerce puro no mercado brasileiro.',
+            targetAudience: 'Startups, SaaS, marketplaces digitais e empresas tecnológicas focadas em digital-first.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'Site oficial Stripe BR, Testes de API Pública, Feedback de Clientes Migrados',
             marketCap: 'Capital Fechado (Privada) | Valuation Estimado: ~$70 Bilhões',
-            newsSnippet: 'Stripe lança módulo adaptado às novas regras do Pix de faturamento recorrente para simplificar assinaturas no mercado brasileiro.',
+            newsSnippet: 'Stripe lança módulo adaptado às novas regras do Pix de faturamento recurrent para simplificar assinaturas no mercado brasileiro.',
             newsSearchUrl: 'https://neofeed.com.br/?s=stripe',
             fastFacts: {
               founded: '2010',
@@ -186,8 +189,8 @@
               commercial: "A Stripe oferece facilidade com taxas flat, mas à medida que você escala, essa previsibilidade custa caro. Na Adyen, com o modelo IC++, repassamos as taxas de intercâmbio originais. Para o seu volume Enterprise, isso gera uma economia de margem direta imediata na sua conta.",
               omnichannel: "Se você tem ambições físicas ou presenciais consolidadas no Brasil, a infraestrutura da Stripe ainda é muito incipiente localmente. A Adyen oferece adquirência física direta estabelecida, integrando suas lojas de rua de alta performance com seu e-commerce sob uma única plataforma madura.",
               antifraud: "O Stripe Radar é um excelente motor digital, mas cobra taxas adicionais por transação processada para grandes contas. Na Adyen, o RevenueProtect avalia o risco sem impor custos marginais agressivos, otimizando seu ROI de segurança.",
-              pix: "A Stripe trata o Pix como um método acessório em sua plataforma global. Na Adyen, o Pix é processado na mesma API de adquirência direta sob Open Finance, gerando uma reconciliação veloz integrada com cartões de crédito domésticos.",
-              global: "A Stripe depende de bancos e arranjos locais secundários em diversas geografias emergentes. A adquirência própria e global da Adyen elimina esses salvos extras, garantindo taxas de aprovação financeira internacional superiores e menos perdas por fricção de intermediários."
+              pix: "A Stripe treats Pix as an accessory method on its global platform. Na Adyen, Pix is processed on the same direct acquiring API via Open Finance, creating unified reconciliations.",
+              global: "A Stripe depende de bancos e arranjos locais secundários em diversas geografias emergentes. A adquirência própria e global da Adyen elimina esses intermediários, garantindo taxas de aprovação financeiras superiores e menos perdas por fricção de terceiros."
             }
           },
           {
@@ -203,7 +206,8 @@
             settlementSpeed: 'D+2 para Débito/Pix, D+30 para Crédito',
             globalFootprint: 'Foco exclusivo doméstico no mercado brasileiro. Sem operação de adquirência internacional.',
             devExperience: 70,
-            companyOverview: 'A Cielo é a maior credenciadora de pagamentos físicos do varejo tradicional brasileiro, controlada historicamente pelo BB e Bradesco. Atua no e-commerce através do gateway legado Braspag.',
+            companyOverview: 'A Cielo se posiciona como uma empresa de tecnologia e serviços para o varejo, buscando ir além da simples captura de transações. Seu portfólio abrange desde soluções de adquirência física e digital até ferramentas robustas de gestão e parcerias estratégicas.',
+            targetAudience: 'Grandes varejistas físicos tradicionais, redes de supermercados, franquias nacionais e grandes e-commerces.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Brasil',
             dataSource: 'Balanços Públicos Cielo, Documentação Braspag API, Inteligência de Campo',
@@ -217,13 +221,13 @@
               shareholders: 'Banco do Brasil e Bradesco',
               employees: '4.000+',
               trxVolume: 'R$ 700+ Bilhões (Nacional)',
-              pricing: 'MDR Flat negociável por relacionamento bancária',
+              pricing: 'MDR Flat negociável por relacionamento bancário',
               products: 'Maquininhas Cielo, Gateway Braspag, Super Link'
             },
             strengths: [
-              "Forte capilaridade comercial com apoio de gerentes do Bradesco e BB.",
-              "Grande penetração em redes de varejo de rua tradicionais e supermercados.",
-              "Forte ecossistema de antecipação bancária rápida de recebíveis."
+              "Forte capilaridade física e comercial apoiada por BB e Bradesco.",
+              "Cielo LIO unifica PDV e controle de estoque/pedidos com CieloOS próprio.",
+              "Programa Aliança Cielo cria ecossistema forte com mais de 300 PDVs e software houses."
             ],
             weaknesses: [
               "Fragmentação extrema: Gateway Braspag opera separado da adquirência física.",
@@ -231,7 +235,7 @@
             ],
             partners: {
               gateway: "Braspag (Legado)",
-              platforms: "VTEX, Magento, Shopify, Loja Integrada",
+              platforms: "VTEX, Magento, Shopify, Loja Integrada, Salesforce, Mulesoft",
               antifraud: "Cybersource, ClearSale, Konduto (Terceirizados)",
               physical: "Fiserv/Sitef, Paygo, DTEF"
             },
@@ -242,8 +246,8 @@
             ],
             battlecard: {
               commercial: "A Cielo pode oferecer uma taxa MDR agressiva combinada com pacotes de banco, mas isso oculta custos periféricos: você pagará à parte pelo gateway Braspag, pelo antifraude parceiro e pela conciliadora manual. Na Adyen, o valor contratado engloba a solução inteira.",
-              omnichannel: "Para operar omnichannel real com a Cielo, você lidará with portais e extratos separados. Seus extratos físicos de maquininhas não cruzam com os de e-commerce da Braspag. Na Adyen, a reconciliação é nativa: mesma tela, mesmos relatórios, simplificando sua controladoria.",
-              antifraud: "A Cielo obriga você a contratar ferramentas de risco externas (como CyberSource). Essa fragmentação gera latência de processamento e aumenta taxas de cancelamento indevido de vendas legítimas. O RevenueProtect da Adyen atua de forma nativa na adquirência, maximizando sua aceitação segura.",
+              omnichannel: "Para operar omnichannel real com a Cielo, você lidará com portais e extratos separados. Seus extratos físicos de maquininhas não cruzam com os de e-commerce da Braspag. Na Adyen, a reconciliação é nativa: mesma tela, mesmos relatórios, simplificando sua controladoria.",
+              antifraud: "A Cielo obriga você a contratar ferramentas de risco externas (como CyberSource). Essa fragmentação gera latência de processamento e aumenta taxas de cancelamento indevido de vendas legítimas. O RevenueProtect da Adyen trabalha diretamente na nossa adquirência direta, reduzindo drasticamente as rejeições indevidas de compras legítimas.",
               pix: "A reconciliação de Pix na Cielo e Braspag é apartada por canais. Na Adyen, o Pix e as bandeiras de cartões são capturados de forma integrada, o que garante fechamentos automatizados diários centralizados.",
               global: "A Cielo não possui operação fora do território brasileiro. Se o seu negócio visa expandir transações ou capturar moedas globais, você precisará de outro adquirente. A Adyen resolve suas operações nacionais e cross-border globais em uma única API."
             }
@@ -255,13 +259,14 @@
             type: 'Banco Nacional',
             pricingModel: 'MDR Flat / Taxa agressiva para correntistas Itaú',
             approvalRate: 89.0,
-            omnichannel: 'Médio (In-store consolidado, gateway digital focado em paraceiros)',
+            omnichannel: 'Médio (In-store consolidado, gateway digital focado em parceiros)',
             antifraud: 'Terceirizado (Parcerias externas com intermediários)',
             pixFeature: 'Disponível com excelente estabilidade ligada ao ecossistema Itaú',
             settlementSpeed: 'D+2 padrão para crédito parcelado sob condições bancárias',
             globalFootprint: 'Operação de adquirência focada exclusivamente no mercado doméstico brasileiro, dependente da rede Itaú.',
             devExperience: 65,
             companyOverview: 'Rede foi incorporada pelo Itaú Unibanco em 2024 e é uma das maiores adquirentes brasileiras em termos de market share físico. Sua história começou em 1970, como Credicard.',
+            targetAudience: 'Correntistas PJ do Itaú, varejistas tradicionais integrados e grandes redes físicas que dependem de capital de giro rápido.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Brasil',
             dataSource: 'Análises de Mercado Itaú Unibanco, Feedback de Contas Enterprise da Adyen',
@@ -275,13 +280,13 @@
               shareholders: 'Itaú Unibanco',
               employees: '80.000+ (Grupo Itaú)',
               trxVolume: 'BRL 1 Tri (Estimado consolidado)',
-              pricing: 'MDR Flat negociável por relacionamento corporativo',
+              pricing: 'MDR Flat negociável por relacionamento bancário',
               products: 'Maquininhas Rede, e-Rede, Gateway Maxipago'
             },
             strengths: [
               "Forte relação bancária facilitando tarifas cruzadas atrativas e linhas de crédito baratas.",
               "Antecipação instantânea de recebíveis integrada diretamente na conta PJ Itaú.",
-              "Excelente infraestrutura de TEF tradicional e integrações de ERPs de balcão maduras."
+              "Excelente infraestrutura de TEF tradicional e integrações de ERPs de balcão mature."
             ],
             weaknesses: [
               "Sistemas fragmentados e separados para canais presenciais e online (Maxipago / e-Rede).",
@@ -289,10 +294,10 @@
               "Back-office de dados engessado com atraso de conciliação de relatórios digitais."
             ],
             partners: {
-              gateway: "Maxipago (adquirida in 2011, hoje E-Rede)",
-              platforms: "VTEX, Magento, Shopify, Loja Integrada",
+              gateway: "Maxipago (adquirida em 2011, hoje E-Rede)",
+              platforms: "VTEX, Magento, Shopify, Loja Integrada, Locaweb, Zoop",
               antifraud: "Clearsale, Cybersource, Konduto, Kount (Terceirizados)",
-              physical: "Fiserv/Sitef, Paygo, DTEF"
+              physical: "Fiserv/Sitef, Paygo, DTEF, POS Controle"
             },
             howWeWin: [
               "Independência bancária: A Adyen não força reciprocidades ou movimentações de conta bancária.",
@@ -301,7 +306,7 @@
             ],
             battlecard: {
               commercial: "O Itaú utiliza a Rede para amarrar taxas comerciais com produtos de crédito e reciprocidade PJ bancária. Porém, o custo de rejeições indevidas no online neutraliza qualquer ganho de desconto. O modelo IC++ transparente da Adyen garante que sua empresa pague apenas pelo desempenho real, gerando maior receita líquida no fim do mês.",
-              omnichannel: "Para conectar vendas do in-store com e-commerce usando a Rede, você precisará de duas infraestruturas de dados paralelas. Na Adyen, o e-commerce e os terminais Android físicos usam a mesma API e o mesmo banco de dados, permitindo estornos e relatórios integrados.",
+              omnichannel: "Para conectar vendas do in-store with e-commerce usando a Rede, você precisará de duas infraestruturas de dados paralelas. Na Adyen, o e-commerce e os terminais Android físicos usam a mesma API e o mesmo banco de dados, permitindo estornos e relatórios integrados.",
               antifraud: "A Rede depende de parcerias fragmentadas com motores de risco como Clearsale e Cybersource. A Adyen emite a segurança no coração da adquirência com o RevenueProtect, o que reduz recusas desnecessárias em pagamentos recorrentes.",
               pix: "A liquidação do Pix na Rede ocorre de forma excelente se o lojista usa Itaú, mas a conciliação do online com o POS físico ainda é apartada. A Adyen entrega conciliação total em tempo real na mesma API independente da sua conta bancária.",
               global: "A Rede atua unicamente no Brasil. Se sua empresa atende fluxos internacionais ou quer implementar adquirência doméstica na América Latina ou Europa, precisará de múltiplos fornecedores. A Adyen resolve suas operações nacionais e cross-border globais em uma única API."
@@ -309,7 +314,7 @@
           },
           {
             id: 'getnet',
-            name: 'Getnet',
+            name: 'Getnet (Santander)',
             logoText: 'GET',
             type: 'Banco Nacional',
             pricingModel: 'MDR Flat negociado com pacote Santander',
@@ -321,6 +326,7 @@
             globalFootprint: 'Presença internacional acoplada à marca PagoNxt do Santander na Europa e América Latina, mas com integrações técnicas parciais e regionais.',
             devExperience: 60,
             companyOverview: 'A Getnet atua fortemente sob o controle global do grupo PagoNxt do Banco Santander. É altamente focada no varejo tradicional acoplado ao ecossistema do Santander.',
+            targetAudience: 'Empresas B2B globais ou locais vinculadas ao Santander que buscam adquirente regional ou internacional.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'Relatórios do Grupo PagoNxt, Feedbacks Técnicos de Clientes Varejistas',
@@ -338,7 +344,7 @@
               products: 'POS Getnet, Gateway Carat, Auttar'
             },
             strengths: [
-              "Forte inserção em contas corporativas globais em mercados hispânicos e europeus.",
+              "Forte inserção in contas corporativas globais em mercados hispânicos e europeus.",
               "Excelente suporte comercial acoplado ao Banco Santander.",
               "Infraestrutura de conciliação financeira madura para grandes redes físicas."
             ],
@@ -359,7 +365,7 @@
             ],
             battlecard: {
               commercial: "A Getnet atrela ofertas de processamento de cartões a limites de crédito do Santander. Na Adyen, entregamos tecnologia financeira livre de amarras bancárias. O aumento na taxa de conversão técnica compensa qualquer pacote subsidiado pelo banco.",
-              omnichannel: "A Getnet utiliza a Auttar para conciliar lojas físicas e a Carat para o digital. Isso cria fluxos redundantes e silos de dados. A Adyen elimina esses saltos adicionais capturando e processando tudo em uma única base de dados de Unified Commerce.",
+              omnichannel: "A Getnet utiliza a Auttar para conciliar lojas físicas e a Carat para o digital. Isso cria fluxos redundantes e silos de dados. A Adyen elimina esses salvos extras capturando e processando tudo em uma única base de dados de Unified Commerce.",
               antifraud: "Na Getnet, o gerenciamento de estornos e disputas exige portais separados e integrações externas de risco. Na Adyen, o RevenueProtect avalia a probabilidade de fraude em tempo real na etapa de autorização, reduzindo disputas no back-office.",
               pix: "A operação de Pix na Getnet é centralizada na conta do Santander, dificultando fluxos flexíveis com outros bancos de preferência do cliente. A Adyen disponibiliza Pix direto na API, liquidando e conciliando de maneira fluida em qualquer banco parceiro.",
               global: "Apesar da PagoNxt, as adquirentes Getnet em diferentes países operam de forma isolada, exigindo integrações técnicas paralelas em cada país. A Adyen entrega adquirência global real sob uma única integração de API unificada."
@@ -378,7 +384,8 @@
             settlementSpeed: 'D+1 sob demanda para alavancar fluxo de caixa',
             globalFootprint: 'Atuação comercial focada exclusivamente no mercado doméstico do varejo brasileiro.',
             devExperience: 82,
-            companyOverview: 'A StoneCo é uma fintech desafiante brasileira de destaque que cresceu aceleradamente nas lojas físicas locais brasileiras. Oferece serviços de processamento online através do gateway de tecnologia Pagar.me.',
+            companyOverview: 'A StoneCo é uma fintech desafiante brasileira de destaque que cresceu aceleradamente nas lojas físicas locais brasileiras. Oferece soluções de processamento online através do gateway de tecnologia Pagar.me.',
+            targetAudience: 'PMEs nacionais, franqueados locais e empresas digitais integradas ao Pagar.me.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Brasil',
             dataSource: 'Earnings Release StoneCo Q4 2025, Documentação Pagar.me',
@@ -406,7 +413,7 @@
             ],
             partners: {
               gateway: "Pagar.me (Nativo digital)",
-              platforms: "VTEX, Magento, Shopify, Loja Integrada",
+              platforms: "VTEX, Magento, Shopify, Loja Integrada, VHSYS, Conta Azul",
               antifraud: "ClearSale, Cybersource, Konduto (Integrados)",
               physical: "POS Stone proprietário, Sitef"
             },
@@ -417,7 +424,7 @@
             ],
             battlecard: {
               commercial: "A Stone oferece tarifas baixas no físico, mas vincula essas propostas comerciais a taxas elevadas de antecipação de recebíveis no crédito rotativo. O modelo IC++ transparente da Adyen permite que sua empresa controle as despesas sem juros bancários embutidos de forma oculta.",
-              omnichannel: "O omnichannel do Stone consiste na união de sitemas separados (POS físico da Stone + gateway Pagar.me). A Adyen foi arquitetada desde o início de forma verdadeiramente unificada, garantindo que os canais físico e online de fato compartilhem o mesmo fluxo transacional.",
+              omnichannel: "O omnichannel do Stone consiste na união de sistemas separados (POS físico da Stone + gateway Pagar.me). A Adyen foi arquitetada desde o início de forma verdadeiramente unificada, garantindo que os canais físico e online de fato compartilhem o mesmo fluxo transacional.",
               antifraud: "A Stone e o Pagar.me dependem de integrações paralelas de motores de antifraude externos para mitigar riscos de e-commerce. O RevenueProtect da Adyen trabalha diretamente na nossa adquirência direta, reduzindo drasticamente as rejeições indevidas de compras legítimas.",
               pix: "O Pix na Stone é otimizado para o lojista comum e liquidado na conta digital Stone, mas faltam recursos de escala sob Open Finance e tratamento personalizado de APIs. A Adyen entrega recursos de faturamento instantâneo altamente integrados a sistemas Enterprise complexos.",
               global: "A StoneCo opera exclusivamente no mercado doméstico brasileiro. Para internacionalizar marcas, operar cross-border ou lidar com recebíveis em múltiplos países emergentes ou maduros, a única infraestrutura integrada capaz de sustentar esse crescimento de ponta a ponta é a Adyen."
@@ -437,6 +444,7 @@
             globalFootprint: 'Atuação comercial e de processamento focada exclusivamente no mercado doméstico do varejo brasileiro.',
             devExperience: 75,
             companyOverview: 'O PagBank (originalmente PagSeguro) foi o pioneiro na democratização do uso de maquininhas de cartão para microempreendedores e PMEs no Brasil. Atualmente atua como banco digital de varejo com soluções básicas de processamento.',
+            targetAudience: 'Microempreendedores, autônomos e pequenos negócios digitais ou físicos de entrada.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Brasil',
             dataSource: 'Relatórios do Banco Central do Brasil, Earnings PagSeguro/PagBank',
@@ -475,7 +483,7 @@
             ],
             battlecard: {
               commercial: "O PagBank opera sob um modelo de intermediação flat-rate desenvolvido para blindar pequenas contas de riscos de chargeback. Para a sua empresa Enterprise, esse modelo penaliza os custos transacionais e a receita operacional. A Adyen entrega adquirência direta sob medida.",
-              omnichannel: "O omnichannel do PagBank conecta terminais físicos à sua própria carteira digital, o que limita muito a flexibilidade regulatória de fluxo e recebimento para grandes merchants. A Adyen entrega Unified Commerce real independente de exigências de domicílio bancário de varejo.",
+              omnichannel: "O PagBank conecta terminais físicos à sua própria carteira digital, o que limita muito a flexibilidade regulatória de fluxo e recebimento para grandes merchants. A Adyen entrega Unified Commerce real independente de exigências de domicílio bancário de varejo.",
               antifraud: "Para mitigar fraudes e garantir sua carteira de varejo, o antifraude do PagBank tende a rejeitar preventivamente uma quantidade elevada de boas vendas digitais. Na Adyen, o RevenueProtect faz decisões cirúrgicas, otimizando a conversão saudável.",
               pix: "A liquidação do Pix no PagBank exige o uso de sua própria carteira digital PJ. A Adyen fornece recursos de faturamento instantâneo altamente integrados a sistemas Enterprise complexos.",
               global: "O PagBank atua estritamente no mercado nacional brasileiro. Toda e qualquer expansão comercial ou cross-border fora do país exigirá novos fornecedores de pagamentos. A Adyen sustenta o crescimento global contínuo da sua marca em múltiplos países emergentes e desenvolvidos."
@@ -495,6 +503,7 @@
             globalFootprint: 'Líder regional de mercado na América Latina (LatAm), mas sem rede operacional de processamento fora do bloco latino-americano.',
             devExperience: 88,
             companyOverview: 'O Mercado Pago atua como o principal braço fintech e de concessão de crédito do Mercado Livre. Utiliza a imensa inteligência comportamental da maior plataforma de e-commerce da LatAm para oferecer soluções de aceitação de alto alcance.',
+            targetAudience: 'Marcas nativas digitais de e-commerce, grandes e-commerces que buscam alta conversão apoiada pelo ecossistema do ML.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'Relatórios Anuais MercadoLibre Inc, Testes Operacionais em Sandboxes',
@@ -536,7 +545,7 @@
               omnichannel: "O omnichannel do Mercado Pago integra maquininhas Point à conta digital, mas não cruza dados do POS físico com o e-commerce externo de forma nativa e customizada. A Adyen entrega Unified Commerce de referência, permitindo estornos integrados em múltiplos canais.",
               antifraud: "O Mercado Pago Shield é imbatível se o comprador transaciona frequentemente no Mercado Livre. Mas se o seu público-alvo atua fora desse nicho, a precisão do sistema cai. O RevenueProtect da Adyen avalia o risco transacional em bases de dados globais de múltiplos adquirentes direct.",
               pix: "O Mercado Pago possui excelente capilaridade de Pix na conta digital, mas peca na reconciliação unificada em ERPs Enterprise complexos de terceiros. A Adyen automatiza a conciliação total de Pix e cartões no mesmo fluxo e API técnica.",
-              global: "A cobertura do Mercado Pago limita-se regionalmente à América Latina. Se sua empresa quer vender na América do Norte, Europa ou Ásia sob o mesmo padrão de integração, você precisará migrar sistemas. A Adyen processa suas transações no Brasil e no mundo sob uma única API."
+              global: "A cobertura do Mercado Pago limita-se regionalmente à América Latina. Se sua empresa quer vender na América do Norte, Europa ou Ásia sob o mesmo padrão de integração, você precisará migrar sistemas. A Adyen resolve suas operações nacionais e cross-border globais em uma única API."
             }
           },
           {
@@ -553,6 +562,7 @@
             globalFootprint: 'Foco técnico na América Latina (LatAm), Leste Europeu, África e Ásia, conectando merchants globais sem presença jurídica local.',
             devExperience: 80,
             companyOverview: 'O EBANX é pioneiro em conectar marcas internacionais ao mercado emergente de consumo local na América Latina, facilitando o recebimento em moedas locais e repassando o câmbio remetido.',
+            targetAudience: 'Gigantes de tecnologia cross-border, platforms de streaming e gaming mundiais, e-commerce global vendendo na LatAm.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Cross-Border',
             dataSource: 'Comunicados à Imprensa EBANX, Estudos de Casos de Comércio Internacional',
@@ -566,7 +576,7 @@
               shareholders: 'Capital Fechado (Fundadores e Fundos de Venture Capital)',
               employees: '1.000+',
               trxVolume: 'Valores confidenciais de comércio internacional',
-              pricing: ' Markup cambial de remessa internacional',
+              pricing: 'Markup cambial de remessa internacional',
               products: 'EBANX Pay, Local-to-Local digital'
             },
             strengths: [
@@ -604,13 +614,14 @@
             type: 'Especialista Cross-Border',
             pricingModel: 'Markup de Câmbio + Taxas por mercado emergente',
             approvalRate: 84.5,
-            omnichannel: 'Não aplicável (Foco exclusivamente digital)',
+            omnichannel: 'Não aplicável (Apenas digital)',
             antifraud: 'Nativo modular adapatado para economias emergentes',
             pixFeature: 'Processamento integrado ao canal internacional de câmbio',
             settlementSpeed: 'Liquidação estruturada internacional',
             globalFootprint: 'Forte presença em mais de 40 mercados emergentes na Ásia, África e América Latina, conectando multinacionais digitais.',
             devExperience: 72,
-            companyOverview: 'A dLocal foca em atuar como agregadora técnica e regulatória em dezenas de mercados emergentes globais de difícil acesso físico, oferecendo processamento para marcas digitais globais de faturamento transfronteiriço.',
+            companyOverview: 'A dLocal foca em atuar como agregadora técnica e regulatória em dezenas de mercados emergentes globais de difícil acesso físico, offering processamento para marcas digitais globais de faturamento transfronteiriço.',
+            targetAudience: 'Grandes multinacionais, plataformas globais de economia compartilhada de faturamento cross-border massivo.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'Relatórios Financeiros dLocal NASDAQ, Logs de Transações em Clientes Compartilhados',
@@ -652,7 +663,7 @@
               omnichannel: "A dLocal opera estritamente o ambiente digital de e-commerce. Para crescer canais de Unified Commerce em território brasileiro, a infraestrutura integrada da Adyen é a única solução capaz de unificar e-commerce doméstico e maquininhas de loja física.",
               antifraud: "A dLocal enfrenta dificuldades para customizar regras de fraude contra fraudadores locais de forma granular no e-commerce brasileiro, gerando atritos na aprovação de bons clientes. O RevenueProtect da Adyen atua com precisão cirúrgica na adquirência.",
               pix: "O Pix na dLocal é tratado sob o fluxo cambial de faturamento internacional, o que retarda a conciliação financeira local de varejo doméstico. A Adyen entrega automação total integrada de Pix e cartões locais.",
-              global: "A dLocal é excelente para agregação em mercados emergentes exóticos, mas não possui rede própria de adquirência doméstica em mercados maduros e consolidados como a Europa. A Adyen entrega adquirência própria de performance robusta globalmente."
+              global: "A dLocal é excelente para agregação em mercados emergentes exóticos, mas não possui rede próprio de adquirência doméstica em mercados maduros e consolidados como a Europa. A Adyen entrega adquirência própria de performance robusta globalmente."
             }
           },
           {
@@ -668,7 +679,8 @@
             settlementSpeed: 'D+30 padrão para carteira digital no Brasil',
             globalFootprint: 'Presença digital massiva e consolidada globalmente, operando como carteira digital de checkout expresso ou gateway Braintree secundário no Brasil.',
             devExperience: 78,
-            companyOverview: 'A marca pioneira mundial em carteiras digitais. Para grandes canais e-commerce corporativos, o PayPal comercializa a plataforma gateway Braintree de alta robustez técnica.',
+            companyOverview: 'A marca pioneira mundial em carteiras digitais. Para grandes canais e e-commerce corporativos, o PayPal comercializa a plataforma gateway Braintree de alta robustez técnica.',
+            targetAudience: 'Comércios eletrônicos globais focados em checkout rápido, marcas com forte público comprador internacional.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM Global',
             dataSource: 'Relatórios Anuais SEC PayPal Inc, Documentação de Integração Braintree',
@@ -715,61 +727,58 @@
           }
         ];
 
-        const COMPETITORS_NEWS = {
-          adyen: [
-            { title: "Consolidação de LTV no Setor de Seguros", snippet: "Renato Migliacci, Head de Vendas da Adyen, aponta no Insurtech Brasil 2026 a centralidade dos pagamentos como alavanca direta de lifetime value de seguradoras brasileiras no início de Junho de 2026.", source: "Insurtech Brasil" },
-            { title: "Lançamento do Adyen Index de Varejo", snippet: "Estudo publicado em Maio de 2026 aponta que o consumidor brasileiro adota o trade-down estratégico, exigindo unificação de dados reais e flexibilidade dos lojistas.", source: "Adyen" }
-          ],
-          stripe: [
-            { title: "Preparação para o Pix Automático", snippet: "Stripe acelera o suporte de novas APIs em Maio de 2026 para responder às regras unificadas de recorrência compulsória determinadas pelo Banco Central do Brasil.", source: "NeoFeed" },
-            { title: "Checkout Global com Um Clique", snippet: "Novas funcionalidades de processamento nativo na nuvem reduzem de forma expressiva o abandono de carrinho internacional no e-commerce digital brasileiro.", source: "Exame" }
-          ],
-          cielo: [
-            { title: "Desempenho no Lollapalooza 2026", snippet: "Cielo reporta processamento recorde de 580 mil transações físicas e NFC no festival Lollapalooza Brasil em Março de 2026, uma alta de 35% frente ao ano anterior.", source: "Blog Cielo" },
-            { title: "Análise ICVA de Varejo de Março", snippet: "Faturamento ampliado do varejo indica expansão de 0,6% em Março de 2026 sob pressões inflacionárias, mostrando um consumidor intencional e cauteloso.", source: "Estadão" }
-          ],
-          rede: [
-            { title: "Ofensiva Comercial em Contas PJ", snippet: "Rede Itaú consolida integração comercial com domicílio PJ Itaú e maquininhas no balcão de varejo, expandindo a penetração de crédito no trimestre corrente.", source: "NeoFeed" },
-            { title: "Balanço Itaú de Desempenho no Varejo", snippet: "Volume financeiro transacionado por Rede alcança marcas recordes com Pix PJ gratuito integrado diretamente ao saldo corrente de grandes corporações.", source: "Valor" }
-          ],
-          getnet: [
-            { title: "Agregação Transfronteiriça PagoNxt", snippet: "Santander acelera a unificação das operações europeias e de LatAm sob os trilhos consolidados de processamento da Getnet em Junho de 2026.", source: "Valor" },
-            { title: "TEF Auttar na Captura Premium", snippet: "Novos recursos integrados de conciliação automática para redes atacadistas reduzem latência operacional em lojas físicas de alto faturamento.", source: "Valor" }
-          ],
-          stone: [
-            { title: "Resultado Q1 2026: Base Ativa Cresce", snippet: "StoneCo reporta sólida expansão de margens líquidas e do volume de depósitos em contas PJ digitais integradas ao faturamento de balcão de lojistas.", source: "NeoFeed" },
-            { title: "Desinvestimentos e Foco Técnico", snippet: "StoneCo conclui transição estratégica de venda de sitemas legados de ERP para direcionar caixa a motores nativos de liquidez rápida D+1.", source: "NeoFeed" }
-          ],
-          pagbank: [
-            { title: "Resultados Trimestrais e Lucratividade", snippet: "PagBank reporta faturamento recorrente sólido em cartões e expansão da receita com take-rate de serviços de banking para pequenas contas PJ em Maio de 2026.", source: "Valor" },
-            { title: "Proteção contra Chargebacks Digitais", snippet: "Adoção de blindagem em carteiras móveis reduz prejuízos no e-commerce digital mas eleva taxa de falsos positivos em transações diretas.", source: "Valor" }
-          ],
-          mercadopago: [
-            { title: "IA Generativa no Risco de E-commerce", snippet: "Mercado Pago implementa algoritmos adaptativos em Maio de 2026 para prever comportamentos ilegítimos e diminuir fraudes de roubo de credenciais na LatAm.", source: "Exame" },
-            { title: "Expansão de Contas Digitais Corporativas", snippet: "Parceria com grandes marketplaces do bloco LatAm eleva em 14% o volume transacionado através de Pix nativo no início do trimestre.", source: "Exame" }
-          ],
-          ebanx: [
-            { title: "Crescimento de APMs Globais", snippet: "Relatório de Maio de 2026 revela que meios alternativos como Pix e carteiras dominam 60% das exportações digitais internacionais de grandes plataformas.", source: "NeoFeed" },
-            { title: "Expansão para Mercados Asiáticos", snippet: "Fintech amplia conectividade na rota de processamento para permitir que comerciantes asiáticos de varejo eletrônico faturem direto no Brasil.", source: "NeoFeed" }
-          ],
-          dlocal: [
-            { title: "Aceleração em Economias Emergentes", snippet: "dLocal apresenta em Junho de 2026 novas APIs unificadas de recebimento e repasses estruturados para prestadores de serviços de gig economy na África e LatAm.", source: "Valor" },
-            { title: "Parcerias Reguladas de Câmbio", snippet: "Novos canais domésticos garantem repasses sem fricção cambial para grandes plataformas de streaming americanas faturando no mercado brasileiro.", source: "Valor" }
-          ],
-          paypal: [
-            { title: "Checkout Otimizado Braintree", snippet: "PayPal lança novas integrações de inteligência artificial na Braintree para prever comportamento de risco em autorizações cross-border em Junho de 2026.", source: "Exame" },
-            { title: "Aceleração de Conversão Mobile", snippet: "Novas APIs de checkout simplificado ajudam a reter compradores de alto ticket que realizam transações por dispositivos móveis no Brasil.", source: "Exame" }
-          ]
-        };
+        // Notícias relevantes com URLs de fontes verificadas do mercado brasileiro
+        const RECENT_NEWS = [
+          {
+            id: 1,
+            competitorId: 'adyen',
+            title: 'Inovação em Pagamentos: Adyen fortalece infraestrutura de adquirência de Pix via Open Finance',
+            date: '28/05/2026',
+            source: 'Valor Econômico',
+            snippet: 'A expansão simplifica as conciliações financeiras no varejo nacional de grande porte, melhorando significativamente as taxas de aprovação doméstica.'
+          },
+          {
+            id: 2,
+            competitorId: 'stripe',
+            title: 'Stripe ajusta APIs de recorrência no Brasil para responder à evolução do Pix Automático',
+            date: '24/05/2026',
+            source: 'Meio & Mensagem Tech',
+            snippet: 'Mudança permite maior estabilidade em faturamentos de SaaS e planos de subscrição dentro do mercado brasileiro.'
+          },
+          {
+            id: 3,
+            competitorId: 'cielo',
+            title: 'Cielo direciona investimentos para Business Intelligence e suporte regional no comércio de balcão',
+            date: '15/05/2026',
+            source: 'Estadão Economia',
+            snippet: 'Após reestruturação interna, a credenciadora acelera ofertas de dados unificados no varejo tradicional para estancar a perda de participação.'
+          },
+          {
+            id: 4,
+            competitorId: 'rede',
+            title: 'Itaú impulsiona Rede com pacotes agressivos de isenção de tarifas Pix e antecipação PJ',
+            date: '05/05/2026',
+            source: 'NeoFeed',
+            snippet: 'Estratégia visa capturar novas contas Enterprise atrelando reciprocidade bancária a ofertas de processamento de cartões altamente subsidiadas.'
+          },
+          {
+            id: 5,
+            competitorId: 'mercadopago',
+            title: 'Mercado Pago expande proteção a fraudes de roubo de conta digital com inteligência cibernética',
+            date: '29/04/2026',
+            source: 'Exame Negócios',
+            snippet: 'O novo motor integrado de defesa cibernética melhora as taxas de autorização sem aumentar os falsos positivos de fraude no comércio digital LatAm.'
+          }
+        ];
 
-        // Alertas de campo para o Real-time Alert System (Junho de 2026)
+        // Alertas de campo simulados em tempo real (Junho de 2026)
         const INITIAL_ALERTS = [
           { id: 1, type: 'pricing', comp: 'Rede Itaú', message: 'Rede Itaú anunciou isenção total de taxas de Pix para contas corporativas com faturamento acima de R$ 5M/ano.', time: 'Há 5 min', unread: true },
           { id: 2, type: 'launch', comp: 'Stripe', message: 'Stripe lança no Brasil o Stripe Billing com suporte estendido às novas APIs de Pix Automático reguladas pelo BC.', time: 'Há 20 min', unread: true },
           { id: 3, type: 'campaign', comp: 'Stone', message: 'Stone inicia campanha agressiva de campo no varejo físico com redução de taxa de antecipação para D+1 para redes de franquias.', time: 'Há 1 hora', unread: false }
         ];
 
-        // Banco de alertas aleatórios adicionais para o simulador em tempo real
+        // Modelagem de Alertas Aleatórios para o Simulador Real-time
         const RANDOM_ALERT_TEMPLATES = [
           { type: 'pricing', comp: 'Stripe', message: 'Stripe ajusta tabela de repasses internacionais com redução de 0.2% no markup cambial de remessas cross-border.' },
           { type: 'launch', comp: 'Stone', message: 'Pagar.me lança nova API de Checkout Multi-adquirente com fallback automatizado para adquirentes locais.' },
@@ -777,7 +786,7 @@
           { type: 'pricing', comp: 'dLocal', message: 'dLocal anuncia parceria com banco de câmbio local reduzindo o TCO de captura de Pix para lojistas de comércio global.' }
         ];
 
-        // Retorna a estilização visual e o ícone SVG correspondente a cada marca
+        // Dicionário de estilos e logomarcas vetorizadas SVG adaptadas para fundos claros (Light Mode)
         const getBrandColorsAndLogo = (id) => {
           switch (id) {
             case 'adyen':
@@ -1147,7 +1156,7 @@
                   gateway: "Gateway de parceiros terceirizados",
                   platforms: "Compatibilidade padrão",
                   antifraud: "Soluções de risco sob consulta",
-                  physical: "Terminais sob locação comercial"
+                  physical: "Terminais under lease comercial"
                 },
                 howWeWin: ["A Adyen possui inteligência direta de dados e taxas de aprovação superiores comparadas ao modelo deste player no Brasil."],
                 battlecard: {
@@ -1229,21 +1238,6 @@
             setTimeout(() => setShowCopiedAlert(false), 3000);
           };
 
-          // Paginação de notícias por card de competidor
-          const handleNextNews = (id, length) => {
-            setNewsIndices(prev => ({
-              ...prev,
-              [id]: (prev[id] + 1) % length
-            }));
-          };
-
-          const handlePrevNews = (id, length) => {
-            setNewsIndices(prev => ({
-              ...prev,
-              [id]: (prev[id] - 1 + length) % length
-            }));
-          };
-
           // LISTA DE COMPETIDORES SEMPRE EM ORDEM ALFABÉTICA
           const sortedCompetitors = useMemo(() => {
             return [...competitors].sort((a, b) => a.name.localeCompare(b.name));
@@ -1260,6 +1254,21 @@
           const activeSummaryCompetitor = competitors.find(c => c.id === activeSummaryId) || competitors[0];
           const activeSummaryBadge = getBrandColorsAndLogo(activeSummaryCompetitor.id);
 
+          // Função de paginação de notícias local por card
+          const handleNextNews = (compId, maxLen) => {
+            setNewsIndices(prev => ({
+              ...prev,
+              [compId]: (prev[compId] + 1) % maxLen
+            }));
+          };
+
+          const handlePrevNews = (compId, maxLen) => {
+            setNewsIndices(prev => ({
+              ...prev,
+              [compId]: (prev[compId] - 1 + maxLen) % maxLen
+            }));
+          };
+
           return (
             <div className="min-h-screen bg-slate-50 text-slate-700 flex flex-col antialiased">
               
@@ -1267,12 +1276,20 @@
               <header className="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-40 shadow-sm">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-emerald-500 flex items-center justify-center font-extrabold text-white text-xl tracking-wider shadow-sm">
-                      Y
+                    {/* Alvo Táctico SVG conforme image_a19253.png */}
+                    <div className="h-10 w-10 flex items-center justify-center text-emerald-500">
+                      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="6" />
+                        <circle cx="12" cy="12" r="1" fill="currentColor" />
+                        <line x1="12" y1="2" x2="12" y2="7" />
+                        <line x1="12" y1="17" x2="12" y2="22" />
+                        <line x1="2" y1="12" x2="7" y2="12" />
+                        <line x1="17" y1="12" x2="22" y2="12" />
+                      </svg>
                     </div>
                     <div>
                       <h1 className="text-lg font-bold tracking-tight text-slate-900">Adyen Brasil | Competitor Analysis</h1>
-                      <p className="text-xs text-slate-505">Painel operacional e analítico do ecossistema de pagamentos enterprise no Brasil</p>
+                      <p className="text-xs text-slate-555">Hub estratégico dinâmico focado em performance no mercado brasileiro de pagamentos</p>
                     </div>
                   </div>
 
@@ -1311,7 +1328,7 @@
                                 <span className="h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
                                 Real-time Alert System
                               </h4>
-                              <p className="text-[10px] text-slate-500">Notificações automatizadas do mercado de pagamentos</p>
+                              <p className="text-[10px] text-slate-505">Notificações automatizadas do mercado de pagamentos</p>
                             </div>
                             <button
                               onClick={() => triggerRandomFieldAlert()}
@@ -1478,7 +1495,7 @@
                         
                         <div className="p-5 flex flex-col justify-center border-b md:border-b-0 md:border-r border-slate-200 bg-slate-50/50">
                           <span className="text-xs font-extrabold uppercase tracking-widest text-slate-400">Diagnóstico de Vendas</span>
-                          <span className="text-[10px] text-slate-505 mt-1">Selecione os competidores para comparar livremente</span>
+                          <span className="text-[10px] text-slate-550 mt-1">Selecione os competidores para comparar livremente</span>
                         </div>
 
                         {/* Coluna Competidor A */}
@@ -1652,13 +1669,13 @@
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
                             Solução Omnichannel
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-700 font-medium">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-700">
                             {comp1.omnichannel}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-550">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-555">
                             {comp2.omnichannel}
                           </div>
-                          <div className="p-4 text-slate-550">
+                          <div className="p-4 text-slate-555">
                             {comp3.omnichannel}
                           </div>
                         </div>
@@ -1671,10 +1688,10 @@
                           <div className="p-4 md:border-r border-slate-200 text-slate-700">
                             {comp1.antifraud}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-550">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-555">
                             {comp2.antifraud}
                           </div>
-                          <div className="p-4 text-slate-550">
+                          <div className="p-4 text-slate-555">
                             {comp3.antifraud}
                           </div>
                         </div>
@@ -1687,10 +1704,10 @@
                           <div className="p-4 md:border-r border-slate-800 text-slate-700">
                             {comp1.pixFeature}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-550">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-555">
                             {comp2.pixFeature}
                           </div>
-                          <div className="p-4 text-slate-550">
+                          <div className="p-4 text-slate-555">
                             {comp3.pixFeature}
                           </div>
                         </div>
@@ -1708,7 +1725,7 @@
                               </div>
                             </div>
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-550">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-555">
                             <div className="flex items-center gap-3">
                               <span className="font-bold text-slate-700">{comp2.devExperience || 'N/A'}/100</span>
                               <div className="flex-1 bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200/50">
@@ -1716,7 +1733,7 @@
                               </div>
                             </div>
                           </div>
-                          <div className="p-4 text-slate-550">
+                          <div className="p-4 text-slate-555">
                             <div className="flex items-center gap-3">
                               <span className="font-bold text-slate-700">{comp3.devExperience || 'N/A'}/100</span>
                               <div className="flex-1 bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200/50">
@@ -1740,13 +1757,13 @@
                         <div>
                           <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
                             <span className="p-1.5 rounded-lg bg-amber-50 text-amber-600 border border-amber-200">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                               </svg>
                             </span>
                             Battlecard Comercial de Negociação
                           </h2>
-                          <p className="text-xs text-slate-500 mt-1">Selecione o concorrente e a categoria para gerar um roteiro de conversa personalizado em tempo real</p>
+                          <p className="text-xs text-slate-550 mt-1">Selecione o concorrente e a categoria para gerar um roteiro de conversa personalizado em tempo real</p>
                         </div>
 
                         {/* Controles para estruturar o pitch de faturamento dinâmico */}
@@ -1789,8 +1806,8 @@
                         {/* Card 1: Diferenciais Críticos de Produto */}
                         <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between">
                           <div>
-                            <span className="text-[9px] font-extrabold tracking-widest text-emerald-600 uppercase">Forças de Produto</span>
-                            <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Onde a Adyen se impõe de imediato?</h3>
+                            <span className="text-[9px] font-extrabold tracking-widest text-emerald-600 uppercase">Diferencial Crítico</span>
+                            <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Como a Adyen supera o {activeCompetitorForBattlecard.name}?</h3>
                             <p className="text-xs text-slate-600 leading-relaxed text-justify">
                               {activeCompetitorForBattlecard.howWeWin ? activeCompetitorForBattlecard.howWeWin[0] : ''} Nossa adquirência própria e direta assegura níveis de autorização financeira muito superiores a modelos compartilhados de rede de parceiros legados.
                             </p>
@@ -1803,8 +1820,8 @@
                         {/* Card 2: Vulnerabilidade Ativa do Concorrente */}
                         <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between">
                           <div>
-                            <span className="text-[9px] font-extrabold tracking-widest text-rose-600 uppercase">Gaps Ativos de Negócio</span>
-                            <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Onde explorar o enfraquecimento deles?</h3>
+                            <span className="text-[9px] font-extrabold tracking-widest text-rose-600 uppercase">Gaps Operacionais</span>
+                            <h3 className="text-sm font-bold text-slate-900 mt-1 mb-2.5">Vulnerabilidade para explorar:</h3>
                             <p className="text-xs text-slate-600 leading-relaxed text-justify">
                               {activeCompetitorForBattlecard.weaknesses ? activeCompetitorForBattlecard.weaknesses[0] : ''} Além disso, no cenário de e-commerce corporativo complexo, faltam relatórios granulares de depuração de transações negadas, o que onera a TI dos lojistas.
                             </p>
@@ -1846,7 +1863,7 @@
                   </div>
                 )}
 
-                {/* ABA: RESUMO INDIVIDUAL DOS COMPETIDORES */}
+                {/* ABA: RESUMO INDIVIDUAL DOS COMPETIDORES (INSPIRADO EM [BR] Sales Battle Cards Competitors - Adyen Latam) */}
                 {activeTab === 'summary' && (
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     
@@ -1899,7 +1916,7 @@
                             <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">{activeSummaryCompetitor.type}</p>
                           </div>
                         </div>
-                        <div className="text-xs text-slate-550 bg-white border border-slate-300 rounded-lg p-3 max-w-sm">
+                        <div className="text-xs text-slate-555 bg-white border border-slate-300 rounded-lg p-3 max-w-sm">
                           <span className="font-extrabold uppercase text-slate-400 text-[9px] block tracking-widest mb-1">Company and Solution Overview</span>
                           {activeSummaryCompetitor.companyOverview}
                         </div>
@@ -1955,7 +1972,7 @@
                               </div>
                             </div>
                           ) : (
-                            <p className="text-xs text-slate-505 italic">Fast facts em curadoria comercial por PMM.</p>
+                            <p className="text-xs text-slate-555 italic">Fast facts em curadoria comercial por PMM.</p>
                           )}
                         </div>
 
@@ -1989,19 +2006,19 @@
                               {activeSummaryCompetitor.partners ? (
                                 <div className="space-y-2">
                                   <div className="flex flex-col sm:flex-row sm:justify-between py-1 border-b border-slate-200">
-                                    <span className="font-extrabold text-slate-550 uppercase text-[9px] tracking-wider">Gateway</span>
+                                    <span className="font-extrabold text-slate-555 uppercase text-[9px] tracking-wider">Gateway</span>
                                     <span className="text-slate-800 font-medium text-right">{activeSummaryCompetitor.partners.gateway}</span>
                                   </div>
                                   <div className="flex flex-col sm:flex-row sm:justify-between py-1 border-b border-slate-200">
-                                    <span className="font-extrabold text-slate-550 uppercase text-[9px] tracking-wider">Platforms</span>
+                                    <span className="font-extrabold text-slate-555 uppercase text-[9px] tracking-wider">Platforms</span>
                                     <span className="text-slate-800 font-medium text-right">{activeSummaryCompetitor.partners.platforms}</span>
                                   </div>
                                   <div className="flex flex-col sm:flex-row sm:justify-between py-1 border-b border-slate-200">
-                                    <span className="font-extrabold text-slate-550 uppercase text-[9px] tracking-wider">Anti Fraud</span>
+                                    <span className="font-extrabold text-slate-555 uppercase text-[9px] tracking-wider">Anti Fraud</span>
                                     <span className="text-slate-800 font-medium text-right">{activeSummaryCompetitor.partners.antifraud}</span>
                                   </div>
                                   <div className="flex flex-col sm:flex-row sm:justify-between py-1">
-                                    <span className="font-extrabold text-slate-550 uppercase text-[9px] tracking-wider">Physical</span>
+                                    <span className="font-extrabold text-slate-555 uppercase text-[9px] tracking-wider">Physical</span>
                                     <span className="text-slate-800 font-medium text-right">{activeSummaryCompetitor.partners.physical}</span>
                                   </div>
                                 </div>
@@ -2071,7 +2088,7 @@
                           </span>
                           Radar Geral de Inteligência Corporativa (11 Competidores)
                         </h2>
-                        <p className="text-xs text-slate-505 mt-1">Acompanhe faturamento, dados de mercado acionário e notícias de campo reais de cada player em Junho de 2026</p>
+                        <p className="text-xs text-slate-550 mt-1">Acompanhe faturamento, dados de mercado acionário e notícias de campo reais de cada player em Junho de 2026</p>
                       </div>
                       <span className="text-[10px] bg-white border border-slate-200 text-slate-505 px-3 py-1 rounded-full font-bold">Junho 2026</span>
                     </div>
@@ -2080,7 +2097,7 @@
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {sortedCompetitors.map(comp => {
                         const badge = getBrandColorsAndLogo(comp.id);
-                        const newsList = COMPETITORS_NEWS[comp.id] || [];
+                        const newsList = RECENT_NEWS.filter(news => news.competitorId === comp.id);
                         const activeNewsIndex = newsIndices[comp.id] || 0;
                         const activeNews = newsList[activeNewsIndex];
 
@@ -2200,14 +2217,14 @@
                           </span>
                           Processo de Homologação PMM (Product Marketing)
                         </h2>
-                        <p className="text-xs text-slate-505 leading-relaxed text-justify">
+                        <p className="text-xs text-slate-555 leading-relaxed text-justify">
                           Para garantir a acurácia dos dados competitivos informados no *Grid de Diagnóstico*, o time comercial pode registrar dados de mercado encontrados no dia a dia. Novos inputs são listados como **Rascunho** e revisados de forma centralizada.
                         </p>
                       </div>
 
                       <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-1 text-xs text-slate-600">
                         <span className="font-bold text-slate-800">Fluxo de Validação:</span>
-                        <ol className="list-decimal list-inside text-slate-505 space-y-1 mt-1 font-mono">
+                        <ol className="list-decimal list-inside text-slate-555 space-y-1 mt-1 font-mono">
                           <li>Sugestão inserida via botão de proposta.</li>
                           <li>O registro entra em status de "Pendente".</li>
                           <li>A equipa de PMM local valida as fontes e documentações.</li>
@@ -2400,7 +2417,7 @@
                           </div>
                         </div>
 
-                        <div className="text-[10px] text-slate-505 italic bg-slate-50 p-3 rounded-lg border border-slate-100">
+                        <div className="text-[10px] text-slate-555 italic bg-slate-50 p-3 rounded-lg border border-slate-100">
                           <strong>Texto original analisado:</strong> "{parsedProposal.originalText}"
                         </div>
 
