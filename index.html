@@ -13,20 +13,20 @@
                 extend: {
                     colors: {
                         slate: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
+                            50: '#f8fafc',  // Fundo de página light
+                            100: '#f1f5f9', // Divisores e fundos de inputs
+                            200: '#e2e8f0', // Bordas suaves
+                            300: '#cbd5e1', // Bordas em destaque
                             400: '#94a3b8',
-                            500: '#64748b',
-                            700: '#334155',
-                            800: '#1e293b',
-                            900: '#0f172a',
+                            500: '#64748b', // Texto secundário desvanecido
+                            700: '#334155', // Texto de leitura
+                            800: '#1e293b', // Texto em destaque
+                            900: '#0f172a', // Títulos principais
                         },
                         emerald: {
                             50: '#f0fdf4', 
                             500: '#0abf5b', // Verde Oficial Adyen
-                            600: '#089c49',
+                            600: '#089c49', // Verde Adyen de alto contraste para leitura
                         }
                     }
                 }
@@ -34,11 +34,11 @@
         }
     </script>
     
-    <!-- React e ReactDOM (Produção estável) -->
+    <!-- React e ReactDOM (Versão de Produção estável) -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     
-    <!-- Babel para compilar JSX no browser -->
+    <!-- Babel para compilar JSX em tempo de execução no browser -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
@@ -71,7 +71,7 @@
     <!-- Container de Captura de Erros Global para Evitar Tela em Branco -->
     <div id="error-boundary-screen" class="hidden fixed inset-0 z-50 bg-white p-8 overflow-y-auto">
         <div class="max-w-xl mx-auto space-y-4">
-            <h2 class="text-xl font-bold text-red-600">Erro de Rendering Detectado</h2>
+            <h2 class="text-xl font-bold text-red-600">Erro de Renderização Detectado</h2>
             <p class="text-xs text-slate-500">Ocorreu um erro ao carregar a aplicação interativa. Detalhes técnicos abaixo:</p>
             <pre id="error-message-details" class="bg-slate-100 p-4 rounded text-xs font-mono text-red-800 whitespace-pre-wrap"></pre>
             <button onclick="window.location.reload()" class="bg-emerald-500 text-white font-bold px-4 py-2 rounded text-xs">Recarregar Página</button>
@@ -90,7 +90,6 @@
     <script type="text/babel">
         const { useState, useMemo, useEffect } = React;
 
-        // Dicionário de Idiomas e Textos Localizados
         const LOCALIZATION = {
           BR: {
             title: "Adyen Latam | Competitor Analysis",
@@ -99,12 +98,10 @@
             tabSummary: "RESUMO DOS COMPETIDORES",
             tabNegotiation: "NEGOCIAÇÃO COMERCIAL",
             tabNews: "NOTÍCIAS DO MERCADO",
-            tabCuration: "Origem & Curadoria",
             placeholderSelect: "Selecione o Competidor",
             labelCompetitorA: "Competidor A",
             labelCompetitorB: "Competidor B",
             labelCompetitorC: "Competidor C",
-            proposalBtn: "Propor Alteração / Registo",
             btnSearch: "Pesquisar no Google",
             btnBattlecard: "Ver Battlecard",
             btnCopy: "Copiar Roteiro",
@@ -114,29 +111,9 @@
             labelWeaknesses: "Fraquezas e Gaps",
             labelHowWeWin: "Como Vencemos na Prática",
             labelFastFacts: "Dados Corporativos Rápidos",
-            labelCurationTitle: "Processo de Homologação PMM (Product Marketing)",
-            labelCurationDesc: "Para garantir a acurácia dos dados competitivos informados no Grid de Diagnóstico, o time comercial pode registrar dados de mercado encontrados no dia a dia. Novos inputs são listados como Rascunho e revisados de forma centralizada.",
-            labelCurationSteps: "Fluxo de Validação: 1. Sugestão inserida via botão de proposta. 2. O registro entra em status de 'Pendente'. 3. A equipe de PMM local valida as fontes. 4. Após homologado, os dados entram no grid de produção.",
-            labelPendingCount: "Rascunhos Pendentes",
-            thCompetitor: "Concorrente",
-            thType: "Tipo de Operador",
-            thSource: "Origem / Fonte dos Dados",
-            thVerification: "Última Revisão",
-            thStatus: "Status",
-            thAction: "Ação (Simulação)",
-            btnApprove: "APROVAR",
-            btnDelete: "EXCLUIR",
+            alertSystemTitle: "Real-time Alert System",
+            alertSystemDesc: "Alertas interativos baseados em comunicados e lançamentos recentes no mercado brasileiro.",
             toastCopied: "Roteiro comercial copiado para a área de transferência!",
-            propModalTitle: "Inserir Atualização em Linguagem Natural",
-            propModalDesc: "Digite abaixo em texto livre a informação encontrada em campo (ex: 'Aumentar taxa de aprovação da Cielo para 90% devido ao novo motor'). O sistema interpretará os dados automaticamente para homologação técnica.",
-            propTextPlaceholder: "Escreva aqui a sua proposta técnico-comercial...",
-            btnCancel: "CANCELAR",
-            btnSubmit: "ENVIAR PROPOSTA",
-            nlpSuccessTitle: "Proposta Interpretada com Sucesso!",
-            nlpDetectedComp: "Competidor Identificado",
-            nlpDetectedField: "Atributo Técnico",
-            nlpDetectedVal: "Novo Valor Proposto",
-            nlpExplanation: "Os dados foram identificados e consolidados em rascunho de homologação. Você já pode visualizar a pendência na aba Origem & Curadoria.",
             fields: {
               foco: "Foco e Operação",
               modelo: "Modelo Comercial",
@@ -155,12 +132,10 @@
             tabSummary: "RESUMEN DE COMPETIDORES",
             tabNegotiation: "NEGOCIACIÓN COMERCIAL",
             tabNews: "NOTICIAS DEL MERCADO",
-            tabCuration: "Origen y Curaduría",
             placeholderSelect: "Seleccione el Competidor",
             labelCompetitorA: "Competidor A",
             labelCompetitorB: "Competidor B",
             labelCompetitorC: "Competidor C",
-            proposalBtn: "Proponer Alteración / Registro",
             btnSearch: "Buscar en Google",
             btnBattlecard: "Ver Battlecard",
             btnCopy: "Copiar Guion",
@@ -170,29 +145,9 @@
             labelWeaknesses: "Debilidades y Gaps",
             labelHowWeWin: "Cómo Ganamos en la Práctica",
             labelFastFacts: "Datos Corporativos Rápidos",
-            labelCurationTitle: "Proceso de Homologación PMM (Product Marketing)",
-            labelCurationDesc: "Para garantizar la precisión de los datos competitivos informados en el Grid de Diagnóstico, el equipo comercial puede registrar datos de mercado encontrados en el día a día. Nuevos inputs son listados como Borrador y revisados de forma centralizada.",
-            labelCurationSteps: "Flujo de Validación: 1. Sugerencia insertada vía botón de propuesta. 2. El registro entra en estatus de 'Pendiente'. 3. El equipo de PMM local valida las fuentes. 4. Tras la homologación, los datos entran en producción.",
-            labelPendingCount: "Borradores Pendientes",
-            thCompetitor: "Competidor",
-            thType: "Tipo de Operador",
-            thSource: "Origen / Fuente de Datos",
-            thVerification: "Última Revisión",
-            thStatus: "Estatus",
-            thAction: "Acción (Simulación)",
-            btnApprove: "APROBAR",
-            btnDelete: "ELIMINAR",
+            alertSystemTitle: "Real-time Alert System",
+            alertSystemDesc: "Alertas interactivas basadas en comunicados y lanzamientos recientes en el mercado mexicano.",
             toastCopied: "¡Guion comercial copiado al portapapeles!",
-            propModalTitle: "Insertar Actualización en Lenguaje Natural",
-            propModalDesc: "Escriba abajo en texto libre la información encontrada en campo (ej: 'Aumentar tasa de aprobación de BBVA al 92% por nueva API'). El sistema interpretará los datos automáticamente para homologación técnica.",
-            propTextPlaceholder: "Escriba aquí su propuesta técnico-comercial...",
-            btnCancel: "CANCELAR",
-            btnSubmit: "ENVIAR PROPUESTA",
-            nlpSuccessTitle: "¡Propuesta Interpretada con Éxito!",
-            nlpDetectedComp: "Competidor Identificado",
-            nlpDetectedField: "Atributo Técnico",
-            nlpDetectedVal: "Nuevo Valor Proposto",
-            nlpExplanation: "Los datos fueron identificados y consolidados en un borrador de homologación. Ya puede visualizar el pendiente en la pestaña de Origen y Curaduría.",
             fields: {
               foco: "Enfoque y Operación",
               modelo: "Modelo Comercial",
@@ -210,6 +165,7 @@
           {
             id: 'adyen',
             name: 'Adyen',
+            logoText: 'ADY',
             type: 'Global / Omnichannel',
             pricingModel: 'Interchange++ (IC++) Real transparente',
             approvalRate: 94.5,
@@ -221,24 +177,20 @@
             companyOverview: 'Plataforma de tecnologia financeira global holandesa de pagamentos unificados que opera como adquirente, gateway e gerenciador de riscos em um único fluxo direto de dados, eliminando intermediários.',
             targetAudience: 'Empresas Enterprise brasileiras, varejistas com canais físicos e digitais complexos (Unified Commerce) e gigantes globais de tecnologia.',
             weaknesses: 'Menor flexibilidade comercial para Micro e Pequenas empresas; sem foco em POS físico de baixo faturamento para lojistas de rua comuns.',
-            strengths: 'Maior taxa de autorização em transações nacionais e internacionais, motor antifraude adaptativo nativo (RevenueProtect), e contratos transparentes.',
+            strengths: 'Maior taxa de autorização em transações nacionais e internacionais, motor antifraude nativo (RevenueProtect), e contratos transparentes.',
             partners: 'VTEX, Shopify, Magento, Salesforce Commerce Cloud, SAP Hybris, Oracle.',
-            status: 'approved',
-            verifiedBy: 'Equipa de PMM (Global & Local)',
-            dataSource: 'Relatórios Financeiros Globais, Documentação Técnica da API Adyen v69',
             marketCap: 'Euronext: ADYEN | Cap. de Mercado: ~€41.8 Bilhões',
-            recentNews: [
-              { text: "Adyen anuncia expansão do ecossistema de terminais Android e novas APIs de processamento integradas com Pix via Open Finance.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'Adyen anuncia expansão do ecossistema de terminais Android e novas APIs de processamento integradas com Pix via Open Finance.',
             battlecard: {
-              whyWeWin: 'A plataforma unificada elimina roteamentos fragmentados, maximiza as taxas de autorização e zera erros de conciliação financeira entre lojas físicas e e-commerce.',
-              vulnerabilities: 'Falta de apelo para empresas menores que buscam tarifas fixas (flat-rate) fáceis de mensurar sem análise técnica detalhada.',
+              whyWeWin: 'A plataforma unificada elimina roteamentos fragmentados, maximiza as taxas de autorização e zera erros de conciliation financeira entre canais.',
+              vulnerabilities: 'Falta de apelo para empresas menores que buscam tarifas fixas (flat-rate) fáceis de mensurar.',
               script: 'Se o seu adquirente atual propõe taxas de transação baixas, pergunte sobre o custo das recusas legítimas por falsos positivos. Na Adyen, a nossa inteligência nativa aumenta o seu faturamento líquido de forma mensurável.'
             }
           },
           {
             id: 'cielo',
             name: 'Cielo + Braspag',
+            logoText: 'CIE',
             type: 'Legado Nacional',
             pricingModel: 'MDR Flat Altamente Negociável / Sob volume físico',
             approvalRate: 88.5,
@@ -252,14 +204,8 @@
             weaknesses: 'Arquitetura baseada em sistemas legados e imobilizados; dificuldade de prover Unified Commerce verdadeiro devido a múltiplas plataformas de conciliação apartadas.',
             strengths: 'Sólida capilaridade comercial em todo o território nacional, programas institucionais como o Aliança Cielo, e força de balcão física.',
             partners: 'CyberSource, Braspag, Bradesco, Banco do Brasil, VTEX.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM Brasil',
-            dataSource: 'Balanços Públicos Cielo, Documentação Braspag API, Inteligência de Campo',
             marketCap: 'Capital Fechado (Delisted) | Controlada por Bradesco & BB',
-            recentNews: [
-              { text: "Após deslistagem das bolsas, Cielo direciona foco técnico e investimentos para BI de vendas locais de comércio de rua tradicional.", date: "Junho 2026" },
-              { text: "Cielo reduz o MDR de cartões de débito físicos para 0.85% em resposta à pressão comercial no varejo.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'Após deslistagem das bolsas, Cielo direciona foco técnico e investimentos para BI de vendas locais de comércio de rua tradicional.',
             battlecard: {
               whyWeWin: 'Adyen unifica a captura física e digital sem depender de gateways intermediários (como Braspag) e ferramentas de fraude desconectadas.',
               vulnerabilities: 'Eles disputam fortemente taxas comerciais (MDR) subsidiadas pelas instituições bancárias de crédito parceiras.',
@@ -269,6 +215,7 @@
           {
             id: 'rede',
             name: 'Rede Itaú',
+            logoText: 'RED',
             type: 'Banco Nacional',
             pricingModel: 'MDR Flat / Taxa agressiva para correntistas Itaú',
             approvalRate: 89.0,
@@ -282,23 +229,18 @@
             weaknesses: 'Tecnologia engessada e burocrática para integrações de grande escala; dependência direta de reciprocidade com o banco.',
             strengths: 'Acesso a linhas de crédito baratas e fluxo de antecipação de recebíveis altamente facilitado para caixa.',
             partners: 'Software Express, Auttar, PayGo, Linx, MaxiPago, Itaú Unibanco.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM Brasil',
-            dataSource: 'Análises de Mercado Itaú Unibanco, Feedback de Contas Enterprise da Adyen',
             marketCap: 'Divisão Itaú Unibanco (B3: ITUB4) | Cap. de Mercado Itaú: ~R$ 310 Bilhões',
-            recentNews: [
-              { text: "Rede Itaú intensifica oferta comercial combinada com antecipação gratuita de recebíveis em crédito rotativo para atrair grandes contas.", date: "Junho 2026" },
-              { text: "Rede Itaú lança o programa Conexão Itaú, zerando a taxa do Pix para todas as contas PJ nos primeiros 6 meses.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'Rede Itaú intensifica oferta comercial combinada com antecipação gratuita de recebíveis em crédito rotativo para atrair grandes contas.',
             battlecard: {
               whyWeWin: 'A independência bancária e a tecnologia ágil de adquirência da Adyen otimizam as taxas de autorização sem amarras de crédito.',
               vulnerabilities: 'Oferecem isenções de aluguel de terminais e tarifas Pix integrados ao fluxo de caixa bancário empresarial.',
-              script: 'A Rede pode oferecer reciprocidade de tarifas bancárias atrativas, mas lembre-se: taxas de processamento baixas não compensam transações legítimas recusadas por um system de risco engessado. A Adyen foca em aumentar a conversão técnica, o que gera muito mais receita líquida no fim do mês.'
+              script: 'A Rede pode oferecer reciprocidade de tarifas bancárias atrativas, mas lembre-se: taxas de processamento baixas não compensam transações legítimas recusadas por um sistema de risco engessado. A Adyen foca em aumentar a conversão técnica, o que gera muito mais receita líquida no fim do mês.'
             }
           },
           {
             id: 'getnet',
-            name: 'Getnet',
+            name: 'Getnet (Santander)',
+            logoText: 'GET',
             type: 'Banco Nacional / Global',
             pricingModel: 'MDR Flat negociado com pacote Santander',
             approvalRate: 88.0,
@@ -312,13 +254,8 @@
             weaknesses: 'Arquitetura com múltiplos sistemas integrados secundariamente (Auttar/Carat), resultando em alta complexidade técnica.',
             strengths: 'Alinhamento global com a estrutura PagoNxt, permitindo alcance comercial em canais físicos de múltiplos países.',
             partners: 'NuvemShop, VTEX, PrestaShop, Magento, Cybersource, PagoNxt.',
-            status: 'approved',
-            verifiedBy: 'Equipa de PMM LatAm',
-            dataSource: 'Relatórios do Grupo PagoNxt, Feedbacks Técnicos de Clientes Varejistas',
-            marketCap: 'Controlada PagoNxt (Grupo Santander - NYSE: SAN) | Cap. de Mercado: ~€71.5 Bilhões',
-            recentNews: [
-              { text: "Getnet aposta na consolidação técnica das plataformas Auttar e Carat sob a marca global PagoNxt para otimizar fluxos transfronteiriços.", date: "Junho 2026" }
-            ],
+            marketCap: 'Controlada PagoNxt (Santander - NYSE: SAN) | Cap. de Mercado: ~€71.5 Bilhões',
+            newsSnippet: 'Getnet aposta na consolidação técnica das plataformas Auttar e Carat sob a marca global PagoNxt para otimizar fluxos transfronteiriços.',
             battlecard: {
               whyWeWin: 'A simplicidade de uma única integração sem pacotes bancários atrelados ou reciprocidades complexas.',
               vulnerabilities: 'Integrações de adquirentes e gateways legados (Auttar) trazem alta complexidade de manutenção.',
@@ -328,6 +265,7 @@
           {
             id: 'stone',
             name: 'Stone / Pagar.me',
+            logoText: 'STN',
             type: 'Nacional / Desafiante',
             pricingModel: 'Flat-Rate agressivo com antecipação integrada',
             approvalRate: 89.8,
@@ -341,14 +279,8 @@
             weaknesses: 'Sem trilhos internacionais robustos de adquirência própria; foco histórico em PME reduz capacidade de atendimento Enterprise complexo.',
             strengths: 'Excelente capilaridade de suporte comercial em campo "Pé no Barro" e liquidez de antecipação diária veloz.',
             partners: 'Pagar.me, Mundipagg, Linx, VHSYS, VTEX, Magento, Clearsale.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM Brasil',
-            dataSource: 'Earnings Release StoneCo Q4 2025, Documentação Pagar.me',
             marketCap: 'Capital Aberto (NASDAQ: STNE) | Cap. de Mercado: ~$4.1 Bilhões',
-            recentNews: [
-              { text: "StoneCo reporta sólida expansão de margens e cresce base de clientes de médio e grande porte integrando POS físico a novas soluções ERP.", date: "Junho 2026" },
-              { text: "Stone inicia campanha nacional integrando terminais inteligentes à plataforma ERP Linx em grandes franquias.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'StoneCo reporta sólida expansão de margens e cresce base de clientes de médio e grande porte integrando POS físico a novas soluções ERP.',
             battlecard: {
               whyWeWin: 'Capacidade global robusta e expertise para processar grandes transações globais e fluxos complexos em escala Enterprise.',
               vulnerabilities: 'Falta de inteligência de dados globais (Cross-Border legítimo) e menor maturidade em segurança física corporativa.',
@@ -358,6 +290,7 @@
           {
             id: 'pagbank',
             name: 'PagBank',
+            logoText: 'PAG',
             type: 'Nacional / Carteira e Adq',
             pricingModel: 'Flat-Rate por canais de intermediação',
             approvalRate: 87.5,
@@ -371,14 +304,8 @@
             weaknesses: 'Forte atrito de recusa de compras (antifraude agressivo para blindar estorno); menor sofisticação técnica de APIs.',
             strengths: 'Onboarding instantâneo simplificado e liquidez veloz conectada a uma conta bancária PJ ágil.',
             partners: 'UOL, Moip, Concil, RegistraSeguro.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM Brasil',
-            dataSource: 'Relatórios do Banco Central do Brasil, Earnings PagSeguro/PagBank',
             marketCap: 'Capital Aberto (NYSE: PAGS) | Cap. de Mercado: ~$3.4 Bilhões',
-            recentNews: [
-              { text: "PagBank foca expansão de receita no aumento do take-rate de serviços bancários vinculados à sua ampla conta PJ digital.", date: "Junho 2026" },
-              { text: "PagBank atualiza a sua API de Split de Pagamento com inteligência tributária nativa para e-commerce.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'PagBank foca expansão de receita no aumento do take-rate de serviços bancários vinculados à sua ampla conta PJ digital.',
             battlecard: {
               whyWeWin: 'A Adyen não intermedia o dinheiro, ela processa diretamente. Isso traduz-se em taxas de aprovação superiores e menos transações negadas erroneamente.',
               vulnerabilities: 'O antifraude deles tende a bloquear transações legítimas para evitar estornos, penalizando a receita operacional do cliente.',
@@ -388,8 +315,9 @@
           {
             id: 'mercadopago',
             name: 'Mercado Pago',
+            logoText: 'MPA',
             type: 'Regional LatAm Tech',
-            pricingModel: 'MDR Flat com descontos progressivos por ecossistema',
+            pricingModel: 'MDR Blended baseado no ecossistema do marketplace',
             approvalRate: 90.5,
             omnichannel: 'Parcial (Foco digital gigante, maquininhas Point integradas à conta)',
             antifraud: 'Nativo (Mercado Pago Shield) alimentado pela base do Mercado Livre',
@@ -399,16 +327,10 @@
             companyOverview: 'Braço fintech de pagamentos e crédito estruturado do Mercado Livre. Consolida uma excelente presença digital impulsionada pela robusta base de dados comportamentais de consumo regional.',
             targetAudience: 'Comerciantes digitais de médio porte, marcas de e-commerce e desenvolvedores que já atuam integrados ao ecossistema Mercado Livre.',
             weaknesses: 'Dificuldade de suporte de contas e atendimento personalizado humanizado para merchants do nível Enterprise.',
-            strengths: 'Inteligência de fraude alimentada pelas transações massivas da maior plataforma de e-commerce da Latina.',
+            strengths: 'Inteligência de fraude alimentada pelas transações massivas da maior plataforma de e-commerce da América Latina.',
             partners: 'Mercado Livre, VTEX, Shopify, Prestashop, Magento.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM LatAm',
-            dataSource: 'Relatórios Anuais MercadoLibre Inc, Testes Operacionais em Sandboxes',
             marketCap: 'Subsidiária MercadoLibre (NASDAQ: MELI) | Cap. de Mercado MELI: ~$95 Bilhões',
-            recentNews: [
-              { text: "Mercado Pago impulsiona taxas de aceitação usando algoritmos preditivos que analisam o histórico de compras dentro del Mercado Livre.", date: "Junho 2026" },
-              { text: "Mercado Pago implementa análise de risco preditiva com IA baseada na base comportamental do Mercado Livre.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'Mercado Pago impulsiona taxas de aceitação usando algoritmos preditivos que analisam o histórico de compras dentro do Mercado Livre.',
             battlecard: {
               whyWeWin: 'Atendimento e suporte corporativo humanizado e dedicado; independência total em relação a marketplaces concorrentes.',
               vulnerabilities: 'Se o cliente vende fora do ecossistema do Mercado Livre, perde muito dos benefícios de dados integrados.',
@@ -418,6 +340,7 @@
           {
             id: 'ebanx',
             name: 'EBANX',
+            logoText: 'EBX',
             type: 'Especialista Cross-Border',
             pricingModel: 'Markup de Câmbio / Comissão de Remessa Internacional',
             approvalRate: 85.0,
@@ -431,13 +354,8 @@
             weaknesses: 'Zero infraestrutura técnica para canais físicos (in-store) no Brasil; altas taxas de intermediação devido ao markup de câmbio.',
             strengths: 'Domínio absoluto da regulação de remessas e ampla cobertura de meios de pagamento locais na LatAm.',
             partners: 'Principais carteiras eletrônicas, bancos locais sul-americanos, dLocal.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM Cross-Border',
-            dataSource: 'Comunicados à Imprensa EBANX, Estudos de Casos de Comércio Internacional',
             marketCap: 'Capital Fechado (Privada) | Valuation Estimado: ~$1.5 Bilhão',
-            recentNews: [
-              { text: "EBANX fornece canais de pagamento especializados para grandes plataformas internacionais que vendem em mercados emergentes da África.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'EBANX fornece canais de pagamento especializados para grandes plataformas internacionais que vendem em mercados emergentes da África.',
             battlecard: {
               whyWeWin: 'A Adyen processa tanto transações locais domésticas quanto cross-border numa única API sem a necessidade de múltiplos contratos redundantes.',
               vulnerabilities: 'A dependência exclusiva do canal transfronteiriço encarece as transações domésticas de grandes marcas.',
@@ -447,6 +365,7 @@
           {
             id: 'dlocal',
             name: 'dLocal',
+            logoText: 'DLO',
             type: 'Especialista Cross-Border',
             pricingModel: 'Markup de Câmbio + Taxas por mercado emergente',
             approvalRate: 84.5,
@@ -458,15 +377,10 @@
             companyOverview: 'Plataforma de processamento de pagamentos focada em mercados emergentes globais. Atua conectando grandes multinacionais a consumidores na LatAm, África e Ásia.',
             targetAudience: 'Empresas multinacionais de economia digital que buscam um parceiro único de agregação de métodos locais em múltiplas regiões geográficas.',
             weaknesses: 'Dependência técnica de adquirentes e parceiros locais indiretos, resultando ocasionalmente em instabilidades operacionais.',
-            strengths: 'Portfólio unificado e agressivo con cobertura regulatória em dezenas de geografias complexas y exóticas.',
-            partners: 'Shopify, VTEX, Rappi, Uber, Amazon.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM LatAm',
-            dataSource: 'Relatórios Financeiros dLocal NASDAQ, Logs de Transações em Clientes Compartilhados',
+            strengths: 'Portfólio unificado e agressivo com cobertura regulatória em dezenas de geografias complexas e exóticas.',
+            partners: 'Shopify, Tiendanube, VTEX, Rappi, Uber, Amazon.',
             marketCap: 'Capital Aberto (NASDAQ: DLO) | Cap. de Mercado: ~$2.7 Bilhões',
-            recentNews: [
-              { text: "dLocal expande processamento de pagamentos locais na Ásia adicionando canais de depósito instantâneo em mercados emergentes.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'dLocal expande processamento de pagamentos locais na Ásia adicionando canais de depósito instantâneo em mercados emergentes.',
             battlecard: {
               whyWeWin: 'A nossa rede de adquirência direta própria no Brasil garante SLAs de disponibilidade e aprovação muito mais altos do que o modelo agregador deles.',
               vulnerabilities: 'As reclamações frequentes de falhas pontuais de processamento devido ao modelo de subadquirência local indireta em múltiplos mercados.',
@@ -476,6 +390,7 @@
           {
             id: 'paypal',
             name: 'PayPal / Braintree',
+            logoText: 'PAY',
             type: 'Global Wallet / Checkout',
             pricingModel: 'Flat-Rate + Tarifa Fixa por transação',
             approvalRate: 88.0,
@@ -489,13 +404,8 @@
             weaknesses: 'Altas tarifas fixas por transações domésticas brasileiras; atrito na experiência se o usuário é obrigado a criar conta PayPal.',
             strengths: 'Marca de alta confiança de conversão digital global de checkout rápido em cartões estrangeiros.',
             partners: 'Braintree, Salesforce, Adobe Commerce, Shopify, VTEX.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM Global',
-            dataSource: 'Relatórios Anuais SEC PayPal Inc, Documentação de Integração Braintree',
             marketCap: 'Capital Aberto (NASDAQ: PYPL) | Cap. de Mercado: ~$65.0 Bilhões',
-            recentNews: [
-              { text: "PayPal acelera reformulação global de sua solução Braintree focando em inteligência artificial para o checkout rápido de um clique.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'PayPal acelera reformulação global de sua solução Braintree focando em inteligência artificial para o checkout rápido de um clique.',
             battlecard: {
               whyWeWin: 'Os nossos fluxos focam na conversão direta e sem atrito do cartão do utilizador, enquanto o PayPal é otimizado para a sua própria carteira digital.',
               vulnerabilities: 'Taxas altíssimas e atrito no checkout quando o utilizador final é obrigado a ter uma conta do PayPal para finalizar a compra.',
@@ -505,39 +415,35 @@
           {
             id: 'stripe',
             name: 'Stripe',
+            logoText: 'STR',
             type: 'Global Tech / API-First',
-            pricingModel: 'Flat-Rate padrão / IC++ para escala',
-            approvalRate: 91.2,
-            omnichannel: 'Médio (Terminal disponível, mas focado no digital no BR)',
-            antifraud: 'Nativo (Radar) com boa assertividade digital',
-            pixFeature: 'Disponível na API com boa conciliação, mas integração separada',
-            globalFootprint: 'Global: Operações diretas em mais de 45 países com adquirência local própria',
+            pricingModel: 'Flat-Rate padrão ou IC++ para contas Enterprise',
+            approvalRate: 91.5,
+            omnichannel: 'Parcial (Stripe Terminal disponível, focado digitalmente no Brasil)',
+            antifraud: 'Nativo de risco (Stripe Radar baseado em machine learning)',
+            pixFeature: 'Disponível na API com conciliação e suporte nativo',
+            globalFootprint: 'Global: Operações de adquirência direta em mais de 45 países',
             devExperience: 95,
-            companyOverview: 'Líder global em processamento de pagamentos digitais com foco em automação e facilidade de codificação técnica para desenvolvedores de software.',
-            targetAudience: 'Startups tecnológicas de crescimento veloz, SaaS, Marketplaces estruturados e e-commerce de escala digital pura.',
-            weaknesses: 'Infraestrutura de Unified Commerce física presencial ainda incipiente e cara para transações tradicionais.',
-            strengths: 'A melhor documentação e SDKs do mercado global, velocidade no onboarding e facilidade de integração multimoedas.',
-            partners: 'Shopify, VTEX, Salesforce, BigCommerce.',
-            status: 'approved',
-            verifiedBy: 'Equipe de PMM LatAm',
-            dataSource: 'Relatórios Internos Adyen, Documentação de Integração API Stripe',
+            companyOverview: 'Gigante tecnológica norte-americana focada em facilitar o processamento de pagamentos digitais com alto poder de customização para engenheiros e equipes de produtos.',
+            targetAudience: 'SaaS, Marketplaces complexos, Startups escaláveis e empresas de economia digital nativa.',
+            weaknesses: 'Custos de tarifa flat impraticáveis para escala massiva Enterprise física (Omnichannel incipiente no BR).',
+            strengths: 'Documentação impecável, onboarding instantâneo de parceiros e ferramentas avançadas para assinaturas recorrentes.',
+            partners: 'Shopify, VTEX, Salesforce, Magento, BigCommerce.',
             marketCap: 'Capital Fechado (Privada) | Valuation Estimado: ~$70 Bilhões',
-            recentNews: [
-              { text: "Stripe atualiza APIs para cobros recorrentes no Brasil adaptando-se antecipadamente às regras do Pix Automático.", date: "Junho 2026" }
-            ],
+            newsSnippet: 'Stripe Brasil atualiza suas APIs nativas de recorrência focando em adequações para o Pix Automático em escala nacional.',
             battlecard: {
-              whyWeWin: 'Nosso modelo direto IC++ em transações corporativas massivas economiza recursos técnicos e financeiros se comparados à taxa Flat da Stripe.',
-              vulnerabilities: 'Custos extremamente ineficientes para volumes Enterprise consolidados sem negociação ad-hoc.',
-              script: 'A Stripe oferece excelente documentação técnica de onboarding imediato para startups. Porém, à medida que o volume transacionado cresce, a taxa fixa Blended deles consome margens que o modelo Interchange++ da Adyen protege integralmente, além do nosso Unified Commerce de balcão ser infinitamente mais maduro.'
+              whyWeWin: 'O modelo transparente IC++ da Adyen economiza milhões em tarifas para grandes merchants na comparação com as taxas flat da Stripe.',
+              vulnerabilities: 'Cobrança padrão blended alta e falta de adquirência direta física robusta (Unified Commerce).',
+              script: 'A Stripe possui uma excelente API para validação de startups, mas à medida que o volume escala para grandes contas, o modelo de taxa flat deles se torna um imposto sobre o crescimento. A Adyen entrega adquirência direta local real com otimização completa de custos e suporte dedicado.'
             }
           }
         ];
 
-        // Base de Dados do México (ES-MX) - Meticulosamente preenchido conforme "Análise competitiva Adyen Mexico" e arquivos de 2026
         const MX_COMPETITORS = [
           {
             id: 'adyen',
             name: 'Adyen',
+            logoText: 'ADY',
             type: 'Global / Omnichannel',
             pricingModel: 'Interchange++ (IC++) Real y transparente',
             approvalRate: 94.2,
@@ -556,9 +462,6 @@
             dataSource: 'Reportes Financieros Globales, Análisis de Campo de Adyen México 2026',
             marketCap: 'Euronext: ADYEN | Cap. de Mercado: ~€41.8 Mil millones',
             newsSnippet: 'Adyen expande su red de terminales móviles Android de Unified Commerce en la Ciudad de México y Monterrey para retailers líderes.',
-            recentNews: [
-              { text: "Adyen expande su red de terminales móviles Android de Unified Commerce en la Ciudad de México y Monterrey para retailers líderes.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'Ofrecemos adquirencia directa y unificada en México que elimina intermediarios lógicos (como MIT o pasarelas bancarias), disminuyendo el fraude real.',
               vulnerabilities: 'Stripe es más ágil para integraciones instantáneas de autoservicio en startups tecnológicas nacientes.',
@@ -568,6 +471,7 @@
           {
             id: 'bbva',
             name: 'BBVA',
+            logoText: 'BBV',
             type: 'Banco Adquirente Líder',
             pricingModel: 'Blended tasa tradicional negociable por volumen',
             approvalRate: 89.1,
@@ -586,19 +490,16 @@
             dataSource: 'Análisis de Oliver Wyman - México Payment Landscape, Datos de Campo BBVA',
             marketCap: 'NYSE: BBVA | Cap. de Mercado: ~$55.0 Mil millones',
             newsSnippet: 'BBVA México reporta volúmenes transaccionales récord de adquirencia física durante eventos de consumo impulsados por meses sin intereses.',
-            recentNews: [
-              { text: "BBVA México reporta volúmenes transaccionales récord de adquirencia física durante eventos de consumo impulsados por meses sin intereses.", date: "Junio 2026" },
-              { text: "BBVA México lanza campaña exclusiva de 18 Meses Sin Intereses integrando los Puntos BBVA al checkout digital de Openpay.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'Adyen entrega una sola plataforma integrada eliminando la separación burocrática y de rendimiento que existe entre BBVA físico y Openpay.',
-              vulnerabilities: 'Tienen un control monopólico sobre los Puntos BBVA y alta capacidad de financiamiento bancario.',
+              vulnerabilities: 'Tienen un control de los Puntos BBVA y alta capacidad de financiamiento bancario.',
               script: 'Negociar con BBVA implica lidiar con los silos de un gran banco tradicional. Con Adyen, consolida el comercio digital y físico bajo una sola API de tecnología pura.'
             }
           },
           {
             id: 'openpay',
             name: 'Openpay',
+            logoText: 'OPN',
             type: 'Agregador / Checkout Digital (BBVA)',
             pricingModel: 'Tasa Blended estándar basada en volumen',
             approvalRate: 88.5,
@@ -617,10 +518,6 @@
             dataSource: 'Documentación Oficial Openpay API, Entrevistas con Merchants Migrados',
             marketCap: 'Subsidiaria de BBVA México | Integrada comercialmente',
             newsSnippet: 'Openpay expande la cobertura de su red de cobranza en efectivo Paynet añadiendo nuevos comercios locales para pagos de servicios.',
-            recentNews: [
-              { text: "Openpay expande la cobertura de su red de cobranza en efectivo Paynet añadiendo nuevos comercios locales para pagos de servicios.", date: "Junio 2026" },
-              { text: "Openpay ajusta sus tasas de agregación blended para startups con el objetivo de retener merchants en escala intermedia.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'Adyen es adquirente directo para el procesamiento de transacciones de volumen corporativo, evitando el recargo operacional de los agregadores.',
               vulnerabilities: 'Tienen una excelente agilidad de onboarding para empresas medianas y el respaldo de BBVA.',
@@ -630,6 +527,7 @@
           {
             id: 'banorte',
             name: 'Banorte',
+            logoText: 'BAN',
             type: 'Banco Adquirente Tradicional',
             pricingModel: 'MDR Blended negociable ligada a reciprocidad bancaria',
             approvalRate: 88.0,
@@ -648,9 +546,6 @@
             dataSource: 'Análisis Competitivo Adyen México, Reportes de Banco de México (Banxico)',
             marketCap: 'BMV: GFNORTE | Cap. de Mercado: ~$25.0 Mil millones',
             newsSnippet: 'Banorte expande su línea de terminales físicas con integraciones de software a la medida para el sector hotelero y médico.',
-            recentNews: [
-              { text: "Banorte expande su línea de terminales físicas con integraciones de software a la medida para el sector hotelero y médico.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'Adyen ofrece una plataforma amigable para desarrolladores y APIs robustas, superando las limitaciones tecnológicas heredadas de Payworks.',
               vulnerabilities: 'Estrecha relación comercial e histórica que reduce la disposición del merchant para migrar cookies operativas.',
@@ -660,6 +555,7 @@
           {
             id: 'citibanamex',
             name: 'Citibanamex',
+            logoText: 'CIT',
             type: 'Banco Adquirente Tradicional',
             pricingModel: 'Blended tradicional ligada a servicios financieros globales',
             approvalRate: 87.5,
@@ -678,9 +574,6 @@
             dataSource: 'Análisis de Mercado de Adquirencia de Citigroup LatAm, Datos de Campo',
             marketCap: 'División de Citigroup (NYSE: C) | Proceso de Venta/OPI en Marcha',
             newsSnippet: 'Citibanamex mantiene el liderazgo en financiamiento a tasa cero en el Hot Sale apoyado en alianzas exclusivas de marcas de retail.',
-            recentNews: [
-              { text: "Citibanamex mantiene el liderazgo en financiamiento a tasa cero en el Hot Sale apoyado en alianzas exclusivas de marcas de retail.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'La plataforma directa de Adyen ofrece mayor disponibilidad en línea y agilidad que la tecnología bancaria burocrática de Citibanamex.',
               vulnerabilities: 'Atractivas tasas para clientes globales que ya concentran todas sus líneas de crédito corporativo en Citigroup.',
@@ -690,12 +583,13 @@
           {
             id: 'santander',
             name: 'Santander (Getnet MX)',
+            logoText: 'SAN',
             type: 'Banco Global / Adquirente',
             pricingModel: 'Blended negociada o IC++ para cuentas Enterprise de escala',
             approvalRate: 89.5,
             omnichannel: 'Parcial (Getnet físico + pasarela de pago digital MIT integrada)',
             antifraud: 'Tercerizado nativo con Cybersource para mitigar contracargos',
-            pixFeature: 'SPEI en tempo real disponible vía la pasarela corporativa',
+            pixFeature: 'SPEI en tiempo real disponible vía la pasarela corporativa',
             globalFootprint: 'Global: Operaciones directas de PagoNxt en México, Brasil, Chile, Argentina y Europa',
             devExperience: 70,
             companyOverview: 'Entidad de adquirencia del Grupo Santander que comercializa sus productos de pasarela bajo la marca Getnet en México, utilizando frecuentemente la infraestructura tecnológica de MIT.',
@@ -708,19 +602,16 @@
             dataSource: 'Reportes de PagoNxt México, Informes de Competencia en Campo',
             marketCap: 'Grupo Santander (NYSE: SAN) | Cap. de Mercado: ~€71.5 Mil millones',
             newsSnippet: 'Getnet México impulsa la adopción de su plataforma unificada SEP orientada a merchants internacionales con operaciones cruzadas.',
-            recentNews: [
-              { text: "Getnet México impulsa la adopción de su plataforma unificada SEP orientada a merchants internacionales con operaciones cruzadas.", date: "Junio 2026" },
-              { text: "Santander Getnet MX consolida alianza comercial con PayPal para acelerar el procesamiento unificado en grandes retailers.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'Adyen es una única plataforma verdadera sin integraciones fragmentadas entre banco adquirente y gateway tecnológico secundario.',
-              vulnerabilities: 'Ofrecen paquetes de financiamiento (meses sin intereses) subsidiados directamente por las tarjetas de Santander.',
+              vulnerabilities: 'Ofrecen de forma integrada el programa único de acumulación y redención de Puntos de Lealtad Santander.',
               script: 'Para usar Getnet, a menudo debe integrar MIT para el gateway y Cybersource para el fraude. Adyen maneja todo bajo una sola conexión, sin silos.'
             }
           },
           {
             id: 'scotiabank',
             name: 'Scotiabank',
+            logoText: 'SCO',
             type: 'Banco Adquirente Tradicional',
             pricingModel: 'MDR Blended tradicional',
             approvalRate: 87.0,
@@ -729,19 +620,16 @@
             pixFeature: 'SPEI bancario tradicional integrado por portal de comercio electrónico',
             globalFootprint: 'Global: Operaciones en Canadá, México, el Caribe y América del Sur',
             devExperience: 55,
-            companyOverview: 'Institución financeira internacional canadiense. Ofrece servicios básicos de terminal bancaria física a su base de clientes corporativos en México.',
+            companyOverview: 'Institución financiera internacional canadiense. Ofrece servicios básicos de terminal bancaria física a su base de clientes corporativos en México.',
             targetAudience: 'Empresas canadienses con operaciones comerciales en México y grandes almacenes con necesidades de terminales de balcón básicas.',
-            weaknesses: 'Carece de una oferta de tecnologia de pago digital de vanguardia desarrollada de forma nativa.',
+            weaknesses: 'Carece de una oferta de tecnología de pago digital de vanguardia desarrollada de forma nativa.',
             strengths: 'Amplia confianza de banca transaccional internacional norteamericana.',
-            partners: 'Procesadores locais de terminales físicas en México.',
+            partners: 'Procesadores locales de terminales físicas en México.',
             status: 'approved',
             verifiedBy: 'Equipo de PMM Global',
             dataSource: 'Reportes Financieros Scotiabank LatAm, Informes de Mercado',
             marketCap: 'TSX: BNS | Cap. de Mercado: ~$58.0 Mil millones',
             newsSnippet: 'Scotiabank México optimiza el flujo de crédito corporativo para empresas del sector manufacturero y de exportación nacional.',
-            recentNews: [
-              { text: "Scotiabank México optimiza el flujo de crédito corporativo para empresas del sector manufacturero y de exportación nacional.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'Adyen ofrece una propuesta digital líder en retail y comercio unificado, donde Scotiabank carece de capacidades propias.',
               vulnerabilities: 'Relación financiera sólida en cuentas bancarias de la casa matriz canadiense del merchant.',
@@ -751,11 +639,12 @@
           {
             id: 'stripe',
             name: 'Stripe',
+            logoText: 'STR',
             type: 'Global Tech / API-First',
             pricingModel: 'Flat-Rate estándar o IC++ para cuentas Enterprise',
             approvalRate: 91.5,
             omnichannel: 'Parcial (Stripe Terminal disponible, focado digitalmente en México)',
-            antifraud: 'Nativo de riesgo (Stripe Radar baseado em aprendizagem automática)',
+            antifraud: 'Nativo de riesgo (Stripe Radar basado en aprendizaje automático)',
             pixFeature: 'OXXO Pay integrado al checkout rápido y soporte ágil para transferencias SPEI',
             globalFootprint: 'Global: Operaciones directas de adquirencia local en más de 40 países alrededor del mundo',
             devExperience: 95,
@@ -769,10 +658,6 @@
             dataSource: 'Documentos Oficiales Stripe México, Feedback Técnico de Clientes Migrados',
             marketCap: 'Capital Privado (Fechado) | Valoración Estimada: ~$70 Mil millones',
             newsSnippet: 'Stripe consolida nuevas alianzas en México para acelerar la adopción de Stripe Connect en el pujante sector de fintechs locales.',
-            recentNews: [
-              { text: "Stripe consolida nuevas alianzas en México para acelerar la adopción de Stripe Connect en el pujante sector de fintechs locales.", date: "Junio 2026" },
-              { text: "Stripe México actualiza su motor de cobros recurrentes Stripe Billing con adaptaciones automáticas para el SPEI recurrente.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'El modelo Interchange++ nativo de Adyen reduce drásticamente las comisiones comerciales en escala corporativa en comparación con Stripe.',
               vulnerabilities: 'Poseen la documentación de código más amada de la industria y gran velocidad de adopción inicial.',
@@ -782,6 +667,7 @@
           {
             id: 'ebanx',
             name: 'EBANX',
+            logoText: 'EBX',
             type: 'Especialista Cross-Border',
             pricingModel: 'Markup de tipo de cambio + Comisión de remesa',
             approvalRate: 84.0,
@@ -797,12 +683,9 @@
             partners: 'Bancos centrales, procesadores de efectivo locales, EBANX Shield.',
             status: 'approved',
             verifiedBy: 'Equipo de PMM Cross-Border',
-            dataSource: 'Comunicados Corporativos EBANX, Estudos de Casos de Comercio Global',
+            dataSource: 'Comunicados Corporativos EBANX, Estudios de Casos de Comercio Global',
             marketCap: 'Capital Fechado (Privada) | Valoración de Mercado: ~$1.5 Mil millones',
             newsSnippet: 'EBANX optimiza su red de recaudación local en México ofreciendo checkout dinámico para marcas internacionales que operan sin RFC.',
-            recentNews: [
-              { text: "EBANX optimiza su red de recaudación local en México ofreciendo checkout dinámico para marcas internacionales que operan sin RFC.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'Adyen procesa de manera doméstica local en México a una fracción del costo que cobra EBANX en su modelo transfronterizo cambiario.',
               vulnerabilities: 'Son sumamente ágiles para corporativos que de ninguna manera desean abrir una entidad legal RFC en México.',
@@ -812,13 +695,14 @@
           {
             id: 'payu',
             name: 'PayU',
+            logoText: 'PYU',
             type: 'Agregador Digital Regional',
             pricingModel: 'Blended rate estándar por escala de procesamiento',
             approvalRate: 87.8,
             omnichannel: 'Solo digital',
             antifraud: 'Nativo modular de riesgo (PayU Shield / Módulo integrado)',
             pixFeature: 'SPEI, OXXO Pay nativo y amplia gama de Meses Sin Intereses directos',
-            globalFootprint: 'Global: Operaciones de agregación digital en más de 20 mercados de rápido crescimento en LatAm y EMEA',
+            globalFootprint: 'Global: Operaciones de agregación digital en más de 20 mercados de rápido crecimiento en LatAm y EMEA',
             devExperience: 78,
             companyOverview: 'Compañía fintech líder en pagos digitales, parte de Prosus. Actúa facilitando la recaudación de comercio electrónico con un enfoque puramente digital.',
             targetAudience: 'Venta digital de retail mediano, plataformas de videojuegos en línea y tiendas virtuales medianas con CMS.',
@@ -830,9 +714,6 @@
             dataSource: 'Balanços de Prosus Fintech, Informes Técnicos de Campo',
             marketCap: 'División de Prosus (Euronext: PRX) | Valoración de Prosus: ~$110.0 Mil millones',
             newsSnippet: 'PayU optimiza sus checkout SDKs reduciendo la fricción en la introducción de datos en terminales móviles para e-commerce LatAm.',
-            recentNews: [
-              { text: "PayU optimiza sus checkout SDKs reduciendo la fricción en la introducción de datos en terminales móviles para e-commerce LatAm.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'La tecnología directa de Adyen ofrece mayor velocidad de procesamiento y menores tasas de recusas técnicas por falso positivo de riesgo.',
               vulnerabilities: 'Poseen alta capilaridad de plugins rápidos de instalar en sitios web medianos.',
@@ -842,28 +723,25 @@
           {
             id: 'mercadopago',
             name: 'Mercado Pago',
+            logoText: 'MPA',
             type: 'Regional LatAm Wallet / Agregador',
-            pricingModel: 'MDR Blended baseado en el ecosistema del marketplace',
+            pricingModel: 'MDR Blended basado en el ecosistema del marketplace',
             approvalRate: 90.2,
             omnichannel: 'Parcial (Terminales Point Smart / Point Air conectadas a la wallet)',
             antifraud: 'Nativo de riesgo (Mercado Pago Shield basado en transacciones de Meli)',
             pixFeature: 'SPEI nativo excelente, transferencias instantáneas de cuenta digital',
             globalFootprint: 'Regional Latam: Operación líder de pasarela y wallet en Argentina, Brasil, México, Chile, Colombia y Perú',
             devExperience: 88,
-            companyOverview: 'La billetera digital y brazo fintech de mayor crecimiento en México y América Latina, parte del ecosistema de Mercado Livre. Ofrece terminales de cobro Point y soluciones completas digitales.',
+            companyOverview: 'La billetera digital y brazo fintech de mayor crecimiento en México y América Latina, parte del ecosistema de Mercado Libre. Ofrece terminales de cobro Point y soluciones completas digitales.',
             targetAudience: 'PyMEs, marketplaces digitales, merchants medianos y grandes marcas que buscan aprovechar la base de usuarios de su billetera.',
             weaknesses: 'Comisiones de agregación comerciales privadas sumamente elevadas; soporte técnico limitado y burocrático para la escala Enterprise corporativa.',
             strengths: 'Gran retención de usuarios con la wallet Mercado Pago y financiamiento rápido con Mercado Crédito.',
-            partners: 'Mercado Livre, Shopify, VTEX, WooCommerce, Magento.',
+            partners: 'Mercado Libre, Shopify, VTEX, WooCommerce, Magento.',
             status: 'approved',
             verifiedBy: 'Equipo de PMM México',
             dataSource: 'Reportes Trimestrales de MercadoLibre Inc, Datos Oficiales de Mercado Pago MX',
             marketCap: 'Subsidiaria MercadoLibre (NASDAQ: MELI) | Cap. de Mercado MELI: ~$95 Mil millones',
             newsSnippet: 'Mercado Pago solicita formalmente la licencia de Institución de Banca Múltiple en México para expandir su oferta de depósitos y créditos.',
-            recentNews: [
-              { text: "Mercado Pago solicita formalmente la licencia de Institución de Banca Múltiple en México para expandir su oferta de depósitos y créditos.", date: "Junio 2026" },
-              { text: "Mercado Pago solicita formalmente ante la CNBV su licencia de Banca Múltiple para competir con bancos tradicionales.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'Adyen es un procesador de tecnología financiero completamente independiente que no compite con el negocio de retail o marketplace de sus clientes.',
               vulnerabilities: 'La wallet de Mercado Pago cuenta con millones de tarjetas ya guardadas en México que agilizan el checkout de un clic.',
@@ -873,6 +751,7 @@
           {
             id: 'paypal',
             name: 'PayPal / Braintree',
+            logoText: 'PAY',
             type: 'Global Wallet / Checkout',
             pricingModel: 'Flat-Rate más tarifa fija comercial por transacción',
             approvalRate: 88.5,
@@ -888,12 +767,9 @@
             partners: 'Braintree, Salesforce, Adobe Commerce, Shopify, VTEX.',
             status: 'approved',
             verifiedBy: 'Equipo de PMM Global',
-            dataSource: 'Reportes Financieros SEC de PayPal Inc, Documentação de Braintree México',
+            dataSource: 'Reportes Financieros SEC de PayPal Inc, Documentación de Braintree México',
             marketCap: 'Capital Abierto (NASDAQ: PYPL) | Cap. de Mercado: ~$65.0 Mil millones',
             newsSnippet: 'PayPal México promueve activamente el uso de su API de checkout exprés optimizada con IA para reducir carritos abandonados.',
-            recentNews: [
-              { text: "PayPal México promueve activamente el uso de su API de checkout exprés optimizada con IA para reducir carritos abandonados.", date: "Junio 2026" }
-            ],
             battlecard: {
               whyWeWin: 'La experiencia integrada directa de Adyen procesa los pagos en segundo plano bajo la identidad del merchant, evitando desvíos en el checkout.',
               vulnerabilities: 'Ofrecen un programa líder global de protección al vendedor y reembolso de contracargos.',
@@ -919,7 +795,6 @@
           { id: 5, competitor: "Openpay", type: "pricing", message: "Openpay ajusta sus tasas de agregación blended para startups con el objetivo de retener merchants en escala intermedia.", searchKeyword: "Openpay ajusta tasas agregacion startups" }
         ];
 
-        // Mapeador de Marcas, Cores e SVGs em Light Theme
         const getBrandColorsAndLogo = (id) => {
           if (!id) return { bg: 'bg-slate-100', border: 'border-slate-200', text: 'text-slate-700', glow: 'border-slate-300', icon: null };
           
@@ -1165,6 +1040,9 @@
           // Alertas do Real-time Alert System (Simulados e Dinâmicos)
           const [alertsList, setAlertsList] = useState([]);
           const [recentToast, setRecentToast] = useState(null);
+          
+          // Controle do Modal de Alertas (Sino)
+          const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
 
           // Estado da aba de Resumos/Perfis
           const [activeSummaryId, setActiveSummaryId] = useState('stripe');
@@ -1172,12 +1050,6 @@
           // Estado da aba de Negociação Comercial
           const [activeBattlecardId, setActiveBattlecardId] = useState('stripe');
           const [selectedObjection, setSelectedObjection] = useState('comercial');
-
-          // Controlo do Modal de Proposta NLP
-          const [isModalOpen, setIsModalOpen] = useState(false);
-          const [proposalText, setProposalText] = useState('');
-          const [nlpResult, setNlpResult] = useState(null);
-          const [showToastCopied, setShowToastCopied] = useState(false);
 
           // Lista de Competidores cadastrados (ativos + propostos)
           const [competitorsDb, setCompetitorsDb] = useState([]);
@@ -1288,119 +1160,6 @@
             return f.some(x => name.toLowerCase().includes(x.toLowerCase())) ? `A ${name}` : `O ${name}`;
           }
 
-          // Roteador NLP para Processamento de Linguagem Natural Simulado de Propostas
-          const handleNlpSubmit = (e) => {
-            e.preventDefault();
-            if (!proposalText.trim()) return;
-
-            const text = proposalText.toLowerCase();
-            let detectedComp = competitorsDb[1]?.name || 'Stripe';
-            let detectedField = 'approvalRate';
-            let detectedVal = '90%';
-
-            // Analisar correspondência de competidores cadastrados
-            for (let c of competitorsDb) {
-              if (text.includes(c.name.toLowerCase()) || text.includes(c.id)) {
-                detectedComp = c.name;
-                break;
-              }
-            }
-
-            // Analisar correspondência de atributos técnicos de dados
-            if (text.includes('taxa') || text.includes('aprovacao') || text.includes('tasa') || text.includes('aprobacion')) {
-              detectedField = t.fields.aprovacao;
-              // Tentar extrair valor numérico
-              const matches = text.match(/\d+([.,]\d+)?/);
-              detectedVal = matches ? `${matches[0]}%` : '92.5%';
-            } else if (text.includes('omni') || text.includes('unified')) {
-              detectedField = t.fields.omni;
-              detectedVal = locale === 'BR' ? 'Excelente (Unified Commerce Unificado)' : 'Excelente (Comercio Unificado Completo)';
-            } else if (text.includes('antifraude') || text.includes('risco') || text.includes('riesgo')) {
-              detectedField = t.fields.antifraude;
-              detectedVal = locale === 'BR' ? 'Nativo com Inteligência Artificial' : 'Nativo con Inteligencia Artificial';
-            } else if (text.includes('global') || text.includes('footprint') || text.includes('paises')) {
-              detectedField = t.fields.global;
-              detectedVal = locale === 'BR' ? 'Atuação global com adquirência dedicada' : 'Operación global con adquirencia dedicada';
-            } else {
-              detectedField = t.fields.modelo;
-              detectedVal = 'Interchange++ (IC++)';
-            }
-
-            // Exibir a interpretação NLP para validação
-            setNlpResult({
-              competitor: detectedComp,
-              field: detectedField,
-              newValue: detectedVal,
-              rawText: proposalText
-            });
-          };
-
-          // Confirmação final da proposta NLP, criando rascunho de curadoria
-          const handleConfirmNlpProposal = () => {
-            if (!nlpResult) return;
-
-            const newId = nlpResult.competitor.toLowerCase().replace(/\s+/g, '-');
-            const newCompetitor = {
-              id: `${newId}-proposed`,
-              name: `${nlpResult.competitor} (Draft)`,
-              type: 'Proposto via NLP',
-              pricingModel: 'Sob análise de PMM',
-              approvalRate: 88,
-              omnichannel: 'Em análise técnica',
-              antifraud: 'Em análise técnica',
-              pixFeature: 'Em análise técnica',
-              globalFootprint: nlpResult.field === t.fields.global ? nlpResult.newValue : 'Sob auditoria',
-              devExperience: 70,
-              companyOverview: `Atualização sugerida por NLP: "${nlpResult.rawText}"`,
-              targetAudience: 'Em revisão',
-              weaknesses: 'Em revisão',
-              strengths: 'Em revisão',
-              partners: 'Em revisão',
-              status: 'pending',
-              verifiedBy: 'Sugerido por Sales Manager em campo',
-              dataSource: `NLP: Campo [${nlpResult.field}] proposto com valor [${nlpResult.newValue}]`,
-              marketCap: 'Em análise',
-              newsSnippet: 'Sem notícias homologadas',
-              newsSearchUrl: 'https://www.google.com/search?q=' + encodeURIComponent(nlpResult.competitor),
-              battlecard: {
-                whyWeWin: 'Em análise',
-                vulnerabilities: 'Em análise',
-                script: 'Em análise'
-              }
-            };
-
-            setCompetitorsDb(prev => [...prev, newCompetitor]);
-            setIsModalOpen(false);
-            setNlpResult(null);
-            setProposalText('');
-            
-            // Redirecionar para visualização na aba de Curadoria
-            setActiveTab('curation');
-          };
-
-          const handleApproveCompetitor = (id) => {
-            setCompetitorsDb(prev => prev.map(c => {
-              if (c.id === id) {
-                return {
-                  ...c,
-                  status: 'approved',
-                  name: c.name.replace(' (Draft)', ''),
-                  verifiedBy: locale === 'BR' ? 'Aprovado por PMM' : 'Aprobado por PMM'
-                };
-              }
-              return c;
-            }));
-          };
-
-          const handleDeleteCompetitor = (id) => {
-            setCompetitorsDb(prev => prev.filter(c => c.id !== id));
-            if (selectedSlot1 === id) setSelectedSlot1('adyen');
-            if (selectedSlot2 === id) setSelectedSlot2('stripe');
-            if (selectedSlot3 === id) setSelectedSlot3(locale === 'BR' ? 'cielo' : 'bbva');
-            if (activeSummaryId === id) setActiveSummaryId('stripe');
-            if (activeBattlecardId === id) setActiveBattlecardId('stripe');
-          };
-
           const handleCopyText = (text) => {
             try {
               navigator.clipboard.writeText(text);
@@ -1437,7 +1196,7 @@
                     
                     {/* Logotipo de Alvo de Precisão Militar (Fiel à imagem de referência image_a19253.png) */}
                     <div className="h-10 w-10 flex items-center justify-center bg-emerald-50 rounded-xl border border-emerald-200 shadow-sm relative">
-                      <svg className="w-8 h-8 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <svg className="w-8 h-8 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         {/* Conectores da mira externa */}
                         <line x1="12" y1="2" x2="12" y2="6"></line>
                         <line x1="12" y1="18" x2="12" y2="22"></line>
@@ -1458,8 +1217,8 @@
                     </div>
                   </div>
 
-                  {/* Seletor de País e Botão Secundário de Registro */}
-                  <div className="flex items-center gap-3">
+                  {/* Seletor de País e Sino do Real-time Alert System */}
+                  <div className="flex items-center gap-4">
                     
                     {/* Country Selector Segmentado */}
                     <div className="bg-slate-100 p-1 rounded-lg border border-slate-200 flex gap-1">
@@ -1483,21 +1242,20 @@
                       </button>
                     </div>
 
-                    {/* Botão de Alteração Contextualizado para o NLP */}
+                    {/* Ícone do Sino para Alertas do Real-time Alert System (Canto Superior Direito) */}
                     <button
-                      onClick={() => {
-                        // Pré-popular com base no competidor ativo selecionado na aba atual
-                        const activeComp = activeTab === 'summary' ? activeSummaryCompetitor.name : activeBattleCompetitor.name;
-                        const isMX = locale === 'MX';
-                        setProposalText(isMX 
-                          ? `Actualizar la información técnica sobre el competidor ${activeComp} porque tenemos novedades encontradas en campo`
-                          : `Atualizar a informação técnica do competidor ${activeComp} com base em novidades descobertas em campo`
-                        );
-                        setIsModalOpen(true);
-                      }}
-                      className="bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-800 font-semibold text-xs px-3.5 py-2.5 rounded-lg border border-slate-200 shadow-sm transition"
+                      onClick={() => setIsAlertModalOpen(true)}
+                      className="relative p-2.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl text-slate-600 hover:text-slate-800 transition"
+                      title={t.alertSystemTitle}
                     >
-                      {t.proposalBtn}
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                      </svg>
+                      {alertsList.length > 0 && (
+                        <span className="absolute -top-1 -right-1 bg-rose-500 text-white text-[8px] font-black h-4 w-4 rounded-full flex items-center justify-center shadow-sm">
+                          {alertsList.length}
+                        </span>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -1514,7 +1272,7 @@
                       }`}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 114 0v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2-2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 114 0v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                       </svg>
                       {t.tabCompare}
                     </button>
@@ -1555,23 +1313,6 @@
                       {t.tabNews}
                     </button>
                   </div>
-
-                  <button
-                    onClick={() => setActiveTab('curation')}
-                    className={`py-3.5 text-[11px] font-medium tracking-wide transition duration-150 flex items-center gap-1.5 relative border-b-2 whitespace-nowrap ${
-                      activeTab === 'curation' ? 'border-slate-500 text-slate-800' : 'border-transparent text-slate-400 hover:text-slate-600'
-                    }`}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                    {t.tabCuration}
-                    {competitorsDb.some(c => c.status === 'pending') && (
-                      <span className="bg-amber-500 text-white text-[8px] font-black h-4 w-4 rounded-full flex items-center justify-center animate-pulse">
-                        {competitorsDb.filter(c => c.status === 'pending').length}
-                      </span>
-                    )}
-                  </button>
                 </div>
               </div>
 
@@ -1596,8 +1337,8 @@
                         className="text-[10px] text-emerald-600 hover:underline font-bold flex items-center gap-1 mt-1"
                       >
                         Pesquisar no Google
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>
                     </div>
@@ -1681,7 +1422,7 @@
                               {comp2.type}
                             </span>
                           </div>
-                          <div className="p-4 text-slate-500">
+                          <div className="p-4 text-slate-505">
                             <span className="bg-slate-100 text-slate-700 border border-slate-200 px-2.5 py-1 rounded-md text-[10px] font-semibold">
                               {comp3.type}
                             </span>
@@ -1765,7 +1506,7 @@
                           <div className="p-4 md:border-r border-slate-200 text-slate-700">
                             {comp1.antifraud}
                           </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-505">
+                          <div className="p-4 md:border-r border-slate-200 text-slate-550">
                             {comp2.antifraud}
                           </div>
                           <div className="p-4 text-slate-505">
@@ -1838,49 +1579,6 @@
 
                       </div>
                     </section>
-
-                    {/* ALERTA EM TEMPO REAL FEED INTEGRADO (Real-time Alert System) */}
-                    <section className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                      <div className="flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
-                        <span className="p-1.5 bg-emerald-50 text-emerald-600 rounded-lg">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                          </svg>
-                        </span>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-950">{t.alertSystemTitle}</h3>
-                          <p className="text-[11px] text-slate-500">{t.alertSystemDesc}</p>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {alertsList.map(a => (
-                          <div key={a.id} className="bg-slate-50 p-3 rounded-xl border border-slate-200/60 flex flex-col justify-between space-y-2">
-                            <div className="space-y-1">
-                              <div className="flex justify-between items-center">
-                                <span className="bg-white border border-slate-200 px-2 py-0.5 rounded text-[9px] font-bold text-slate-700">{a.competitor}</span>
-                                <span className={`h-2 w-2 rounded-full ${a.type === 'pricing' ? 'bg-rose-500' : 'bg-emerald-500'}`} title={a.type}></span>
-                              </div>
-                              <p className="text-xs text-slate-700 font-medium leading-relaxed">{a.message}</p>
-                            </div>
-                            <div className="pt-2 border-t border-slate-200/50 text-right">
-                              <a
-                                href={getAlertGoogleSearchUrl(a.competitor, a.message)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-[10px] text-emerald-600 hover:underline font-extrabold flex items-center justify-end gap-1"
-                              >
-                                {t.btnSearch}
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                              </a>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </section>
-
                   </div>
                 )}
 
@@ -1931,7 +1629,7 @@
                         <div className="border-b border-slate-100 pb-3">
                           <span className="text-[9px] uppercase tracking-wider font-extrabold text-slate-400 block">{t.labelFastFacts}</span>
                           <h3 className="text-sm font-bold text-slate-900 mt-1">{activeSummaryCompetitor.name}</h3>
-                          <span className="text-[9px] text-slate-505 font-medium block mt-0.5">{activeSummaryCompetitor.type}</span>
+                          <span className="text-[9px] text-slate-500 font-medium block mt-0.5">{activeSummaryCompetitor.type}</span>
                         </div>
 
                         <div className="space-y-3.5 text-xs">
@@ -2034,7 +1732,7 @@
                         <select
                           value={activeBattlecardId}
                           onChange={(e) => setActiveBattlecardId(e.target.value)}
-                          className="bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-500"
+                          className="bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-500 animate-none"
                         >
                           {sortedCompetitors.filter(c => c.id !== 'adyen').map(c => (
                             <option key={c.id} value={c.id}>{c.name}</option>
@@ -2171,9 +1869,9 @@
                           </span>
                           Radar Geral de Inteligência Corporativa (Ordem Alfabética)
                         </h2>
-                        <p className="text-xs text-slate-500 mt-1">Acompanhe valuation, dados de mercado acionário e notícias de campo atualizadas de cada player</p>
+                        <p className="text-xs text-slate-505 mt-1">Acompanhe valuation, dados de mercado acionário e notícias de campo atualizadas de cada player</p>
                       </div>
-                      <span className="text-[10px] bg-white border border-slate-200 text-slate-500 px-3 py-1 rounded-full font-bold">Junho 2026</span>
+                      <span className="text-[10px] bg-white border border-slate-200 text-slate-505 px-3 py-1 rounded-full font-bold">Junho 2026</span>
                     </div>
 
                     {/* Listagem de Notícias dividida por competidor */}
@@ -2202,29 +1900,9 @@
                               {/* Notícia / Recente */}
                               <div className="space-y-1">
                                 <span className="text-[9px] uppercase font-bold text-emerald-600 block tracking-wider">Destaque do Mês (Últimos 30 Dias)</span>
-                                <div className="space-y-2 mt-1">
-                                  {comp.recentNews && comp.recentNews.map((news, idx) => (
-                                    <div key={idx} className="border-l-2 border-emerald-500 pl-2.5 py-0.5">
-                                      <p className="text-xs text-slate-600 leading-relaxed text-justify">
-                                        {news.text}
-                                      </p>
-                                      <div className="flex justify-between items-center mt-1 text-[9px] text-slate-400">
-                                        <span className="font-mono">{news.date}</span>
-                                        <a 
-                                          href={getNewsGoogleSearchUrl(comp.name, news.text)}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="text-emerald-600 hover:underline font-bold flex items-center gap-0.5"
-                                        >
-                                          Ver no Google
-                                          <svg xmlns="http://www.w3.org/2000/svg" className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                          </svg>
-                                        </a>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
+                                <p className="text-xs text-slate-600 leading-relaxed text-justify mt-1 text-justify">
+                                  {comp.newsSnippet || 'Nenhuma atualização de alto relevância foi encontrada ou compartilhada nos últimos 30 dias.'}
+                                </p>
                               </div>
                             </div>
 
@@ -2238,10 +1916,24 @@
                                   }}
                                   className="text-amber-700 font-extrabold hover:underline text-[11px]"
                                 >
-                                  Ver Battlecard
+                                  {t.btnBattlecard}
                                 </button>
                               ) : (
                                 <span className="text-slate-400">Referência</span>
+                              )}
+                              
+                              {comp.newsSnippet && (
+                                <a
+                                  href={getNewsGoogleSearchUrl(comp.name, comp.newsSnippet)}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-slate-600 hover:text-slate-950 font-extrabold flex items-center gap-1 bg-slate-50 hover:bg-slate-100 px-2 py-1 rounded border border-slate-200 transition text-[10px]"
+                                >
+                                  Aceder à Fonte
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                  </svg>
+                                </a>
                               )}
                             </div>
                           </div>
@@ -2252,231 +1944,60 @@
                   </div>
                 )}
 
-                {/* ABA: CURADORIA E CONFIGURAÇÃO DE FONTES (LIGHT MODE) */}
-                {activeTab === 'curation' && (
-                  <div className="space-y-6">
-                    
-                    {/* Bloco Educacional sobre Curadoria */}
-                    <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                      <div className="space-y-2 max-w-2xl">
-                        <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                          <span className="p-1 rounded bg-emerald-50 text-emerald-600 border border-emerald-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                            </svg>
-                          </span>
-                          {t.labelCurationTitle}
-                        </h2>
-                        <p className="text-xs text-slate-550 leading-relaxed text-justify">
-                          {t.labelCurationDesc}
-                        </p>
-                      </div>
-
-                      <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-1 text-xs text-slate-600">
-                        <span className="font-bold text-slate-800">Fluxo de Validação:</span>
-                        <ol className="list-decimal list-inside text-slate-550 space-y-1 mt-1 font-mono">
-                          <li>Sugestão inserida via botão de proposta.</li>
-                          <li>O registro entra em status de 'Pendente'.</li>
-                          <li>A equipe de PMM local valida as fontes.</li>
-                          <li>Após homologado, os dados entram no grid de produção.</li>
-                        </ol>
-                      </div>
-                    </div>
-
-                    {/* TABELA DE ESTADOS DE VERIFICAÇÃO */}
-                    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                      <div className="p-4 border-b border-slate-200 bg-slate-50/50">
-                        <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Origem das Informações e Status de Auditoria</h3>
-                      </div>
-
-                      <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse text-xs text-slate-600">
-                          <thead>
-                            <tr className="border-b border-slate-200 bg-slate-50 text-slate-500 font-bold">
-                              <th className="p-4">Concorrente</th>
-                              <th className="p-4">Tipo de Operador</th>
-                              <th className="p-4">Origem / Fonte dos Dados</th>
-                              <th className="p-4">Última Revisão</th>
-                              <th className="p-4">Status</th>
-                              <th className="p-4 text-right">Ação (Simulação)</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-slate-200">
-                            {sortedCompetitors.map(c => {
-                              const badge = getBrandColorsAndLogo(c.id);
-                              return (
-                                <tr key={c.id} className="hover:bg-slate-50/50 transition duration-150">
-                                  <td className="p-4 font-bold text-slate-900 flex items-center gap-2">
-                                    <div className="shrink-0">{badge.icon}</div>
-                                    <span>{c.name}</span>
-                                  </td>
-                                  <td className="p-4 text-slate-505">{c.type}</td>
-                                  <td className="p-4 text-slate-600 italic max-w-xs truncate" title={c.dataSource}>
-                                    "{c.dataSource}"
-                                  </td>
-                                  <td className="p-4 text-slate-505">{c.verifiedBy}</td>
-                                  <td className="p-4">
-                                    {c.status === 'approved' ? (
-                                      <span className="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-emerald-200/60 flex items-center gap-1 w-max">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
-                                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                        </svg>
-                                        Homologado
-                                      </span>
-                                    ) : (
-                                      <span className="bg-amber-50 text-amber-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1 w-max animate-pulse">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-amber-505" viewBox="0 0 20 20" fill="currentColor">
-                                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                                        </svg>
-                                        Rascunho (Draft)
-                                      </span>
-                                    )}
-                                  </td>
-                                  <td className="p-4 text-right">
-                                    {c.status === 'pending' ? (
-                                      <div className="flex justify-end gap-2">
-                                        <button
-                                          onClick={() => handleApproveCompetitor(c.id)}
-                                          className="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-[10px] px-2.5 py-1 rounded"
-                                          title="Homologar alteração"
-                                        >
-                                          {t.btnApprove}
-                                        </button>
-                                        <button
-                                          onClick={() => handleDeleteCompetitor(c.id)}
-                                          className="bg-rose-50 hover:bg-rose-100 text-rose-700 text-[10px] font-bold px-2.5 py-1 rounded border border-rose-200"
-                                          title="Rejeitar entrada"
-                                        >
-                                          {t.btnDelete}
-                                        </button>
-                                      </div>
-                                    ) : (
-                                      <span className="text-slate-400 text-[10px]">Revisado por PMM</span>
-                                    )}
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                  </div>
-                )}
-
               </main>
 
-              {/* FOOTER */}
-              <footer className="bg-white border-t border-slate-200 py-6 px-6 mt-12 text-xs text-slate-400">
-                <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="font-semibold text-slate-500">Adyen LatAm - Uso Estritamente Comercial e Interno</span>
-                  </div>
-                  <div>
-                    Plataforma comercial unificada de adquirência direta.
-                  </div>
-                </div>
-              </footer>
-
-              {/* MODAL INTELIGENTE DE PROPOSTAS COM INTERPRETADOR NLP */}
-              {isModalOpen && (
+              {/* MODAL DO REAL-TIME ALERT SYSTEM (SINO) */}
+              {isAlertModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4 animate-fade-in">
-                  <div className="bg-white border border-slate-200 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative text-slate-700 max-h-[95vh] overflow-y-auto">
+                  <div className="bg-white border border-slate-200 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative text-slate-700 max-h-[90vh] overflow-y-auto">
                     
                     <button
-                      onClick={() => {
-                        setIsModalOpen(false);
-                        setNlpResult(null);
-                        setProposalText('');
-                      }}
-                      className="absolute top-4 right-4 text-slate-400 hover:text-slate-800 transition duration-150"
+                      onClick={() => setIsAlertModalOpen(false)}
+                      className="absolute top-4 right-4 text-slate-400 hover:text-slate-800 transition"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
 
-                    <h3 className="text-base font-bold text-slate-900 mb-2">{t.propModalTitle}</h3>
-                    <p className="text-xs text-slate-550 mb-4">{t.propModalDesc}</p>
-
-                    {!nlpResult ? (
-                      <form onSubmit={handleNlpSubmit} className="space-y-4">
-                        <textarea
-                          rows={4}
-                          required
-                          value={proposalText}
-                          onChange={(e) => setProposalText(e.target.value)}
-                          placeholder={t.propTextPlaceholder}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-800 font-mono focus:outline-none focus:border-emerald-500"
-                        />
-                        <div className="flex justify-end gap-3">
-                          <button
-                            type="button"
-                            onClick={() => setIsModalOpen(false)}
-                            className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-4 py-2 rounded-lg"
-                          >
-                            {t.btnCancel}
-                          </button>
-                          <button
-                            type="submit"
-                            className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs px-4 py-2 rounded-lg"
-                          >
-                            {t.btnSubmit}
-                          </button>
-                        </div>
-                      </form>
-                    ) : (
-                      <div className="space-y-4 animate-in zoom-in-95 duration-150">
-                        <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-100 space-y-2">
-                          <h4 className="font-bold text-xs text-emerald-800 flex items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            {t.nlpSuccessTitle}
-                          </h4>
-                          <p className="text-[11px] text-slate-550 italic">"{nlpResult.rawText}"</p>
-                        </div>
-
-                        <div className="space-y-2 text-xs">
-                          <div className="flex justify-between p-2 border-b border-slate-100">
-                            <span className="text-slate-400 font-semibold">{t.nlpDetectedComp}</span>
-                            <span className="text-slate-800 font-bold">{nlpResult.competitor}</span>
-                          </div>
-                          <div className="flex justify-between p-2 border-b border-slate-100">
-                            <span className="text-slate-400 font-semibold">{t.nlpDetectedField}</span>
-                            <span className="text-slate-800 font-bold">{nlpResult.field}</span>
-                          </div>
-                          <div className="flex justify-between p-2 border-b border-slate-100">
-                            <span className="text-slate-400 font-semibold">{t.nlpDetectedVal}</span>
-                            <span className="text-emerald-600 font-bold font-mono">{nlpResult.newValue}</span>
-                          </div>
-                        </div>
-
-                        <p className="text-[10px] text-slate-400 leading-relaxed">
-                          {t.nlpExplanation}
-                        </p>
-
-                        <div className="flex justify-end gap-3 pt-2">
-                          <button
-                            type="button"
-                            onClick={() => setNlpResult(null)}
-                            className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-4 py-2 rounded-lg"
-                          >
-                            TENTAR OUTRA
-                          </button>
-                          <button
-                            type="button"
-                            onClick={handleConfirmNlpProposal}
-                            className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs px-4 py-2 rounded-lg"
-                          >
-                            CONFIRMAR PROPOSTA
-                          </button>
-                        </div>
+                    <div className="flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
+                      <span className="p-1.5 bg-emerald-50 text-emerald-600 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                      </span>
+                      <div>
+                        <h3 className="text-base font-bold text-slate-900">{t.alertSystemTitle}</h3>
+                        <p className="text-[11px] text-slate-500">{t.alertSystemDesc}</p>
                       </div>
-                    )}
+                    </div>
 
+                    <div className="space-y-4">
+                      {alertsList.map(a => (
+                        <div key={a.id} className="bg-slate-50 p-3 rounded-xl border border-slate-200/60 flex flex-col justify-between space-y-2">
+                          <div className="space-y-1">
+                            <div className="flex justify-between items-center">
+                              <span className="bg-white border border-slate-200 px-2 py-0.5 rounded text-[9px] font-bold text-slate-700">{a.competitor}</span>
+                              <span className={`h-2 w-2 rounded-full ${a.type === 'pricing' ? 'bg-rose-500' : 'bg-emerald-500'}`} title={a.type}></span>
+                            </div>
+                            <p className="text-xs text-slate-700 font-semibold leading-relaxed">{a.message}</p>
+                          </div>
+                          <div className="pt-2 border-t border-slate-200/50 text-right">
+                            <a
+                              href={getAlertGoogleSearchUrl(a.competitor, a.message)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[10px] text-emerald-600 hover:underline font-extrabold flex items-center justify-end gap-1"
+                            >
+                              {t.btnSearch}
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
