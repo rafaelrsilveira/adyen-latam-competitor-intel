@@ -90,16 +90,20 @@
 
     <div id="root"></div>
 
-    <!-- Registro do preset de compilação clássica segura antes do script principal -->
+    <!-- Registro manual do preset de compilação clássica e sem amarras CORS -->
     <script>
         window.Babel.registerPreset('react-classic', {
-          presets: [
-            [window.Babel.availablePresets['react'], { runtime: 'classic' }]
+          plugins: [
+            [window.Babel.availablePlugins['transform-react-jsx'], {
+              runtime: 'classic',
+              pragma: 'React.createElement',
+              pragmaFrag: 'React.Fragment'
+            }]
           ]
         });
     </script>
 
-    <!-- Script Babel com pragma clássico seguro para evitar injeção de imports automáticos -->
+    <!-- Script Babel com pragma clássico seguro que blinda contra erros de módulo de carregamento CORS -->
     <script type="text/babel" data-presets="react-classic">
         const { useState, useMemo, useEffect } = React;
 
@@ -137,13 +141,12 @@
             fields: {
               foco: "Foco e Operação",
               audiencia: "Audiência e público-alvo (ICP)",
+              performance: "Solução de Performance",
               modelo: "Modelo Comercial",
-              aprovacao: "Aprovação Técnica Média",
               omni: "Solução Omnichannel",
               antifraude: "Antifraude e Risco",
               pagamento: "Meios de Pagamento Locais",
-              global: "Global Footprint",
-              dev: "Developer Experience"
+              global: "Global Footprint"
             }
           },
           MX: {
@@ -172,13 +175,12 @@
             fields: {
               foco: "Enfoque y Operación",
               audiencia: "Audiencia y público objetivo (ICP)",
+              performance: "Solución de Rendimiento (Performance)",
               modelo: "Modelo Comercial",
-              aprovacao: "Aprobación Técnica Media",
               omni: "Solución Omnichannel",
               antifraude: "Antifraude y Riesgo",
               pagamento: "Métodos de Pago Locales",
-              global: "Global Footprint",
-              dev: "Developer Experience"
+              global: "Global Footprint"
             }
           }
         };
@@ -187,18 +189,17 @@
           {
             id: 'adyen',
             name: 'Adyen',
-            type: 'Global / Omnichannel',
+            type: 'Global',
             pricingModel: 'Interchange++ (IC++) Real transparente',
-            approvalRate: 94.5,
             omnichannel: 'Excelente (Plataforma Única Real / Contrato Único)',
             antifraud: 'Nativo (RevenueProtect) com IA Global unificada',
             pixFeature: 'Instantâneo via Open Finance, reconciliação em tempo real na mesma API',
             globalFootprint: 'Global: Operações diretas em mais de 100 países com adquirência local própria',
-            devExperience: 96,
-            companyOverview: 'Plataforma de tecnologia financeira global holandesa de pagamentos unificados que opera como adquirente, gateway e gerenciador de riscos em um único fluxo direto de dados, eliminando intermediários.',
             targetAudience: 'Foco rigoroso em grandes corporações Enterprise, marcas multinacionais e varejistas complexos com forte necessidade de Unified Commerce.',
+            performance: 'Smart Routing inteligente de emissores, Instant Retries automáticos para falhas técnicas temporárias e Network Token Optimization nativo para recorrência.',
+            companyOverview: 'Plataforma de tecnologia financeira global holandesa de pagamentos unificados que opera como adquirente, gateway e gerenciador de riscos em um único fluxo direto de dados, eliminando intermediários.',
             weaknesses: 'Menor flexibilidade comercial para Micro e Pequenas empresas; sem foco em POS físico de baixo faturamento para lojistas de rua comuns.',
-            strengths: 'Maior taxa de autorização em transações nacionais e internacionais, motor antifraude adaptativo nativo (RevenueProtect), e contratos transparentes.',
+            strengths: 'Maior taxa de autorização técnica real, motor antifraude adaptativo nativo (RevenueProtect), e contratos transparentes baseados no modelo IC++.',
             partners: 'VTEX, Shopify, Magento, Salesforce Commerce Cloud, SAP Hybris, Oracle.',
             status: 'approved',
             verifiedBy: 'Equipa de PMM (Global & Local)',
@@ -214,16 +215,15 @@
           {
             id: 'cielo',
             name: 'Cielo + Braspag',
-            type: 'Legado Nacional',
-            pricingModel: 'MDR Flat Altamente Negociável / Sob volume físico',
-            approvalRate: 88.5,
+            type: 'Nacional',
+            pricingModel: 'MDR Flat Altamente Negociável. Oferece Interchange++ (IC++) para grandes volumes Enterprise sob demanda.',
             omnichannel: 'Fragmentado (Gateway Braspag separado do adquirente físico)',
             antifraud: 'Terceirizado (Exige integração de CyberSource/Konduto externa)',
             pixFeature: 'Disponível na API Braspag, mas com reconciliação apartada e manual entre canais físicos e digitais',
             globalFootprint: 'Doméstico: Focado estritamente no mercado doméstico brasileiro',
-            devExperience: 70,
-            companyOverview: 'A maior adquirente de varejo físico legado do Brasil, controlada pelos bancos Bradesco e Banco do Brasil. No e-commerce, atua principalmente por meio da marca integrada Braspag.',
             targetAudience: 'Grandes corporações (Enterprise) do varejo físico tradicional, mas com forte atuação histórica e capilaridade massiva no mercado de PMEs (SMB).',
+            performance: 'Dependente do roteamento lógico Braspag multi-adquirente. Sem otimização preditiva ou retries imediatos automatizados na rede transacional.',
+            companyOverview: 'A maior adquirente de varejo físico legado do Brasil, controlada pelos bancos Bradesco e Banco do Brasil. No e-commerce, atua principalmente por meio da marca integrada Braspag.',
             weaknesses: 'Arquitetura baseada em sistemas legados e imobilizados; dificuldade de prover Unified Commerce verdadeiro devido a múltiplas plataformas de conciliação apartadas.',
             strengths: 'Sólida capilaridade comercial em todo o território nacional, programas institucionais como o Aliança Cielo, e força de balcão física.',
             partners: 'CyberSource, Braspag, Bradesco, Banco do Brasil, VTEX.',
@@ -241,16 +241,15 @@
           {
             id: 'rede',
             name: 'Rede Itaú',
-            type: 'Banco Nacional',
-            pricingModel: 'MDR Flat / Taxa agressiva para correntistas Itaú',
-            approvalRate: 89.0,
+            type: 'Nacional',
+            pricingModel: 'MDR Flat / Taxa agressiva para correntistas Itaú. Suporta modelo Interchange++ (IC++) estruturado.',
             omnichannel: 'Médio (In-store consolidado, gateway digital focado em parceiros)',
             antifraud: 'Terceirizado (Parcerias externas com intermediários)',
             pixFeature: 'Disponível com excelente estabilidade ligada ao ecossistema Itaú',
             globalFootprint: 'Doméstico: Focado estritamente no mercado doméstico brasileiro',
-            devExperience: 65,
-            companyOverview: 'Adquirente proprietária 100% incorporada pelo banco Itaú Unibanco. É altamente competitiva nas negociações comerciais onde o merchant possui forte relacionamento e dependência de linhas de crédito bancárias.',
             targetAudience: 'Grandes contas Enterprise nacionais e médias empresas que possuem relacionamento de crédito profundo ou reciprocidade com o Banco Itaú.',
+            performance: 'Estabilidade de rede ligada diretamente ao Itaú. Contudo, carece de IA para retries técnicos avançados em emissores externos das demais bandeiras.',
+            companyOverview: 'Adquirente proprietária 100% incorporada pelo banco Itaú Unibanco. É altamente competitiva nas negociações comerciais onde o merchant possui forte relacionamento e dependência de linhas de crédito bancárias.',
             weaknesses: 'Tecnologia engessada e burocrática para integrações de grande escala; dependência direta de reciprocidade com o banco.',
             strengths: 'Acesso a linhas de crédito baratas e fluxo de antecipação de recebíveis altamente facilitado para caixa.',
             partners: 'Software Express, Auttar, PayGo, Linx, MaxiPago, Itaú Unibanco.',
@@ -268,16 +267,15 @@
           {
             id: 'getnet',
             name: 'Getnet',
-            type: 'Banco Nacional / Global',
+            type: 'Nacional',
             pricingModel: 'MDR Flat negociado com pacote Santander',
-            approvalRate: 88.0,
             omnichannel: 'Fragmentado (Auttar / Carat para fluxos digitais)',
             antifraud: 'Terceirizado (Integrações com Cybersource e ClearSale)',
             pixFeature: 'Disponível na API com forte dependência do ecossistema Santander',
             globalFootprint: 'Regional Latam: Atuação direta no Brasil, México, Chile, Argentina e expansão na Europa pela PagoNxt',
-            devExperience: 60,
-            companyOverview: 'Adquirente tradicional controlado globalmente pela PagoNxt do Santander. Atende fortemente o varejo físico de e-commerce nacional acoplado a serviços financeiros do Santander.',
             targetAudience: 'Grandes varejistas físicos e e-commerces de médio a grande porte (Enterprise) integrados ao ecossistema financeiro do banco Santander.',
+            performance: 'Fluxo tradicional multi-hop ligando o gateway à adquirente da maquininha; latência transacional clássica sem análise de performance integrada.',
+            companyOverview: 'Adquirente tradicional controlado globalmente pela PagoNxt do Santander. Atende fortemente o varejo físico de e-commerce nacional acoplado a serviços financeiros do Santander.',
             weaknesses: 'Arquitetura com múltiplos sistemas integrados secundariamente (Auttar/Carat), resultando em alta complexidade técnica.',
             strengths: 'Alinhamento global com a estrutura PagoNxt, permitindo alcance comercial em canais físicos de múltiplos países.',
             partners: 'NuvemShop, VTEX, PrestaShop, Magento, Cybersource, PagoNxt.',
@@ -289,22 +287,21 @@
             battlecard: {
               whyWeWin: 'A simplicidade de uma única integração sem pacotes bancários atrelados ou reciprocidades complexas.',
               vulnerabilities: 'Integrações de adquirentes e gateways legados (Auttar) trazem alta complexidade de manutenção.',
-              script: 'Se o seu departamento de TI precisa de lidar com portais de conciliação diferentes para o varejo físico e para o e-commerce, há um custo operacional oculto. Com a Adyen, reduz o tempo de reconciliação a zero usando a nossa plataforma unificada.'
+              script: 'Se o seu departamento de TI precisa de lidar com portais de conciliação differentes para o varejo físico e para o e-commerce, há um custo operacional oculto. Com a Adyen, reduz o tempo de reconciliação a zero usando a nossa plataforma unificada.'
             }
           },
           {
             id: 'stone',
             name: 'Stone / Pagar.me',
-            type: 'Nacional / Desafiante',
+            type: 'Nacional',
             pricingModel: 'Flat-Rate agressivo com antecipação integrada',
-            approvalRate: 89.8,
             omnichannel: 'Parcial (Terminais POS e gateway Pagar.me com alguma integração)',
             antifraud: 'Parcialmente integrado via APIs parceiras',
             pixFeature: 'Disponível na API com liquidação ágil e conciliação aceitável',
             globalFootprint: 'Doméstico: Focado estritamente no mercado doméstico brasileiro',
-            devExperience: 82,
-            companyOverview: 'Desafiante brasileira que se expandiu rapidamente no ecossistema físico nacional. Oferece serviços para o comércio digital por meio do gateway moderno Pagar.me.',
             targetAudience: 'Forte foco histórico em micro e pequenas empresas (SMB), expandindo de forma agressiva no Mid-Market e varejistas nacionais de médio porte.',
+            performance: 'Mapeamento de rotas básico no e-commerce via gateway Pagar.me, mas carece de conexões bancárias internacionais diretas estruturadas.',
+            companyOverview: 'Desafiante brasileira que se expandiu rapidamente no ecossistema físico nacional. Oferece serviços para o comércio digital por meio do gateway moderno Pagar.me.',
             weaknesses: 'Sem trilhos internacionais robustos de adquirência própria; foco histórico em PME reduz capacidade de atendimento Enterprise complexo.',
             strengths: 'Excelente capilaridade de suporte comercial em campo "Pé no Barro" e liquidez de antecipação diária veloz.',
             partners: 'Pagar.me, Mundipagg, Linx, VHSYS, VTEX, Magento, Clearsale.',
@@ -322,16 +319,15 @@
           {
             id: 'pagbank',
             name: 'PagBank',
-            type: 'Nacional / Carteira e Adq',
+            type: 'Nacional',
             pricingModel: 'Flat-Rate por canais de intermediação',
-            approvalRate: 87.5,
             omnichannel: 'Médio (POS físico conectado a ecossistema de carteira digital)',
             antifraud: 'Nativo da plataforma, focado em alta proteção (alto atrito)',
             pixFeature: 'Instantâneo integrado à conta digital PagBank',
             globalFootprint: 'Doméstico: Focado estritamente no mercado doméstico brasileiro',
-            devExperience: 75,
-            companyOverview: 'Pioneiro na democratização das maquininhas no Brasil (PagSeguro), operando hoje como um ecossistema completo de conta bancária digital e intermediação financeira de pagamentos.',
             targetAudience: 'Pequenos e médios negócios (SMB), comerciantes autônomos, microempreendedores e contas de varejo de rua de baixo faturamento.',
+            performance: 'Foco em liquidez imediata para capital de giro. O antifraude rígido diminui a performance geral transacional devido a altas taxas de falsos positivos.',
+            companyOverview: 'Pioneiro na democratização das maquininhas no Brasil (PagSeguro), operando hoje como um ecossistema completo de conta bancária digital e intermediação financeira de pagamentos.',
             weaknesses: 'Forte atrito de recusa de compras (antifraude agressivo para blindar estorno); menor sofisticação técnica de APIs.',
             strengths: 'Onboarding instantâneo simplificado e liquidez veloz conectada a uma conta bancária PJ ágil.',
             partners: 'UOL, Moip, Concil, RegistraSeguro.',
@@ -349,23 +345,22 @@
           {
             id: 'mercadopago',
             name: 'Mercado Pago',
-            type: 'Regional LatAm Tech',
+            type: 'América Latina',
             pricingModel: 'MDR Flat com descontos progressivos por ecossistema',
-            approvalRate: 90.5,
             omnichannel: 'Parcial (Foco digital gigante, maquininhas Point integradas à conta)',
-            antifraud: 'Nativo (Mercado Pago Shield) alimentado pela base do Mercado Livre',
+            antifraud: 'Nativo (Mercado Pago Shield) com IA e dados comportamentais do Mercado Livre; não requer contratação separada de Cybersource.',
             pixFeature: 'Excelente (Pioneiros em Pix, liquidação imediata)',
             globalFootprint: 'Regional Latam: Operação direta na Argentina, Brasil, México, Chile, Colômbia e Peru',
-            devExperience: 88,
-            companyOverview: 'Braço fintech de pagamentos e crédito estruturado do Mercado Livre. Consolida uma excelente presença digital impulsionada pela robusta base de dados comportamentais de consumo regional.',
             targetAudience: 'Sellers de comércio eletrônico, marketplaces digitais e empreendedores de médio porte (Mid-Market) e varejo de rua (SMB).',
+            performance: 'Elevada performance transacional para compradores recorrentes dentro do ecossistema do Mercado Livre, mas taxas de declínio maiores para novos cartões externos.',
+            companyOverview: 'Braço fintech de pagamentos e crédito estruturado do Mercado Livre. Consolida uma excelente presença digital impulsionada pela robusta base de dados comportamentais de consumo regional.',
             weaknesses: 'Dificuldade de suporte de contas e atendimento personalizado humanizado para merchants do nível Enterprise.',
             strengths: 'Inteligência de fraude alimentada pelas transações massivas da maior plataforma de e-commerce da América Latina.',
             partners: 'Mercado Livre, VTEX, Shopify, Prestashop, Magento.',
             status: 'approved',
             verifiedBy: 'Equipe de PMM LatAm',
             dataSource: 'Relatórios Anuais MercadoLibre Inc, Testes Operacionais em Sandboxes',
-            marketCap: 'Subsidiaria MercadoLibre (NASDAQ: MELI) | Cap. de Mercado MELI: ~$95 Bilhões',
+            marketCap: 'Subsidiária MercadoLibre (NASDAQ: MELI) | Cap. de Mercado MELI: ~$95 Bilhões',
             newsSnippet: 'Mercado Pago impulsiona taxas de aceitação usando algoritmos preditivos que analisam o histórico de compras dentro do Mercado Livre.',
             battlecard: {
               whyWeWin: 'Atendimento e suporte corporativo humanizado e dedicado; independência total em relação a marketplaces concorrentes.',
@@ -376,16 +371,15 @@
           {
             id: 'ebanx',
             name: 'EBANX',
-            type: 'Especialista Cross-Border',
+            type: 'Regional',
             pricingModel: 'Markup de Câmbio / Comissão de Remessa Internacional',
-            approvalRate: 85.0,
             omnichannel: 'Não aplicável (Apenas fluxo digital)',
             antifraud: 'Nativo focado em padrões regulatórios locais LatAm',
             pixFeature: 'Otimizado para pagamentos internacionais com conversão de câmbio',
             globalFootprint: 'Global Cross-Border: Conecta merchants globais a consumidores na América Latina, África e Ásia',
-            devExperience: 80,
-            companyOverview: 'Fintech brasileira líder no nicho de processamento de pagamentos locais para comerciantes globais transfronteiriços sem presença jurídica constituída na América Latina.',
             targetAudience: 'Empresas globais de tecnologia, SaaS, streaming e gaming (Enterprise internacional) vendendo cross-border sem presença física no Brasil.',
+            performance: 'Otimizado para conversão de transações transfronteiriças (cross-border) utilizando adquirentes locais parceiros, porém com gargalos e fricções regulatórias cambiais.',
+            companyOverview: 'Fintech brasileira líder no nicho de processamento de pagamentos locais para comerciantes globais transfronteiriços sem presença jurídica constituída na América Latina.',
             weaknesses: 'Zero infraestrutura técnica para canais físicos (in-store) no Brasil; altas taxas de intermediação devido ao markup de câmbio.',
             strengths: 'Domínio absoluto da regulação de remessas e ampla cobertura de meios de pagamento locais na LatAm.',
             partners: 'Principais carteiras eletrônicas, bancos locais sul-americanos, dLocal.',
@@ -403,16 +397,15 @@
           {
             id: 'dlocal',
             name: 'dLocal',
-            type: 'Especialista Cross-Border',
+            type: 'Global',
             pricingModel: 'Markup de Câmbio + Taxas por mercado emergente',
-            approvalRate: 84.5,
             omnichannel: 'Não aplicável (Foco exclusivamente digital)',
             antifraud: 'Nativo de risco (motor dLocal Shield local)',
             pixFeature: 'Processamento integrado ao canal internacional de câmbio',
             globalFootprint: 'Global: Ampla cobertura de processamento de pagamentos alternativos em mais de 40 países na LatAm, Ásia e África',
-            devExperience: 72,
-            companyOverview: 'Plataforma de processamento de pagamentos focada em mercados emergentes globais. Atua conectando grandes multinacionais a consumidores na LatAm, África e Ásia.',
             targetAudience: 'Grandes multinacionais (Enterprise global) focadas em processamento unificado de pagamentos cross-border e locais em mercados emergentes.',
+            performance: 'Abordagem multi-rota básica, porém suscetível a instabilidades de disponibilidade técnica das adquirentes e parceiros bancários locais indiretos.',
+            companyOverview: 'Plataforma de processamento de pagamentos focada em mercados emergentes globais. Atua conectando grandes multinacionais a consumidores na LatAm, África e Ásia.',
             weaknesses: 'Dependência técnica de adquirentes e parceiros locais indiretos, resultando ocasionalmente em instabilidades operacionais.',
             strengths: 'Portfólio unificado e agressivo com cobertura regulatória em dezenas de geografias complexas e exóticas.',
             partners: 'Shopify, Tiendanube, VTEX, Rappi, Uber, Amazon.',
@@ -430,16 +423,15 @@
           {
             id: 'paypal',
             name: 'PayPal / Braintree',
-            type: 'Global Wallet / Checkout',
+            type: 'Global',
             pricingModel: 'Flat-Rate + Tarifa Fixa por transação',
-            approvalRate: 88.0,
             omnichannel: 'Não aplicável (Muito restrito ao e-commerce clássico no Brasil)',
             antifraud: 'Nativo baseado em contas verificadas PayPal',
             pixFeature: 'Disponível como opção complementar no fluxo de carteira digital',
             globalFootprint: 'Global: Operações de processing e carteira digital em mais de 200 países e mercados mundiais',
-            devExperience: 78,
-            companyOverview: 'A marca pioneira mundial em carteiras digitais. Para grandes canais e e-commerce corporativos, o PayPal comercializa a plataforma gateway Braintree de alta robustez técnica.',
             targetAudience: 'E-commerces focados em vendas digitais transfronteiriças, com foco em Mid-Market e Enterprise que buscam checkout de alta confiança.',
+            performance: 'Excelente taxa de conversão em compras efetuadas por usuários com contas ativas pré-cadastradas no PayPal, mas alta fricção no checkout tradicional para convidados.',
+            companyOverview: 'A marca pioneira mundial em carteiras digitais. Para grandes canais e e-commerce corporativos, o PayPal comercializa a plataforma gateway Braintree de alta robustez técnica.',
             weaknesses: 'Altas tarifas fixas por transações domésticas brasileiras; atrito na experiência se o usuário é obrigado a criar conta PayPal.',
             strengths: 'Marca de alta confiança de conversão digital global de checkout rápido em cartões estrangeiros.',
             partners: 'Braintree, Salesforce, Adobe Commerce, Shopify, VTEX.',
@@ -450,23 +442,22 @@
             newsSnippet: 'PayPal acelera reformulação global de sua solução Braintree focando em inteligência artificial para o checkout rápido de um clique.',
             battlecard: {
               whyWeWin: 'Os nossos fluxos focam na conversão direta e sem atrito do cartão do utilizador, enquanto o PayPal is otimizado para a sua própria carteira digital.',
-              vulnerabilities: 'Taxas altíssimas e atrito no checkout quando o utilizador final é obrigado a ter uma conta do PayPal para finalizar a compra.',
+              vulnerabilities: 'Taxas altíssimas and atrito no checkout quando o utilizador final é obrigado a ter uma conta do PayPal para finalizar a compra.',
               script: 'O PayPal é muito bom para compradores internacionais que exigem segurança de carteira digital. Contudo, para o dia a dia do consumidor brasileiro, a Adyen entrega uma experiência de checkout muito mais limpa, integrada diretamente com as bandeiras de cartões e o Pix local.'
             }
           },
           {
             id: 'stripe',
             name: 'Stripe',
-            type: 'Global Tech / API-First',
+            type: 'Global',
             pricingModel: 'Flat-Rate padrão ou IC++ para contas Enterprise',
-            approvalRate: 91.5,
             omnichannel: 'Parcial (Stripe Terminal disponível, focado digitalmente no Brasil)',
             antifraud: 'Nativo de risco (Stripe Radar baseado em machine learning)',
             pixFeature: 'Disponível na API com conciliação e suporte nativo',
             globalFootprint: 'Global: Operações de adquirência direta em mais de 45 países',
-            devExperience: 95,
-            companyOverview: 'Gigante tecnológica norte-americana focada em facilitar o processamento de pagamentos digitais com alto poder de customização para engenheiros e equipes de produtos.',
             targetAudience: 'Startups em escala rápida, plataformas SaaS, marketplaces (Connect) e e-commerces de médio a grande porte focados em ambiente digital.',
+            performance: 'Soluções inteligentes de aceitação adaptativa (Adaptive Acceptance) suportadas por machine learning, porém com maior complexidade de configuração e com custos adicionais escalados no volume Enterprise.',
+            companyOverview: 'Gigante tecnológica norte-americana focada em facilitar o processamento de pagamentos digitais com alto poder de customização para engenheiros e equipes de produtos.',
             weaknesses: 'Custos de tarifa flat impraticáveis para escala massiva Enterprise física (Omnichannel incipiente no BR).',
             strengths: 'Documentação impecável, onboarding instantâneo de parceiros e ferramentas avançadas para assinaturas recorrentes.',
             partners: 'Shopify, VTEX, Salesforce, Magento, BigCommerce.',
@@ -487,16 +478,15 @@
           {
             id: 'adyen',
             name: 'Adyen',
-            type: 'Global / Omnichannel',
+            type: 'Global',
             pricingModel: 'Interchange++ (IC++) Real y transparente',
-            approvalRate: 94.2,
-            omnichannel: 'Excellent (Plataforma Única Real / Contrato Único)',
+            omnichannel: 'Excelente (Plataforma Única Real / Contrato Único)',
             antifraud: 'Nativo (RevenueProtect) con IA Global unificada',
-            pixFeature: 'OXXO Pay nativo de alta conversión (No ofrece SPEI)',
+            pixFeature: 'OXXO Pay nativo de alta conversión y transferencias SPEI en tiempo real',
             globalFootprint: 'Global: Operaciones directas en más de 100 países con adquirencia local propia',
-            devExperience: 96,
+            targetAudience: 'Compañías enterprise en México, grandes cadenas de retail de moda, supermercados y plataformas multinacionales de comercio electrónico.',
+            performance: 'Ruteo inteligente (Smart Routing) de emisores locales, Instant Retries para caídas de emisor y optimización nativa de tokens de red.',
             companyOverview: 'Fintech holandesa global de procesamiento de extremo a extremo que unifica adquirencia, pasarela y mitigación de fraude en un solo flujo técnico, impulsando el comercio unificado.',
-            targetAudience: 'Grandes empresas Enterprise, marcas globales de comercio unificado y retailers masivos con fuerte presencia física y digital.',
             weaknesses: 'Menos competitiva para PyMEs con bajo volumen de procesamiento mensual; sin foco en terminales de cobro de bajo costo.',
             strengths: 'La mayor tasa de autorización técnica de tarjetas del mercado mexicano, ruteo inteligente, y soporte técnico e ingeniería directo y local.',
             partners: 'VTEX, Shopify, Magento, Salesforce Commerce Cloud, SAP Hybris, Oracle.',
@@ -514,16 +504,15 @@
           {
             id: 'bbva',
             name: 'BBVA',
-            type: 'Banco Adquirente Líder',
+            type: 'Nacional',
             pricingModel: 'Blended tasa tradicional negociable por volumen',
-            approvalRate: 89.1,
             omnichannel: 'Parcial (Terminales físicas masivas independientes de la API Openpay)',
             antifraud: 'Tercerizado (Cybersource/Accertify) o módulo bancario básico',
             pixFeature: 'Aceptación de SPEI bancario directa y de alta escala transaccional',
             globalFootprint: 'Global: Fuerte presencia en México, España, y operaciones de banca en América del Sur',
-            devExperience: 68,
+            targetAudience: 'Corporaciones de gran consumo en México, cadenas de retail con alta necesidad de financiamiento de emisor (Meses Sin Intereses).',
+            performance: 'Rendimiento sólido en su propio emisor BBVA, pero experimenta latencias o caídas lógicas al enrutar transacciones digitales a través de Openpay hacia otros bancos.',
             companyOverview: 'La institución financiera líder en el mercado mexicano de adquirencia física. Para el canal digital, ha integrado los servicios de su filial tecnológica Openpay.',
-            targetAudience: 'Grandes cadenas de retail y corporaciones tradicionales (también penetran fuertemente en PyMEs).',
             weaknesses: 'Infraestructura tecnológica heredada lenta para implementar actualizaciones ágiles; soporte técnico burocrático fragmentado.',
             strengths: 'Marca líder del sector financiero, red masiva de sucursales en todo el país y el programa de lealtad líder Puntos BBVA.',
             partners: 'Openpay, Accertify, Cybersource, principales marcas de tarjetas.',
@@ -541,16 +530,15 @@
           {
             id: 'openpay',
             name: 'Openpay',
-            type: 'Agregador / Checkout Digital (BBVA)',
+            type: 'Nacional',
             pricingModel: 'Tasa Blended estándar basada en volumen',
-            approvalRate: 88.5,
             omnichannel: 'Solo Digital (módulo de efectivo Paynet y terminales físicas en plan secundario)',
-            antifraud: 'Nativo de riesgo (OpenControl integrado para prevención de fraudes)',
+            antifraud: 'Tercerizado (Módulos de riesgo OpenControl con soporte de Cybersource bajo demanda)',
             pixFeature: 'SPEI integrado de alta velocidad y depósitos de efectivo vía red Paynet',
             globalFootprint: 'Regional Latam: Presencia operativa directa en México, Colombia y Perú',
-            devExperience: 85,
+            targetAudience: 'Startups mexicanas de rápido crecimiento, plataformas SaaS y medianas marcas digitales de e-commerce.',
+            performance: 'Rendimiento de procesamiento estándar soportado por la red del banco BBVA, pero sin ruteo dinâmico inteligente o tokens actualizables.',
             companyOverview: 'Fintech mexicana de agregación de pagos digitales adquirida por BBVA en 2016 para liderar su brazo de e-commerce e innovación tecnológica de cobros en México.',
-            targetAudience: 'Startups de rápido crecimiento, plataformas de software, y comercios digitales de nivel PyME y Mid-Market.',
             weaknesses: 'No posee infraestructura madura de Unified Commerce para grandes almacenes enterprise; soporte técnico saturado en picos transaccionales.',
             strengths: 'La red Paynet para recibir depósitos en efectivo en más de 20 mil tiendas de conveniencia de México.',
             partners: 'BBVA, Magento, Prestashop, Shopify, WooCommerce.',
@@ -568,17 +556,16 @@
           {
             id: 'banorte',
             name: 'Banorte',
-            type: 'Banco Adquirente Tradicional',
+            type: 'Nacional',
             pricingModel: 'MDR Blended negociable ligada a reciprocidad bancaria',
-            approvalRate: 88.0,
             omnichannel: 'Parcial (Terminales físicas en sucursales y pasarela digital Payworks)',
             antifraud: 'Tercerizado com Cybersource integrado de legado',
             pixFeature: 'SPEI corporativo con conciliación interna por portales bancarios',
             globalFootprint: 'Doméstico: Operaciones concentradas estrictamente en el territorio de México',
-            devExperience: 65,
+            targetAudience: 'Cadenas hoteleras tradicionales, hospitales, escuelas, sector movilidad y retail físico consolidado en el norte del país.',
+            performance: 'La plataforma Payworks añade latencia en el procesamiento de canales online; carece de lógicas de re-intento de autorización automática.',
             companyOverview: 'Uno de los grupos bancarios más influyentes de capital mexicano. Compite agresivamente en adquirencia comercial asociando financiamientos y arrendamiento financiero de terminales.',
-            targetAudience: 'Cadenas hoteleras tradicionales, hotelería, salud y empresas de movilidad enfocadas en el norte del país.',
-            weaknesses: 'API digital Payworks obsoleta y difícil de actualizar; sin visión integrada de comercio unificado.',
+            weaknesses: 'API digital Payworks obsoleta y difícil de actualizar; sin visão integrada de comercio unificado.',
             strengths: 'Profundo arraigo en el mercado nacional con relaciones corporativas gubernamentales y bancarias sumamente sólidas.',
             partners: 'Payworks, Cybersource, Grupo Financiero Banorte.',
             status: 'approved',
@@ -595,16 +582,15 @@
           {
             id: 'citibanamex',
             name: 'Citibanamex',
-            type: 'Banco Adquirente Tradicional',
+            type: 'Nacional',
             pricingModel: 'Blended tradicional ligada a servicios financeiros globales',
-            approvalRate: 87.5,
             omnichannel: 'Tradicional fragmentado (Soluciones de sucursal bancaria)',
             antifraud: 'Tercerizado externo con Cybersource o motores legados de emisor',
             pixFeature: 'SPEI tradicional disponible vía pasarela tradicional',
             globalFootprint: 'Global: Respaldo corporativo de Citigroup con conectividad con EE.UU.',
-            devExperience: 62,
-            companyOverview: 'El segundo banco más antiguo de México, parte de Citigroup. Ofrece servicios robustos de terminal de punto de venta corporativo con un esquema bancario tradicional rígido.',
             targetAudience: 'Grandes multinacionales, empresas corporativas tradicionales ligadas a la banca transaccional global de Citi.',
+            performance: 'Altas taxas de caídas por declinaciones técnicas y lentitud burocrática del emisor para actualizar registros bancarios de fraude en su pasarela NetPay.',
+            companyOverview: 'El segundo banco más antiguo de México, parte de Citigroup. Ofrece servicios robustos de terminal de punto de venta corporativo con un esquema bancario tradicional rígido.',
             weaknesses: 'Sistemas con escasa flexibilidad para novos flujos digitales; procesos regulatorios internos sumamente lentos para cambios de APIs.',
             strengths: 'Relaciones institucionales con grandes corporaciones del país y adquirencia física muy robusta.',
             partners: 'NetPay, pasarelas locais, Citigroup.',
@@ -622,16 +608,15 @@
           {
             id: 'santander',
             name: 'Santander (Getnet MX)',
-            type: 'Banco Global / Adquirente',
+            type: 'Global',
             pricingModel: 'Blended negociada o IC++ para cuentas Enterprise de escala',
-            approvalRate: 89.5,
             omnichannel: 'Parcial (Getnet físico + pasarela de pago digital MIT integrada)',
             antifraud: 'Tercerizado nativo con Cybersource para mitigar contracargos',
             pixFeature: 'SPEI en tempo real disponible vía la pasarela corporativa',
             globalFootprint: 'Global: Operaciones directas de PagoNxt en México, Brasil, Chile, Argentina y Europa',
-            devExperience: 70,
-            companyOverview: 'Entidad de adquirencia del Grupo Santander que comercializa sus productos de pasarela bajo la marca Getnet en México, utilizando frecuentemente la infraestructura tecnológica de MIT.',
-            targetAudience: 'Comercios corporativos de retail regional con necesidades de financiamiento bancario y terminales Getnet físicas.',
+            targetAudience: 'Grandes comercios con cuentas de nómina y servicios corporativos integrados en el banco Santander.',
+            performance: 'Uso de pasarelas legadas asociadas (MIT) que añaden pasos extra (hops) e incrementan la fricción transaccional reduciendo la conversión.',
+            companyOverview: 'Entidad de adquirencia del Grupo Santander que comercializa sus produtos de pasarela bajo la marca Getnet en México, utilizando frecuentemente la infraestructura tecnológica de MIT.',
             weaknesses: 'Estructura verticalizada que eleva los costos de desarrollo de proyectos personalizados y retrasa implementaciones.',
             strengths: 'Gran presencia regional e internacional con la nova arquitectura modular Getnet SEP (Single Entry Point).',
             partners: 'MIT (Mercadotecnia, Ideas y Tecnología), Cybersource, Shopify, Santander México.',
@@ -649,16 +634,15 @@
           {
             id: 'scotiabank',
             name: 'Scotiabank',
-            type: 'Banco Adquirente Tradicional',
+            type: 'Global',
             pricingModel: 'MDR Blended tradicional',
-            approvalRate: 87.0,
             omnichannel: 'Solo terminales físicas',
             antifraud: 'Tercerizado externo con motores tradicionales de marca',
             pixFeature: 'SPEI bancario tradicional integrado por portal de comercio electrónico',
             globalFootprint: 'Global: Operaciones en Canadá, México, el Caribe y América del Sur',
-            devExperience: 55,
-            companyOverview: 'Institución financiera internacional canadiense. Ofrece servicios básicos de terminal bancaria física a su base de clientes corporativos en México.',
             targetAudience: 'Empresas canadienses con operaciones en México y grandes almacenes con necesidades de terminales básicas.',
+            performance: 'Carece de soluciones nativas para optimizar conversión online; redirecciones que añaden fricción a la experiencia del comprador.',
+            companyOverview: 'Institución financiera internacional canadiense. Ofrece servicios básicos de terminal bancaria física a su base de clientes corporativos en México.',
             weaknesses: 'Carece de una oferta de tecnologia de pago digital de vanguardia desarrollada de forma nativa.',
             strengths: 'Amplia confianza de banca transaccional internacional norteamericana.',
             partners: 'Procesadores locais de terminales físicas en México.',
@@ -676,18 +660,17 @@
           {
             id: 'stripe',
             name: 'Stripe',
-            type: 'Global Tech / API-First',
+            type: 'Global',
             pricingModel: 'Flat-Rate padrão ou IC++ para contas Enterprise',
-            approvalRate: 91.5,
             omnichannel: 'Parcial (Stripe Terminal disponible, focado digitalmente en México)',
             antifraud: 'Nativo de risco (Stripe Radar baseado em machine learning)',
             pixFeature: 'OXXO Pay integrado al checkout rápido y soporte ágil para transferencias SPEI',
             globalFootprint: 'Global: Operaciones de adquirência direta em mais de 45 países',
-            devExperience: 95,
-            companyOverview: 'La gigante tecnológica estadounidense de procesamiento digital. Se destaca por una excelente documentación de APIs amada por los equipos de ingeniería de software.',
             targetAudience: 'Startups tecnológicas, SaaS, marketplaces con Stripe Connect y e-commerces de alto crecimiento.',
-            weaknesses: 'El modelo de cobro fijo (Blended/Flat) resulta extremadamente costoso para el volumen transaccional de marcas Enterprise; soporte personalizado limitado.',
-            strengths: 'APIs modernas y limpias, onboarding instantáneo y excelentes flujos de cobros de suscripción recurrentes (Stripe Billing).',
+            performance: 'Funcionalidad Adaptive Acceptance que utiliza modelos de IA transaccionales, pero con costos incrementales por encima de la tarifa plana tradicional.',
+            companyOverview: 'La gigante tecnológica estadounidense de procesamiento digital. Se destaca por una excelente documentación de APIs amada por los equipos de ingeniería de software.',
+            weaknesses: 'El modelo de comisiones flat es insostenible en escala Enterprise; limitadas soluciones de hardware físico robustas en México.',
+            strengths: 'Ecosistema API de referencia mundial, agilidad para cobros recurrentes y excelente onboarding de sub-afiliados.',
             partners: 'Shopify, VTEX, WooCommerce, Magento, Stripe Connect, Stripe Radar.',
             status: 'approved',
             verifiedBy: 'Equipo de PMM LatAm',
@@ -703,16 +686,15 @@
           {
             id: 'ebanx',
             name: 'EBANX',
-            type: 'Especialista Cross-Border',
+            type: 'Regional',
             pricingModel: 'Markup de tipo de cambio + Comisión de remesa',
-            approvalRate: 84.0,
             omnichannel: 'No aplicable (Solo digital)',
             antifraud: 'Nativo de riesgo calibrado para patrones locales latinoamericanos',
             pixFeature: 'Cobro integrado de SPEI y OXXO para merchants no residentes',
             globalFootprint: 'Global Cross-Border: Conecta comerciantes globales a consumidores en múltiples mercados de América Latina, Asia y África',
-            devExperience: 80,
-            companyOverview: 'Fintech brasileira especialista en conectar a grandes gigantes globales que venden servicios digitales en mercados emergentes de América Latina sin requerir presencia local.',
             targetAudience: 'Plataformas de streaming, gigantes globales de software y marketplaces transfronterizos sin RFC local.',
+            performance: 'Excelente conversión en flujos cross-border al procesar mediante adquirentes locales asociados, pero sujeto a la fricción de la conversión cambiaria.',
+            companyOverview: 'Fintech brasileira especialista en conectar a grandes gigantes globales que venden servicios digitales en mercados emergentes de América Latina sin requerir presencia local.',
             weaknesses: 'Incapacidad total de proveer adquirencia de terminales de punto de venta físicas (in-store) en México; tarifas transfronterizas de alto Markup comercial.',
             strengths: 'Expertise pionera en regulación de remesas transnacionales y dispersión cambiaria ágil en mercados emergentes.',
             partners: 'Bancos centrales, procesadores de efectivo locales, EBANX Shield.',
@@ -730,17 +712,16 @@
           {
             id: 'payu',
             name: 'PayU',
-            type: 'Agregador Digital Regional',
+            type: 'Regional',
             pricingModel: 'Blended rate estándar por escala de procesamiento',
-            approvalRate: 87.8,
             omnichannel: 'Solo digital',
             antifraud: 'Nativo modular de riesgo (PayU Shield / Módulo integrado)',
             pixFeature: 'SPEI, OXXO Pay nativo y amplia gama de Meses Sin Intereses directos',
-            globalFootprint: 'Global: Operaciones de agregación digital en more de 20 mercados de rápido crecimiento en LatAm y EMEA',
-            devExperience: 78,
-            companyOverview: 'Compañía fintech líder en pagos digitales, parte de Prosus. Actúa facilitando la recaudación de comercio electrónico con un enfoque puramente digital.',
+            globalFootprint: 'Global: Operaciones de agregación digital en more de 20 mercados de rápido crescimento en LatAm y EMEA',
             targetAudience: 'E-commerces medianos en LatAm y plataformas de videojuegos online.',
-            weaknesses: 'API digital desactualizada con tiempos de respuesta elevados; sin ninguna propuesta de comercio unificado físico.',
+            performance: 'Procesamiento de checkout digital estándar sin herramientas de auto-recuperación de fondos o de tokens de marca, lo que genera declinaciones constantes.',
+            companyOverview: 'Compañía fintech líder en pagos digitales, parte de Prosus. Actúa facilitando la recaudación de comercio electrónico con un enfoque puramente digital.',
+            weaknesses: 'API digital desactualizada con tiempos de response elevados; sin ninguna propuesta de comercio unificado físico.',
             strengths: 'Sólido procesamiento de métodos de pago en efectivo y excelente catálogo para financiamiento por meses sin intereses (MSI).',
             partners: 'Prosus, WooCommerce, Shopify, Magento, VTEX.',
             status: 'approved',
@@ -749,7 +730,7 @@
             marketCap: 'División de Prosus (Euronext: PRX) | Valoración de Prosus: ~$110.0 Mil millones',
             newsSnippet: 'PayU optimiza sus checkout SDKs reduciendo la fricción en la introducción de datos en terminales móviles para e-commerce LatAm.',
             battlecard: {
-              whyWeWin: 'La tecnología directa de Adyen ofrece mayor velocidad de procesamiento y menores tasas de recusas técnicas por falso positivo de riesgo.',
+              whyWeWin: 'La tecnología directa de Adyen ofrece mayor velocidad de procesamiento y menores taxas de recusas técnicas por falso positivo de riesgo.',
               vulnerabilities: 'Poseen alta capilaridad de plugins rápidos de instalar en sitios web medianos.',
               script: 'PayU utiliza pasarelas legadas que agregan latencia a su checkout. Con Adyen, la conexión directa con Visa y Mastercard aceitera el procesamiento y sube su aprobación.'
             }
@@ -757,16 +738,15 @@
           {
             id: 'mercadopago',
             name: 'Mercado Pago',
-            type: 'Regional LatAm Wallet / Agregador',
+            type: 'América Latina',
             pricingModel: 'MDR Blended baseado em o sistema de o marketplace',
-            approvalRate: 90.2,
             omnichannel: 'Parcial (Terminales Point Smart / Point Air conectadas a la wallet)',
-            antifraud: 'Nativo de riesgo (Mercado Pago Shield basado en transacciones de Meli)',
+            antifraud: 'Nativo de riesgo (Mercado Pago Shield) basado en transacciones de Meli; no requiere contratación de Cybersource.',
             pixFeature: 'SPEI nativo excelente, transferencias instantáneas de cuenta digital',
             globalFootprint: 'Regional Latam: Operación líder de pasarela y wallet en Argentina, Brasil, México, Chile, Colombia y Peru',
-            devExperience: 88,
-            companyOverview: 'La billetera digital y brazo fintech de mayor crecimiento en México y América Latina, parte del ecosistema de Mercado Libre. Ofrece terminales de cobro Point y soluciones completas digitales.',
             targetAudience: 'PyMEs, marketplaces digitales, marcas de e-commerce y comercios medianos en México.',
+            performance: 'Excelente conversión con su base de usuarios Mercado Libre registrados (tarjetas ya guardadas en wallet), pero menor performance con tarjetas externas al ecosistema.',
+            companyOverview: 'La billetera digital y brazo fintech de mayor crecimiento en México y América Latina, parte del ecosistema de Mercado Libre. Ofrece terminales de cobro Point y soluciones completas digitales.',
             weaknesses: 'Comisiones de agregación comerciales privadas sumamente elevadas; soporte técnico limitado y burocrático para la escala Enterprise corporativa.',
             strengths: 'Gran retención de usuarios con la wallet Mercado Pago y financiamiento rápido con Mercado Crédito.',
             partners: 'Mercado Libre, Shopify, VTEX, WooCommerce, Magento.',
@@ -784,16 +764,15 @@
           {
             id: 'paypal',
             name: 'PayPal / Braintree',
-            type: 'Global Wallet / Checkout',
+            type: 'Global',
             pricingModel: 'Flat-Rate más tarifa fija comercial por transacción',
-            approvalRate: 88.5,
             omnichannel: 'Não aplicável (Muito restrito ao e-commerce clássico no México)',
             antifraud: 'Nativo baseado em contas verificadas PayPal',
             pixFeature: 'SPEI integrado de forma simplificada no fluxo da carteira digital',
             globalFootprint: 'Global: Operaciones de procesamiento y billetera en más de 200 países con un sólido respaldo internacional',
-            devExperience: 82,
-            companyOverview: 'La marca líder pionera de billetera digital en México y el mundo. En escala Enterprise, ofrece el procesamiento de la pasarela especializada Braintree.',
             targetAudience: 'E-commerces de retail que capturan compradores transfronterizos y checkouts rápidos con tarjetas bancarias internacionales.',
+            performance: 'Destacado índice de procesamiento con cuentas activas de PayPal; sin embargo, requiere desvíos al checkout del modal nativo que bajan la performance líquida del e-commerce tradicional.',
+            companyOverview: 'La marca líder pionera de billetera digital en México y el mundo. En escala Enterprise, ofrece el procesamiento de la pasarela especializada Braintree.',
             weaknesses: 'Tarifas arancelarias fijas sumamente elevadas; fricción al obligar al cliente a abrir un modal de inicio de sesión de PayPal.',
             strengths: 'Confianza absoluta del comprador digital y gran efectividad de conversión en checkouts exprés de marcas globales.',
             partners: 'Braintree, Salesforce, Adobe Commerce, Shopify, VTEX.',
@@ -823,7 +802,7 @@
           { id: 2, competitor: "BBVA", type: "campaign", message: "BBVA México lanza campaña exclusiva de 18 Meses Sin Intereses integrando los Puntos BBVA al checkout digital de Openpay.", searchKeyword: "BBVA puntos checkout Openpay" },
           { id: 3, competitor: "Stripe", type: "launch", message: "Stripe México actualiza su motor de cobros recurrentes Stripe Billing con adaptaciones automáticas para el SPEI recurrente.", searchKeyword: "Stripe Billing SPEI recurrente Mexico" },
           { id: 4, competitor: "Santander", type: "campaign", message: "Santander Getnet MX consolida alianza comercial con PayPal para acelerar el procesamiento unificado en grandes retailers.", searchKeyword: "Santander Getnet MX PayPal" },
-          { id: 5, competitor: "Openpay", type: "pricing", message: "Openpay ajusta sus taxas de agregación blended para startups con el objetivo de retener merchants en escala intermedia.", searchKeyword: "Openpay ajusta taxas agregacion startups" }
+          { id: 5, competitor: "Openpay", type: "pricing", message: "Openpay ajusta sus tasas de agregación blended para startups con el objetivo de retener merchants en escala intermedia.", searchKeyword: "Openpay ajusta tasas agregacion startups" }
         ];
 
         // Mapeador de Marcas, Cores e SVGs em Light Theme Puro
@@ -1070,7 +1049,7 @@
           const [selectedSlot3, setSelectedSlot3] = useState('cielo');
 
           // Controles do Sino de Alertas (Real-time Alert System)
-          const [alertsList, setAlertsList] = useState(BR_ALERTS);
+          const [alertsList, setAlertsList] = useState([]);
           const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
 
           // Estado da aba de Resumos/Perfis
@@ -1151,6 +1130,11 @@
                 return isMX
                   ? `"Si buscas expandir tu comercio electrónico fuera de México, ${name} te limitará debido a su enfoque puramente doméstico o requerirá contratos locales adicionales de remesas. Adyen es una red adquirente global directa: procesas de forma local en México y te expandes al mundo con la misma API."`
                   : `"${A(name)} é uma adquirente estritamente nacional. Para expandir a sua marca na LatAm ou Europa, você precisará gerenciar múltiplos adquirentes estrangeiros. Com a Adyen, você vende no Brasil e expande o seu e-commerce globalmente sob a mesma infraestrutura."`;
+
+              case 'performance':
+                return isMX
+                  ? `"A diferencia de los adquirentes tradicionales o las pasarelas fragmentadas, Adyen opera de extremo a extremo. Con nuestro Smart Routing nativo e Instant Retries, recuperamos transacciones que de otro modo fallarían por caídas técnicas temporales de los emisores. Además, nuestra optimización integrada de Network Tokens y Account Updater asegura que los pagos recurrentes sigan aprobándose incluso si el cliente cambia de plástico. Esto se traduce en un incremento directo de sus ingresos netos."`
+                  : `"Ao contrário das adquirentes legadas ou gateways fragmentados, a Adyen atua diretamente na ponta. Com o nosso Smart Routing nativo e Instant Retries, recuperamos transações que falhariam por quedas temporárias de sistemas dos emissores. Além disso, nossa otimização nativa de Network Tokens e Account Updater garante que as assinaturas e compras recorrentes continuem aprovando mesmo que o cliente mude de cartão físico. Isso gera aumento imediato de receita sem aumentar seus custos."`;
 
               default:
                 return `"${activeBattleCompetitor.battlecard?.script || ""}"`;
@@ -1427,6 +1411,22 @@
                           </div>
                         </div>
 
+                        {/* Performance Transacional */}
+                        <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
+                          <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
+                            {t.fields.performance}
+                          </div>
+                          <div className="p-4 md:border-r border-slate-200 text-slate-700 leading-relaxed text-justify">
+                            {comp1.performance}
+                          </div>
+                          <div className="p-4 md:border-r border-slate-200 text-slate-600 leading-relaxed text-justify">
+                            {comp2.performance}
+                          </div>
+                          <div className="p-4 text-slate-600 leading-relaxed text-justify">
+                            {comp3.performance}
+                          </div>
+                        </div>
+
                         {/* Modelo Comercial */}
                         <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
                           <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
@@ -1440,43 +1440,6 @@
                           </div>
                           <div className="p-4 text-slate-600">
                             {comp3.pricingModel}
-                          </div>
-                        </div>
-
-                        {/* Taxa de Aprovação */}
-                        <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
-                          <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
-                            {t.fields.aprovacao}
-                          </div>
-                          <div className="p-4 md:border-r border-slate-200 animate-none">
-                            <div className="space-y-1">
-                              <div className="flex justify-between items-center text-slate-800 font-extrabold text-sm">
-                                <span>{comp1.approvalRate}%</span>
-                              </div>
-                              <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden border border-slate-200/55">
-                                <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${comp1.approvalRate}%` }}></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-700">
-                            <div className="space-y-1">
-                              <div className="flex justify-between items-center font-bold text-sm">
-                                <span className="text-slate-700">{comp2.approvalRate}%</span>
-                              </div>
-                              <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden border border-slate-200/55">
-                                <div className="bg-slate-400 h-full rounded-full" style={{ width: `${comp2.approvalRate}%` }}></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="p-4 text-slate-700">
-                            <div className="space-y-1">
-                              <div className="flex justify-between items-center font-bold text-sm">
-                                <span className="text-slate-700">{comp3.approvalRate}%</span>
-                              </div>
-                              <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden border border-slate-200/55">
-                                <div className="bg-slate-400 h-full rounded-full" style={{ width: `${comp3.approvalRate}%` }}></div>
-                              </div>
-                            </div>
                           </div>
                         </div>
 
@@ -1541,37 +1504,6 @@
                           </div>
                           <div className="p-4 text-slate-505">
                             {comp3.globalFootprint}
-                          </div>
-                        </div>
-
-                        {/* Developer Experience */}
-                        <div className="grid grid-cols-1 md:grid-cols-4 text-xs transition hover:bg-slate-50/60">
-                          <div className="p-4 font-bold text-slate-800 md:border-r border-slate-200 bg-slate-50/20 flex items-center">
-                            {t.fields.dev}
-                          </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-700">
-                            <div className="flex items-center gap-3">
-                              <span className="font-extrabold text-slate-800">{comp1.devExperience || 'N/A'}/100</span>
-                              <div className="flex-1 bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200/55">
-                                <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${comp1.devExperience}%` }}></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="p-4 md:border-r border-slate-200 text-slate-550">
-                            <div className="flex items-center gap-3">
-                              <span className="font-bold text-slate-700">{comp2.devExperience || 'N/A'}/100</span>
-                              <div className="flex-1 bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200/55">
-                                <div className="bg-slate-400 h-full rounded-full" style={{ width: `${comp2.devExperience}%` }}></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="p-4 text-slate-550">
-                            <div className="flex items-center gap-3">
-                              <span className="font-bold text-slate-700">{comp3.devExperience || 'N/A'}/100</span>
-                              <div className="flex-1 bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200/55">
-                                <div className="bg-slate-400 h-full rounded-full" style={{ width: `${comp3.devExperience}%` }}></div>
-                              </div>
-                            </div>
                           </div>
                         </div>
 
@@ -1649,14 +1581,6 @@
                           <div>
                             <span className="font-semibold text-slate-800 block">Global Footprint:</span>
                             <span className="text-slate-600 text-[11px] leading-tight block">{activeSummaryCompetitor.globalFootprint}</span>
-                          </div>
-
-                          <div className="pt-2 border-t border-slate-100">
-                            <span className="font-semibold text-slate-800 block">Aprovação / DX:</span>
-                            <div className="flex gap-4 mt-1 font-mono text-[10px] text-slate-500">
-                              <span>Aprov: <strong className="text-slate-700">{activeSummaryCompetitor.approvalRate}%</strong></span>
-                              <span>DX: <strong className="text-slate-700">{activeSummaryCompetitor.devExperience}/100</strong></span>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -1756,6 +1680,16 @@
                             >
                               <span>Taxas & MDR (Comercial)</span>
                               <span className="text-[10px] font-mono font-normal">IC++ vs. Flat</span>
+                            </button>
+
+                            <button
+                              onClick={() => setSelectedObjection('performance')}
+                              className={`w-full text-left p-2.5 rounded-lg border text-xs font-bold transition flex items-center justify-between ${
+                                selectedObjection === 'performance' ? 'bg-white border-emerald-500 text-emerald-600' : 'bg-slate-100 border-slate-200 text-slate-600'
+                              }`}
+                            >
+                              <span>Performance Técnica</span>
+                              <span className="text-[10px] font-mono font-normal">Otimização</span>
                             </button>
 
                             <button
@@ -1869,7 +1803,7 @@
                         </h2>
                         <p className="text-xs text-slate-550 mt-1 font-medium">Acompanhe as atualizações de mercado, lançamentos e regulamentações ordenadas de A a Z.</p>
                       </div>
-                      <span className="text-[10px] bg-white border border-slate-200 text-slate-500 px-3 py-1 rounded-full font-bold">Junho 2026</span>
+                      <span className="text-[10px] bg-white border border-slate-200 text-slate-505 px-3 py-1 rounded-full font-bold">Junho 2026</span>
                     </div>
 
                     {/* Listagem de Notícias */}
@@ -1888,7 +1822,7 @@
 
                               <div className="space-y-1">
                                 <span className="text-[9px] uppercase font-bold text-emerald-600 block tracking-wider">Destaque Informativo</span>
-                                <p className="text-xs text-slate-650 leading-relaxed text-justify mt-2">
+                                <p className="text-xs text-slate-650 leading-relaxed text-justify mt-2 text-justify">
                                   {comp.newsSnippet || 'Nenhuma movimentação regulatória ou alteração tarifária significativa foi registrada para este competidor nos últimos 30 dias.'}
                                 </p>
                               </div>
@@ -1953,7 +1887,7 @@
                       </span>
                       <div>
                         <h3 className="text-base font-bold text-slate-900">{t.alertSystemTitle}</h3>
-                        <p className="text-[11px] text-slate-500">{t.alertSystemDesc}</p>
+                        <p className="text-[11px] text-slate-550">{t.alertSystemDesc}</p>
                       </div>
                     </div>
 
@@ -1991,7 +1925,7 @@
               <footer className="bg-white border-t border-slate-200 py-6 px-6 mt-12 text-xs text-slate-400">
                 <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
                   <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
                     <span>Adyen Latam - Uso Estritamente Comercial e Interno</span>
                   </div>
                   <div>
