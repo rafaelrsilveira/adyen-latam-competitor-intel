@@ -37,7 +37,7 @@
     <!-- React, ReactDOM e Babel Standalone (Produção estável UMD) -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -424,7 +424,7 @@
               modelo: "Modelo Comercial",
               omni: "Solução Omnichannel",
               antifraude: "Antifraude e Risco",
-              pagamento: "Meios de Pagamento Locais (Pix)",
+              pagamento: "Meios de Pagamento Locais",
               global: "Global Footprint",
               pix: "Pix",
               antecipacao: "Antecipação de Recebíveis"
@@ -438,9 +438,9 @@
             tabNegotiation: "NEGOCIACIÓN COMERCIAL",
             tabNews: "NOTICIAS DEL MERCADO",
             placeholderSelect: "Seleccione el Competidor",
-            labelCompetitorA: "Competidor A",
-            labelCompetitorB: "Competidor B",
-            labelCompetitorC: "Competidor C",
+            labelCompetitorA: "Seleccionar Competidor A",
+            labelCompetitorB: "Seleccionar Competidor B",
+            labelCompetitorC: "Seleccionar Competidor C",
             btnSearch: "Búsqueda Directa Google",
             btnBattlecard: "Ver Battlecard",
             btnCopy: "Copiar Guion",
@@ -479,7 +479,7 @@
             pixFeature: 'Instantâneo via Open Finance, reconciliação em tempo real na mesma API',
             globalFootprint: 'Global: Operações diretas em mais de 100 países com adquirência local própria',
             targetAudience: 'Foco rigoroso em grandes corporações Enterprise, marcas multinacionais e varejistas complexos com forte necessidade de Unified Commerce.',
-            performance: 'Smart Routing inteligente de emissores, Instant Retries automáticos para falhas técnicas temporárias e Network Token Optimization nativo para recorrência.',
+            performance: 'Smart Routing inteligente de emissores, Instant Retries em tempo real e Network Token nativo.',
             companyOverview: 'Plataforma de tecnologia financeira global holandesa de pagamentos unificados que opera como adquirente, gateway e gerenciador de riscos em um único fluxo direto de dados, eliminando intermediários.',
             weaknesses: 'Menor flexibilidade comercial para Micro e Pequenas empresas; sem foco em POS físico de baixo faturamento para lojistas de rua comuns.',
             strengths: 'Maior taxa de autorização técnica real, motor antifraude adaptativo nativo (RevenueProtect), e contratos transparentes baseados no modelo IC++.',
@@ -488,7 +488,6 @@
             verifiedBy: 'Equipa de PMM (Global & Local)',
             dataSource: 'Relatórios Financeiros Globais, Documentação Técnica da API Adyen v69',
             marketCap: 'Euronext: ADYEN | Cap. de Mercado: ~€41.8 Bilhões',
-            newsSnippet: 'Adyen anuncia expansão do ecossistema de terminais Android e novas APIs de processamento integradas com Pix via Open Finance.',
             pix: 'Participante Direto com conexão direta ao Banco Central. Sistema de fallback automatizado redundante para alta disponibilidade. Reconciliação unificada em tempo real na mesma API de cartões.',
             antecipacao: 'Total flexibilidade operacional: antecipação automática (D+1), programada ou pontual (ad-hoc sob demanda) direto no portal de controle com tarifas totalmente transparentes.',
             ofertaProdutos: {
@@ -520,7 +519,6 @@
             verifiedBy: 'Equipe de PMM Brasil',
             dataSource: 'Balanços Públicos Cielo, Documentação Braspag API, Inteligência de Campo',
             marketCap: 'Capital Fechado (Delisted) | Controlada por Bradesco & BB',
-            newsSnippet: 'Cielo anuncia expansão do programa Aliança Cielo integrando soluções de suporte direto para médias contas de varejo regional.',
             pix: 'Disponibiliza captura via Braspag (digital) ou terminais de POS físicos, gerando relatórios de conciliação financeira apartados e manuais por canal de venda.',
             antecipacao: 'Oferece suporte à modalidade Interchange Plus (IC++) e antecipação automática ou pontual vinculada e negociada de acordo com o relacionamento com os bancos controladores (Bradesco/BB).',
             ofertaProdutos: {
@@ -552,12 +550,11 @@
             verifiedBy: 'Equipe de PMM Brasil',
             dataSource: 'Análises de Mercado Itaú Unibanco, Feedback de Contas Enterprise da Adyen',
             marketCap: 'Divisão Itaú Unibanco (B3: ITUB4) | Cap. de Mercado Itaú: ~R$ 310 Bilhões',
-            newsSnippet: 'Rede Itaú intensifica oferta comercial combinada com antecipação gratuita de recebíveis em crédito rotativo para atrair grandes contas.',
             pix: 'Conexão estável ligada diretamente ao Itaú Unibanco. É oferecido frequentemente a taxas de 0% ou flat-rates como subsídio, vinculando o merchant a pacotes bancários de reciprocidade.',
             antecipacao: 'Suporta Interchange Plus (IC++). Oferece antecipação automática (D+1/D+2) altamente competitiva para correntistas Itaú, usada frequentemente como alavanca agressiva de retenção comercial.',
             ofertaProdutos: {
               pix: 'QR Code dinâmico Itaú, split nativo via TEF ligado à conta bancária centralizada Itaú.',
-              antecipacao: 'Antecipação automática D+1 pré-aprovada integrada ao limite de capital de giro corporativo do banco.'
+              antecipacao: 'Antecipação automática D+1 pré-aprovada integrada ao limite de capital de giro do banco.'
             },
             battlecard: {
               whyWeWin: 'A independência bancária e a tecnologia ágil de adquirência da Adyen otimizam as taxas de autorização sem amarras de crédito.',
@@ -568,7 +565,7 @@
           {
             id: 'getnet',
             name: 'Getnet',
-            type: 'Nacional',
+            type: 'Global',
             pricingModel: 'Para clientes Corporate/Global oferece IC++. Middle Market, grandes contas regionais, Varejo e long tail apenas tarifas blended fee (MDR Flat).',
             omnichannel: 'Fragmentado (Utiliza AUTTAR/IPP no físico e gateway digital próprio. O gateway Carat não pertence à Getnet).',
             antifraud: 'Nativo da plataforma (solução própria de mitigação de risco Getnet).',
@@ -584,7 +581,6 @@
             verifiedBy: 'Equipa de PMM LatAm',
             dataSource: 'getnet.txt, Relatórios do Grupo PagoNxt, Feedbacks de Clientes Varejistas',
             marketCap: 'Controlada PagoNxt (Grupo Santander - NYSE: SAN) | Cap. de Mercado: ~€71.5 Bilhões',
-            newsSnippet: 'Getnet (PagoNxt) amplia conexões transfronteiriças de cartões e unifica APIs para apoiar e-commerces em expansão regional.',
             pix: 'Oferecido via portal e APIs conectadas ao Santander. Disponibiliza split de Pix e recorrência com boa capacidade operacional vinculada ao banco.',
             antecipacao: 'Modelos de antecipação automáticos e pré-fixados com taxas subsidiadas pelo Santander para faturamento corporativo, mas com baixa agilidade de resgates pontuais sob demanda.',
             ofertaProdutos: {
@@ -616,7 +612,6 @@
             verifiedBy: 'Equipe de PMM Brasil',
             dataSource: 'Earnings Release StoneCo Q4 2025, Documentação Pagar.me',
             marketCap: 'Capital Aberto (NASDAQ: STNE) | Cap. de Mercado: ~$4.1 Bilhões',
-            newsSnippet: 'StoneCo cresce base corporativa oferecendo repasse veloz e taxas flat simplificadas para varejo físico regional.',
             pix: 'Conexão e APIs do Pagar.me/Mundipagg para canais digitais e QR Code físico em maquininhas. Oferece boa conciliação digital, mas operação apartada.',
             antecipacao: 'Oferece antecipação automática de fábrica na taxa flat-rate (MDR Blended), o que infla e mascara o custo financeiro real de capital para o lojista de alto volume.',
             ofertaProdutos: {
@@ -648,7 +643,6 @@
             verifiedBy: 'Equipe de PMM Brasil',
             dataSource: 'Relatórios do Banco Central do Brasil, Earnings PagSeguro/PagBank',
             marketCap: 'Capital Aberto (NYSE: PAGS) | Cap. de Mercado: ~$3.4 Bilhões',
-            newsSnippet: 'PagBank avança em soluções financeiras para capital de giro com novos modelos de POS integrados a repasse imediato.',
             pix: 'Pix instantâneo altamente integrado à carteira e conta digital PagBank, com checkout e liquidez voltada a pequenos lojistas (SMB).',
             antecipacao: 'A antecipação automática é mandatória de fábrica nas tarifas blended fixas para financiar e sustentar o modelo de repasse instantâneo D+0/D+1.',
             ofertaProdutos: {
@@ -679,7 +673,7 @@
             status: 'approved',
             verifiedBy: 'Equipe de PMM LatAm',
             dataSource: 'mercadoPago.txt, Relatórios Financeiros MercadoLibre, Feedbacks Técnicos',
-            marketCap: 'Subsidiaria MercadoLibre (NASDAQ: MELI) | Cap. de Mercado MELI: ~$95 Bilhões',
+            marketCap: 'Subsidiária MercadoLibre (NASDAQ: MELI) | Cap. de Mercado MELI: ~$95 Bilhões',
             pix: 'Ubíquo e veloz com acréscimo de split e split de tarifas em carteiras digitais, mas sem IA de recuperação técnica avançada para caídas pontuais.',
             antecipacao: 'Oferece três modelos estruturados: 1. PSJ (custo do parcelamento embutido no MDR blended); 2. PCJ (MP retém os juros do comprador, operando com MDR negativo sem controle do merchant PJ); 3. PNF (Pagamento no Fluxo, com antecipação manual cara sem relatórios adequados para conciliação).',
             ofertaProdutos: {
@@ -742,7 +736,6 @@
             verifiedBy: 'Equipe de PMM LatAm',
             dataSource: 'Relatórios Financeiros dLocal NASDAQ, Logs de Transações em Clientes Compartilhados',
             marketCap: 'Capital Aberto (NASDAQ: DLO) | Cap. de Mercado: ~$2.7 Bilhões',
-            newsSnippet: 'dLocal reporta consolidação de suas soluções de processamento instantâneo via SPEI e Pix sob modelo MoR para SaaS globais.',
             pix: 'Oferecido sob modelo agregador cambial. Processamento internacional complexo com taxas cambiais (MDR Blended + FX Markup) ocultas.',
             antecipacao: 'O custo de antecipação e juros de parcelamento no Brasil (até 12 parcelas) é embutido em suas taxas de MDR blended, gerando altos prêmios financeiros e opacidade.',
             ofertaProdutos: {
@@ -774,7 +767,6 @@
             verifiedBy: 'Equipe de PMM Global Team',
             dataSource: 'Relatórios Anuais SEC PayPal Inc, Documentação de Integração Braintree',
             marketCap: 'Capital Aberto (NASDAQ: PYPL) | Cap. de Mercado: ~$65.0 Bilhões',
-            newsSnippet: 'PayPal Brasil foca em checkouts dinâmicos com um clique integrando cartões internacionais a carteiras eletrônicas de utilities.',
             pix: 'Integrado apenas como canal complementar dentro do modal da carteira digital sob redirecionamento complexo, sem apelo ou tração técnica.',
             antecipacao: 'Não oferece soluções de antecipação direta local para cartões de adquirentes terceiros; liquidez em conta padrão de Braintree T+2/T+3.',
             ofertaProdutos: {
@@ -783,7 +775,7 @@
             },
             battlecard: {
               whyWeWin: 'Os nossos fluxos focam na conversão direta e sem atrito do cartão do utilizador, enquanto o PayPal is otimizado para a sua própria carteira digital.',
-              vulnerabilities: 'Taxas altíssimas e atrito no checkout quando o utilizador final é obrigado a ter uma conta do PayPal para finalizar a compra.',
+              vulnerabilities: 'Taxas altíssimas e atrito no checkout quando o utilizador final é obrigado a ter uma conta do PayPal para finalizar a transação.',
               script: 'O PayPal é muito bom para compradores internacionais que exigem segurança de carteira digital. Contudo, para o dia a dia do consumidor brasileiro, a Adyen entrega uma experiência de checkout muito mais limpa, integrada diretamente com as bandeiras de cartões e o Pix local.'
             }
           },
@@ -806,7 +798,6 @@
             verifiedBy: 'Equipe de PMM LatAm',
             dataSource: 'Documentos Oficiais Stripe México, Feedback Técnico de Clientes Migrados',
             marketCap: 'Capital Fechado (Privada) | Valuation Estimado: ~$70 Bilhões',
-            newsSnippet: 'Stripe lança no Brasil novas facilidades de conciliação financeira automatizada focada em Pix Automático sob Connect.',
             pix: 'Excelente infraestrutura via API com suporte unificado e conciliação aceitável, com forte adequação recente para recorrências do Pix Automático.',
             antecipacao: 'Antecipação automática ou sob demanda via portal Dashboard, mas com custos regulatórios elevados e MDR blended de partida robusto.',
             ofertaProdutos: {
@@ -896,7 +887,7 @@
             targetAudience: 'Startups mexicanas de rápido crecimiento, plataformas SaaS y medianas marcas digitales de e-commerce.',
             performance: 'Rendimiento de procesamiento estándar soportado por la red del banco BBVA, pero sin ruteo dinâmico inteligente o tokens actualizables.',
             companyOverview: 'Fintech mexicana de agregación de pagos digitales adquirida por BBVA en 2016 para liderar su brazo de e-commerce e innovación tecnológica de cobros en México.',
-            weaknesses: 'No posee infraestructura madura de Unified Commerce para grandes almacenes enterprise; soporte técnico saturedo en picos transaccionales.',
+            weaknesses: 'No posee infraestructura madura de Unified Commerce para grandes almacenes enterprise; soporte técnico saturado en picos transaccionales.',
             strengths: 'La red Paynet para recibir depósitos en efectivo en más de 20 mil tiendas de conveniencia de México.',
             partners: 'BBVA, Magento, Prestashop, Shopify, WooCommerce.',
             status: 'approved',
@@ -910,7 +901,7 @@
               antecipacao: 'MSI a plazos fijos estándar para startups y e-commerces medianos.'
             },
             battlecard: {
-              whyWeWin: 'Adyen es adquirente directo para el procesamiento de transacciones de volumen corporativo, avoiding el recargo operacional de los agregadores.',
+              whyWeWin: 'Adyen es adquirente directo para el procesamiento de transacciones de volumen corporativo, evitando el recargo operacional de los agregadores.',
               vulnerabilities: 'Tienen un colosal motor de onboarding instantáneo y el soporte del mayor banco del país.',
               script: 'Openpay is ideal para arrancar, pero si su volumen transaccional escala, la agregación encarece su estructura. Adyen le brinda un modelo Interchange++ directo con visibilidad total de costos.'
             }
@@ -934,11 +925,11 @@
             verifiedBy: 'Equipo de PMM México',
             dataSource: 'Análisis Competitivo Adyen México, Reportes de Banco de México (Banxico)',
             marketCap: 'BMV: GFNORTE | Cap. de Mercado: ~$25.0 Mil millones',
-            pix: 'SPEI tradicional conectado a portales Banorte, con conciliación lenta típica de banca de legado.',
-            antecipacao: 'Financiamiento de MSI comercial ligado a la cuenta empresarial Banorte con total reciprocidad.',
+            pix: 'SPEI tradicional de legado.',
+            antecipacao: 'MSI de sucursal estándar.',
             ofertaProdutos: {
-              pix: 'Transferencias bancarias e integraciones SPEI de legado.',
-              antecipacao: 'MSI Banorte negociado de acuerdo a volumen transaccional y reciprocidad corporativa.'
+              pix: 'SPEI tradicional bancario interconectado.',
+              antecipacao: 'MSI estándar acordados en sucursales.'
             },
             battlecard: {
               whyWeWin: 'Adyen oferece uma plataforma amigable para desarrolladores y APIs robustas, superando las limitaciones tecnológicas heredadas de Payworks.',
@@ -965,11 +956,11 @@
             verifiedBy: 'Equipo de PMM México',
             dataSource: 'Análisis de Mercado de Adquirencia de Citigroup LatAm, Datos de Campo',
             marketCap: 'División de Citigroup (NYSE: C) | Proceso de Venta/OPI en Marcha',
-            pix: 'SPEI tradicional conectado a la red transaccional de Citi en México.',
-            antecipacao: 'Líneas de descuento de pagarés e MSI Banamex ligadas a contratos transaccionales bancarios.',
+            pix: 'SPEI tradicional de legado.',
+            antecipacao: 'MSI de sucursal estándar.',
             ofertaProdutos: {
-              pix: 'Aceptación SPEI tradicional corporativo Banamex.',
-              antecipacao: 'MSI Citibanamex líder en grandes almacenes con financiamiento de Citi.'
+              pix: 'Aceptación de SPEI tradicional corporativo Banamex.',
+              antecipacao: 'MSI Citibanamex en grandes almacenes.'
             },
             battlecard: {
               whyWeWin: 'La plataforma directa de Adyen oferece mayor disponibilidad en línea y agilidad que la tecnología bancaria burocrática de Citibanamex.',
@@ -981,26 +972,26 @@
             id: 'santander',
             name: 'Santander (Getnet MX)',
             type: 'Global',
-            pricingModel: 'Blended negociada o IC++ para cuentas Enterprise de escala',
-            omnichannel: 'Parcial (Getnet físico + pasarela de pago digital MIT integrada)',
-            antifraud: 'Tercerizado nativo con Cybersource para mitigar contracargos',
+            pricingModel: 'Blended negociada o IC++ para cuentas Enterprise de escala. Liquidación estándar T+1 y T+0 disponible.',
+            omnichannel: 'Parcial (Getnet físico + pasarela de pago digital MIT integrada). API única por SEP (Single Entry Point), pero carece de Unified Commerce unificado real.',
+            antifraud: 'Tercerizado nativo con Cybersource para mitigar contracargos. Carece de motor de riesgo nativo global de IA.',
             pixFeature: 'SPEI en tempo real disponible vía la pasarela corporativa',
-            globalFootprint: 'Global: Operaciones de PagoNxt en México, Brasil, Chile, Argentina e Europa',
-            targetAudience: 'Grandes comercios con contas de nómina y servicios corporativos integrados en el banco Santander.',
-            performance: 'Uso de pasarelas legadas asociadas (MIT) que añaden pasos extra (hops) e incrementan la fricción transacional reduciendo la conversión.',
-            companyOverview: 'Entidad de adquirencia del Grupo Santander que comercializa sus produtos de pasarela bajo la marca Getnet en México, utilizando frecuentemente la infraestructura tecnológica de MIT.',
-            weaknesses: 'Estructura verticalizada que eleva los costos de desarrollo de proyectos personalizados y retrasa implementaciones.',
-            strengths: 'Gran presencia regional e internacional con la nova arquitectura modular Getnet SEP (Single Entry Point).',
+            globalFootprint: 'Global: Operaciones directas de PagoNxt en México, Brasil, Chile, Argentina y Europa',
+            targetAudience: 'Grandes comercios con cuentas de nómina y servicios corporativos integrados en el banco Santander.',
+            performance: 'Uso de pasarelas legadas asociadas (MIT, PagoNxt) que añaden pasos extra (hops) e incrementan la fricción transaccional reduciendo la conversión.',
+            companyOverview: 'Entidad de adquirencia del Grupo Santander que comercializa sus produtos de pasarela bajo la marca Getnet en México, utilizando frecuentemente la infraestructura tecnológica de MIT y PagoNxt en silos separados.',
+            weaknesses: 'Arquitectura de TI y pasarelas fragmentada que añade hops y latencia técnica. Toma de decisiones y velocidad de desarrollo lenta sujeta a gobernanza tradicional de banco.',
+            strengths: 'Gran presencia regional e internacional con la nova arquitectura modular Getnet SEP (Single Entry Point). Integración total con portafolio de Santander (Tesorería, Nómina, FX y líneas de crédito corporativas).',
             partners: 'MIT (Mercadotecnia, Ideas y Tecnología), Cybersource, Shopify, Santander México.',
             status: 'approved',
             verifiedBy: 'Equipo de PMM LatAm',
-            dataSource: 'Reportes de PagoNxt México, Informes de Competencia en Campo',
+            dataSource: 'mexico_competitors_updated.md, Reportes de PagoNxt México',
             marketCap: 'Grupo Santander (NYSE: SAN) | Cap. de Mercado: ~€71.5 Mil millones',
-            pix: 'SPEI integrado de alta escala conectado a la red Getnet de PagoNxt.',
-            antecipacao: 'Meses sin intereses Santander corporativo con tasas negociadas de emisor centralizado.',
+            pix: 'SPEI integrado de alta escala transaccional a través del riel de conexión directa de Santander.',
+            antecipacao: 'MSI robusto totalmente acoplado al financiamiento Santander para grandes campañas diferidas en retail.',
             ofertaProdutos: {
-              pix: 'SPEI Getnet, flujos alternativos de checkout digital.',
-              antecipacao: 'MSI Getnet / Santander de fábrica para grandes cadenas comerciales.'
+              pix: 'SPEI nativo Getnet, flujos alternativos de checkout digital.',
+              antecipacao: 'Sólido catálogo de MSI Santander, liquidación T+1 de fábrica y opciones T+0.'
             },
             battlecard: {
               whyWeWin: 'Adyen es una única plataforma verdadera sin integraciones fragmentadas entre banco adquirente y gateway tecnológico secundario.',
@@ -1027,14 +1018,14 @@
             verifiedBy: 'Equipo de PMM Global',
             dataSource: 'Reportes Financieros Scotiabank LatAm, Informes de Mercado',
             marketCap: 'TSX: BNS | Cap. de Mercado: ~$58.0 Mil milhões',
-            pix: 'SPEI clásico por red interbancaria Banxico bajo pasarelas tradicionales.',
-            antecipacao: 'Modelos de financiamiento estándar ligados a relaciones crediticias bilaterales.',
+            pix: 'SPEI tradicional de legado.',
+            antecipacao: 'MSI de sucursal estándar.',
             ofertaProdutos: {
               pix: 'SPEI tradicional bancario interconectado.',
-              antecipacao: 'Modelos de MSI estándar acordados en sucursales Scotiabank.'
+              antecipacao: 'MSI estándar acordados en sucursales.'
             },
             battlecard: {
-              whyWeWin: 'Adyen oferece uma proposta digital líder em retail y comercio unificado, donde Scotiabank carece de capacidades próprias.',
+              whyWeWin: 'Adyen oferece uma proposta digital líder em retail y comercio unificado, donde Scotiabank carece de capacidades propias.',
               vulnerabilities: 'Relación financiera sólida en cuentas bancarias de la casa matriz canadiense del merchant.',
               script: 'Scotiabank es un banco transaccional robusto, pero no una empresa de software de pago. Deje el procesamiento digital en manos de Adyen para subir su conversión.'
             }
@@ -1043,15 +1034,15 @@
             id: 'stripe',
             name: 'Stripe',
             type: 'Global',
-            pricingModel: 'Blend Fee o IC++ para cuentas Enterprise. Cobro de MSI (0.5% sobre la sobretasa).',
-            omnichannel: 'Reciente (Stripe Terminal disponible desde Mayo 2026), pero es muy caro (su modelo de precio es una limitante fuerte en el mercado físico de MX).',
-            antifraud: 'Stripe Radar (basado en ML); modelos de fraude muy estrictos orientados a proteger a Stripe con nula personalización local, por lo que no es muy usado por merchants en MX.',
-            pixFeature: 'OXXO Pay, SPEI, Cards y MSI.',
+            pricingModel: 'Flat-Rate padrão ou IC++ para contas Enterprise. Cobro de MSI (0.5% sobre la sobretasa).',
+            omnichannel: 'Parcial (Stripe Terminal disponible, focado digitalmente en México)',
+            antifraud: 'Nativo de risco (Stripe Radar baseado em machine learning); muy estricto para blindar a Stripe con baja personalización local.',
+            pixFeature: 'OXXO Pay integrado al checkout rápido y soporte ágil para transferencias SPEI',
             globalFootprint: 'Global: Operaciones de adquirencia directa en más de 45 países, con adquirencia local integrada en México para cobros y modelos de facturación (Billing).',
             targetAudience: 'Startups tecnológicas, SaaS, marketplaces con Stripe Connect, e-commerces de alto crecimiento y grandes cuentas Enterprise (IA, Creadores, Hospitalidad, Seguros, Media, Sector Público y Retail).',
-            performance: 'Excelente conversión con su solución nativa Adaptive Acceptance, pero con costos de software e infraestructura de IA incrementales por encima de la tarifa plana tradicional.',
+            performance: 'Excelente conversión con su solución nativa Adaptive Acceptance (IA transaccional), con costos adicionales por encima de la tasa plana.',
             companyOverview: 'La gigante tecnológica estadounidense de procesamiento digital. Se destaca por una excelente suite de productos orientados a APIs de alta personalización, Billing y Stripe Connect.',
-            weaknesses: 'Soporte Enterprise sumamente costoso en México (grandes clientes no lo pagan, resultando en soporte estándar no dedicado sin contexto del cliente); Stripe Terminal físico sumamente costoso; Radar estricto y poco parametrizables para reglas locales del comercio.',
+            weaknesses: 'Soporte Enterprise sumamente costoso en México (grandes clientes no lo pagan, resultando en soporte estándar no dedicado sin contexto del cliente); Stripe Terminal físico sumamente costoso (lanzado en mayo 2026); Radar estricto y poco parametrizables para reglas locales del comercio.',
             strengths: 'Stripe Connect de alta personalización ("joya de la corona"); APIs, documentación e interfaces no/low-code excelentes; bajo delay de cobros en PayPal (T+2 de demora).',
             partners: 'Shopify, VTEX, WooCommerce, Magento, Stripe Connect, Stripe Radar.',
             status: 'approved',
@@ -1066,7 +1057,7 @@
             },
             battlecard: {
               whyWeWin: 'Adyen ofrece un soporte Enterprise estratégico, consultivo y dedicado de verdad incluido en nuestro portafolio de menor volumen de cuentas. Stripe cobra sumas prohibitivas por soporte Enterprise en México, o relega a grandes clientes (como Amazon) a equipos genéricos sin contexto. Además, Stripe Terminal y las lógicas rígidas de Radar limitan la personalización de adquirencia física y reglas locales.',
-              vulnerabilities: 'Connect es la referencia del mercado para splits complejos, y cuentan con APIs sumamente rápida de instalar para equipos de desarrollo.',
+              vulnerabilities: 'Connect es la referencia del mercado para splits complejos, y cuentan con APIs sumamente rápidas de instalar para equipos de desarrollo.',
               script: 'Si bien Stripe es una excelente opción tecnológica para startups, en la escala Enterprise de México sus costos de soporte dedicado son prohibitivos o se gestionan de forma genérica sin contexto real de la cuenta. Con Adyen, obtienen soporte premium y proactivo integrado de fábrica, unificación física real de POS bajo costos eficientes y optimización local de MSI sin tarifas opacas.'
             }
           },
@@ -1089,14 +1080,14 @@
             verifiedBy: 'Equipo de PMM Cross-Border',
             dataSource: 'ebanx.txt, Comunicados Corporativos EBANX, Estudios de Casos de Comercio Global',
             marketCap: 'Capital Fechado (Privada) | Valoración de Mercado: ~$1.5 Mil millones',
-            pix: 'Permite el procesamiento de SPEI y OXXO en flujos transfronterizos sin RFC local, con altos markups de conversión cambiaria.',
-            antecipacao: 'No aplica antecipación de adquirencia local tradicional; repuestos internacionales basados en el modelo cambiario cross-border estándar.',
+            pix: 'OXXO y SPEI locales procesados vía agregador.',
+            antecipacao: 'Repasos de divisas bajo esquemas transfronterizos.',
             ofertaProdutos: {
-              pix: 'Procesamiento de SPEI y OXXO Pay para marcas extranjeras con FX integrado.',
-              antecipacao: 'No cuenta con oferta de MSI tradicional para merchants locales establecidos.'
+              pix: 'OXXO, SPEI locales integrados en canales de agregación.',
+              antecipacao: 'No aplica de fábrica en territorio doméstico.'
             },
             battlecard: {
-              whyWeWin: 'Adyen procesa de manera doméstica local en México a una fraction del costo y con mayor performance transaccional que cobra EBANX en su modelo transfronterizo cambiario, gracias a nuestra conexión de adquirencia directa própria desintermediada.',
+              whyWeWin: 'Adyen procesa de manera doméstica local en México a una fracción del costo y con mayor performance transaccional que cobra EBANX en su modelo transfronterizo cambiario, gracias a nuestra conexión de adquirencia directa própria desintermediada.',
               vulnerabilities: 'Son sumamente ágiles para corporativos que de ninguna manera desean abrir una entidad legal RFC en México.',
               script: 'Si su empresa planea establecerse localmente en México para optimizar impuestos y costos, el modelo cross-border de EBANX deja de hacer sentido. Adyen procesa de forma nativa en México y en el mundo, asegurando una conexión de adquirencia directa con las mayores tasas de conversión.'
             }
@@ -1108,7 +1099,7 @@
             pricingModel: 'Blended rate estándar por escala de procesamiento',
             omnichannel: 'Solo digital',
             antifraud: 'Nativo de riesgo calibrado para transacciones en mercados de rápido crecimiento.',
-            pixFeature: 'SPEI, OXXO Pay nativo y amplia gama de Meses Sin Intereses directos',
+            pixFeature: 'SPEI, OXXO Pay nativo and amplia gama de Meses Sin Intereses directos',
             globalFootprint: 'Global: Operaciones de agregación digital en más de 20 mercados de rápido crescimento en LatAm y EMEA',
             targetAudience: 'E-commerces medianos en LatAm y plataformas de videojuegos online.',
             performance: 'Procesamiento de checkout digital estándar sin herramientas de auto-recuperación de fondos o de tokens de marca, lo que genera declinaciones constantes.',
@@ -1119,7 +1110,7 @@
             status: 'approved',
             verifiedBy: 'Equipo de PMM LatAm',
             dataSource: 'Balanços de Prosus Fintech, Informes Técnicos de Campo',
-            marketCap: 'División de Prosus (Euronext: PRX) | Valoración de Prosus: ~$110.0 Mil millones',
+            marketCap: 'División de Prosus (Euronext: PRX) | Valoración de Prosus: ~$110.0 Mil milhões',
             pix: 'SPEI y OXXO Pay nativos con buen checkout digital de agregación.',
             antecipacao: 'MSI tradicionales con plazos fijos de emisor estándar, con MDR blended elevado.',
             ofertaProdutos: {
@@ -1136,29 +1127,29 @@
             id: 'mercadopago',
             name: 'Mercado Pago',
             type: 'América Latina',
-            pricingModel: 'MDR Blended agresivo por volume. Sin tarifas operacionales de liquidación adicionales ocultas (las tarifas acordadas son as finales).',
-            omnichannel: 'Parcial (Terminales Point integradas a la cuenta sin contrato extra. Contratación directa desde el panel. Solución física enfocada en SMB; limitaciones del sistema Android impiden instalar software corporativo enterprise complejo).',
-            antifraud: 'Nativo de riesgo (Mercado Pago Shield) baseado en transacciones de Mercado Libre; no requiere contratación de Cybersource u outras herramientas.',
-            pixFeature: 'SPEI nativo excelente, transferencias instantáneas de cuenta digital',
-            globalFootprint: 'América Latina: Operación regional líder con fuerte presencia en Brasil (mayor mercado), México y Argentina (el cliente se ve obligado a mantener una cuenta local y gerentes dedicados por país).',
-            targetAudience: 'Merchants Enterprise (enfoque principal en 2026, con fuertes inversiones en campañas nacionales y eventos para grandes cuentas), manteniendo su capilaridade histórica en el mercado SMB.',
+            pricingModel: 'MDR Blended focado em antecipações estruturado em 3 formatos (PSJ, PCJ e PNF), com prazos D+0, D+2, D+14 e D+30. As tarifas acordadas son finales (sem tarifas adicionais).',
+            omnichannel: 'Parcial (Terminales Point integram via API sem contrato adicional. Lançada integração via SiTef em 2024 para pricing de grandes contas, mas as máquinas Point não comportam software corporativo enterprise complexo devido a limitações de versão do Android).',
+            antifraud: 'Nativo (Mercado Pago Shield) que trabalha com dados consolidados do ecossistema Mercado Livre; não exige contratação adicional de Cybersource.',
+            pixFeature: 'SPEI excelente y de altísima rapidez integrado a la cuenta de Mercado Pago de un clic.',
+            globalFootprint: 'América Latina: Forte adquirente regional com presença consolidada no Brasil, México e Argentina (gestão descentralizada que obriga contas locais separadas por país).',
+            targetAudience: 'Merchants Enterprise (público-alvo principal em 2026, com pesados investimentos em campanhas nacionais e eventos para grandes contas), mantendo forte capilaridade em SMB.',
             performance: 'No permite la personalización de flujos de antifraude por negocio. Las reglas de riesgo se aplican de forma global para múltiples frentes. Su análisis de performance es netamente reactivo tras picos de contracargos. Excelente conversión con usuarios registrados de Mercado Libre, pero con reglas rígidas de prevención que afectan plásticos externos.',
-            companyOverview: 'La billetera digital y brazo fintech de Mercado Libre. Ofrece terminales de cobro Point, soluciones de pago en línea e integración de herramientas de crédito en LatAm.',
-            weaknesses: 'Atención y soporte de cuentas de carácter reactivo (Adyen se destaca por atención consultiva estratégica com menor carteira de contas); el motor de prevención de fraudes (Shield) es rígido y no permite personalizar reglas específicas del comercio; falta de unificación y gobernanza en clientes regionales.',
-            strengths: 'Base de datos de comportamento masiva gracias a Mercado Libre, integraciones nativas con casi todas as plataformas de e-commerce (VTEX, Shopify, Magento, WooCommerce, Wix, Tiendanube, etc.).',
-            partners: 'Mercado Libre, Shopify, VTEX, WooCommerce, Magento, Tiendanube, Wix.',
+            companyOverview: 'Fintech e braço de pagamentos do grupo Mercado Livre, atuando fortemente em processamento online, carteira digital e expansão de adquirência física e crédito regional.',
+            weaknesses: 'Atendimento enterprise mais reativo e de suporte convencional (Adyen oferece suporte estratégico com menor portfólio de contas por gerente); motor de risco rígido e sem customizações de regras; dificuldades na governança de clientes regionais (obriga a manter conta local PJ e gerentes separados em cada país).',
+            strengths: 'Base de dados de comportamento masiva gracias a Mercado Livre, integrações nativas com quase todas as plataformas de e-commerce (VTEX, Shopify, Magento, WooCommerce, Wix, Tiendanube, etc.).',
+            partners: 'Mercado Livre, Shopify, VTEX, WooCommerce, Magento, Tiendanube, Wix.',
             status: 'approved',
             verifiedBy: 'Equipo de PMM México',
             dataSource: 'mercadoPago.txt, Reportes Trimestrales de MercadoLibre Inc, Datos Oficiales de Mercado Pago MX',
             marketCap: 'Subsidiaria MercadoLibre (NASDAQ: MELI) | Cap. de Mercado MELI: ~$95 Mil millones',
             pix: 'SPEI excelente y de altísima rapidez integrado a la cuenta de Mercado Pago de un clic.',
-            antecipacao: 'Ofrece MSI con tasas fijas acordadas directamente, empaquetadas en MDR blended sin recargos sorpresa.',
+            antecipacao: 'Ofrece tres modelos estructurados: 1. PSJ (custo do parcelamento embutido no MDR blended); 2. PCJ (MP retém os juros do comprador, operando com MDR negativo sem controle do merchant PJ); 3. PNF (Pagamento no Fluxo, com antecipação manual cara sem relatórios adequados para conciliação).',
             ofertaProdutos: {
-              pix: 'QR Code Point, SPEI en tiempo real, split nativo de transferencias.',
-              antecipacao: 'MSI simplificados sin recargos regulados en el faturamento final.'
+              pix: 'SPEI nativo, transferencias en tiempo real de un clic.',
+              antecipacao: 'Formatos PSJ, PCJ y PNF. Falta robustez en conciliaciones para antecipaciones manuales de flujo.'
             },
             battlecard: {
-              whyWeWin: 'El soporte de Adyen es consultivo y estratégico (menor portafolio de contas por gerente). El antifraude de Mercado Pago es rígido (Shield): no permite regras personalizadas y cualquier usuario con contracargo previo en Mercado Libre es rechazado automáticamente, dañando la conversión.',
+              whyWeWin: 'El soporte de Adyen es consultivo y estratégico (menor portafolio de contas por gerente). El antifraude de Mercado Pago es rígido (Shield): no permite regras personalizadas y qualquer usuário com contracargo previo no Mercado Livre é recusado automaticamente, piorando a conversão.',
               vulnerabilities: 'La wallet de Mercado Pago cuenta con millones de tarjetas ya guardadas en México que agilizan el checkout de un clic.',
               script: 'Mercado Pago tiene una base de datos excelente por su marketplace. Sin embargo, su soporte para el segmento Enterprise es puramente reactivo. Además, el antifraude de su Shield es rígido: si un comprador tuvo un contracargo previo en Mercado Libre, será declinado automáticamente en su tienda, perjudicando sus ventas.'
             }
@@ -1214,9 +1205,9 @@
             dataSource: 'Relatórios Públicos Global Payments, Inteligência Comercial Adyen MX',
             marketCap: 'NYSE: GPN | Cap. de Mercado: ~$28 Bilhões',
             pix: 'SPEI directo mediante terminales tradicionales de cobro físico y pasarelas de legado.',
-            antecipacao: 'Ofrece MSI con tasas fijas negociadas bilateralmente para el sector hotelero y de turismo.',
+            antecipacao: 'Ofrece MSI con taxas fijas negociadas bilateralmente para el sector hotelero y de turismo.',
             ofertaProdutos: {
-              pix: 'SPEI interbancario tradicional de tesorería.',
+              pix: 'SPEI de tesorería tradicional.',
               antecipacao: 'MSI tradicionales orientados a cadenas de turismo con cuentas globales.'
             },
             battlecard: {
@@ -1244,16 +1235,16 @@
             verifiedBy: 'Equipo de PMM México',
             dataSource: 'Comunicação Oficial Kushki, Análise de Gateways Regionais LatAm',
             marketCap: 'Capital Privado (Unicórnio LatAm) | Valuation Estimado: ~$1.5 Bilhão',
-            pix: 'SPEI altamente optimizado mediante transferencias bancarias de cobro SPEI automatizado de alta escala.',
-            antecipacao: 'Modelos de MSI flexibles para startups digitales con tasas flat simplificadas en el checkout.',
+            pix: 'Transferências SPEI automatizadas via webhook.',
+            antecipacao: 'MSI flexíveis com taxas fixas simplificadas.',
             ofertaProdutos: {
-              pix: 'Transferencias interbancarias SPEI rápidas vía webhook.',
+              pix: 'Transferências interbancárias SPEI rápidas via webhook.',
               antecipacao: 'MSI estándar para la región andina con total transparencia digital.'
             },
             battlecard: {
               whyWeWin: 'A rede adquirente direta própria e global da Adyen garante escalabilidade corporativa real de Unified Commerce.',
               vulnerabilities: 'Agressividade comercial extrema em taxas blended para startups de tecnologia que buscam canais digitais rápidos.',
-              script: 'A Kushki resolve muito bem a expansão digital regional andina inicial. Porém, se a sua marca exige canais omnichannel unificados (e-commerce integrado a lojas físicas) e um processamento de escala multinacional sólida nas maiores bandeiras, a Adyen entrega estabilidade e tarifas IC++ sob medida.'
+              script: 'A Kushki resolve muito bem a operação digital regional andina inicial. Porém, se a sua marca exige canais omnichannel unificados (e-commerce integrado a lojas físicas) e um processamento de escala multinacional sólida nas maiores bandeiras, a Adyen entrega estabilidade e tarifas IC++ sob medida.'
             }
           },
           {
@@ -1284,14 +1275,14 @@
             battlecard: {
               whyWeWin: 'Adyen elimina los silos y las conciliaciones complexas causadas por la fragmentación Clover/Carat de ellos a través de una plataforma puramente única.',
               vulnerabilities: 'Ellos detienen una inmensa base de maquinitas Clover instaladas en grandes redes comerciales.',
-              script: 'Fiserv es excelente para el retail físico básico. No obstante, si su e-commerce opera con reciclaje complejo, su conciliación requerirá múltiples portales lógicos para unificar Clover físico con Carat digital. Adyen resolve esto con datos transacionales reales y unificados bajo la mesma API.'
+              script: 'Fiserv es excelente para el retail físico básico. No obstante, si su e-commerce opera con recurrencia compleja, su conciliación requerirá múltiples portales lógicos para unificar Clover físico con Carat digital. Adyen resolve esto con datos transacionales reales y unificados bajo la mesma API.'
             }
           },
           {
             id: 'dlocal',
             name: 'dLocal',
             type: 'Global',
-            pricingModel: 'Blend fee (doméstico) o Blend fee + FX (márgenes cambiarios opacos al actuar como MoR). MSI de 3 a 24 meses con recargos de 5% a 22.5% según el plazo.',
+            pricingModel: 'Markup de tipo de cambio + Comisión de remesa. IC++ para grandes volúmenes.',
             omnichannel: 'No aplicable (Solo digital; no cuenta con oferta física de Unified Commerce en México).',
             antifraud: 'Defense Suite nativa (módulo de contracargos básico con reportes estándar para disputas).',
             pixFeature: 'Oxxo, SPEI, Seven Eleven, transferencia bancaria CoDi y wallets (Mercado Pago).',
@@ -1306,8 +1297,8 @@
             verifiedBy: 'Equipo de PMM LatAm',
             dataSource: 'dlocal.txt, Balanços Públicos dLocal NASDAQ, Logs de Transaciones en Clientes Compartidos',
             marketCap: 'NASDAQ: DLO | Market Cap: ~$2.7 Bilhões (Record TPV Q2 2025: $9.2B, +53% YoY)',
-            pix: 'Aceptación de SPEI, OXXO, Seven Eleven, CoDi y wallets locales para no-residentes con altos markups de conversión cambiaria MoR.',
-            antecipacao: 'Soporta MSI de 3 a 24 meses cargando altos recargos del 5% al 22.5% que encarecen el blended rate o son trasladados al merchant corporativo.',
+            pix: 'Oxxo, Spei, Seven Eleven, Bank transfer (Codi) y wallets en México. En Brasil Pix, PicPay, wallets y Boleto.',
+            antecipacao: 'Soporta MSI de 3 a 24 meses cargando altos recargos de 5% a 22.5% según el plazo. En BR la antecipación es embutida de fábrica.',
             ofertaProdutos: {
               pix: 'OXXO, SPEI, CoDi con FX y wallets nativas de América Latina unificadas.',
               antecipacao: 'MSI (3-24 meses) con recargos del 5% al 22.5% empaquetados en blended fees.'
@@ -1459,7 +1450,7 @@
           {
             id: 203,
             competitorId: 'kushki',
-            title: 'Kushki obtiene nueva actualización como adquirente directo no bancario de tarjetas en México',
+            title: 'Kushki obtiene nueva acreditación como adquirente directo no bancario de tarjetas en México',
             date: '05/07/2026',
             week: 'Semana 1 - Julio',
             source: 'Forbes México',
@@ -1523,7 +1514,7 @@
             date: '20/05/2026',
             week: 'Semana 3 - Mayo',
             source: 'Forbes México',
-            snippet: 'El banco busca acceder al cobro físico en cadenas hoteleras del norte del país. Su pasarela digital Payworks sigue mostrando limitaciones tecnológicas frente a APIs modernas.',
+            snippet: 'El banco busca acelerar el cobro físico en cadenas hoteleras del norte del país. Su pasarela digital Payworks sigue mostrando limitaciones tecnológicas frente a APIs modernas.',
             impact: 'Médio'
           },
           {
@@ -1579,7 +1570,7 @@
           {
             id: 215,
             competitorId: 'payu',
-            title: 'PayU optimiza SDKs mobiles reduciendo fricción en compras desde dispositivos Android en México',
+            title: 'PayU optimiza SDKs móviles reduciendo fricción en compras desde dispositivos Android en México',
             date: '08/04/2026',
             week: 'Semana 1 - Abril',
             source: 'Milenio',
@@ -1698,7 +1689,7 @@
                 if (activeBattleCompetitor.id === 'dlocal') {
                   return isMX
                     ? `"${name} ofrece un esquema de agregación que actúa como Merchant of Record (MoR) y empaqueta el margen de FX de conversión cambiaria en el Blend fee. Esto resulta sumamente costoso y opaco para transacciones transfronterizas de alto volumen, además de cobrar elevados recargos por MSI (5% al 22.5%). Con la adquirencia directa y transparente de Adyen, transparentas cada centavo con IC++."`
-                    : `"${A(name)} empaqueta márgenes opacos de cambio de divisas (FX) dentro de su tarifa plana de procesamiento al operar como MoR. Adyen, mediante su modelo transparente IC++, revela los costos reales de marcas y reduce sustancialmente los cargos de financiamiento de largo prazo."`;
+                    : `"${A(name)} empaqueta márgenes opacos de cambio de divisas (FX) dentro de su tarifa plana de procesamiento al operar como MoR. Adyen, mediante su modelo transparente IC++, revela los costos reais de marcas y reduce sustancialmente los cargos de financiamiento de longo prazo."`;
                 }
                 return isMX
                   ? `"${name} ofrece tasas de agregación blended muy agresivas para retenerte, pero no te muestran los cargos ocultos de adquirencia ni el costo de rechazar transacciones legítimas por falsos positivos de fraude. Con el modelo Interchange++ (IC++) de Adyen, transparentamos cada centavo de costo de marca y aumentamos tus ventas aprobadas."`
@@ -1708,12 +1699,12 @@
                 if (activeBattleCompetitor.id === 'mercadopago') {
                   return isMX
                     ? `"${name} cuenta con la opción SiTef y terminales Point, pero no comporta software corporativo complejo por limitaciones físicas de Android. Con Adyen, consolidas tus tiendas y web bajo un solo contrato y software unificado real."`
-                    : `"${A(name)} oferece soluções de Point físicas de onboarding ágil no painel sem contrato comercial extra, mas a sua solução física é estritamente focada em SMB/PMEs. Devido a limitações de versão e hardware do Android das maquininhas deles, você não consegue embarcar software enterprise complexo corporativo. A Adyen entrega Unified Commerce real de alta escala corporativa sob um único contrato e fluxo de conciliation integrado, sem barreiras de hardware."`;
+                    : `"${A(name)} oferece soluções de Point físicas de onboarding ágil no painel sem contrato comercial extra, mas a sua solução física é estritamente focada em SMB/PMEs. Devido a limitações de versão e hardware do Android das maquininhas deles, você não consegue embarcar software enterprise complexo corporativo. A Adyen entrega Unified Commerce real de alta escala corporativa sob um único contrato e fluxo de conciliação integrado, sem barreiras de hardware."`;
                 }
                 if (activeBattleCompetitor.id === 'getnet') {
                   return isMX
                     ? `"${name} utiliza múltiples gateways lógicos y marcas fragmentadas para operar. Adyen unifica canales en la misma API sin depender de intermediarios lógicos."`
-                    : `"${A(name)} atua de forma fragmentada no varejo unificado, exigindo terminais físicos da Getnet acoplados a sitemas de gateway separados como o Auttar, enquanto a marca digital Carat sequer pertence à Getnet de fato. Na Adyen, o Unified Commerce é nativo em um único contrato, uma única API, um único parceiro transacional real."`;
+                    : `"${A(name)} atua de forma fragmentada no varejo unificado, exigindo terminais físicos da Getnet acoplados a sistemas de gateway separados como o Auttar, enquanto a marca digital Carat sequer pertence à Getnet de fato. Na Adyen, o Unified Commerce é nativo em um único contrato, uma única API, um único parceiro transacional real."`;
                 }
                 return isMX
                   ? `"${name} maneja las terminales físicas de manera independiente a su pasarela digital de comercio electrónico, lo que fragmenta tu conciliación. Adyen opera con una plataforma única nativa (Unified Commerce) que conecta cada transacción física y digital bajo el mismo identificador de pago."`
@@ -1763,7 +1754,7 @@
                 if (activeBattleCompetitor.id === 'ebanx') {
                   return isMX
                     ? `"${name} es un agregador cross-border, no un adquirente directo en México. Adyen eleva tu conversión de tarjetas gracias a nuestras conexiones directas de adquirencia local nativa."`
-                    : `"${A(name)} atua como subadquirente no mercado da América Latina, dependendo de conexões lógicas com adquirentes locais para concluir o processamento. A Adyen opera com adquirencia própria e integrada de ponta a ponta no Brasil e no México. Ao eliminar intermediários transacionais, a nossa adquirencia direta reduz gargalos de latência e garante as mais altas taxas de conversão técnica do mercado."`;
+                    : `"${A(name)} atua como subadquirente no mercado da América Latina, dependendo de conexões lógicas com adquirentes locais para concluír o processamento. A Adyen opera com adquirencia própria e integrada de ponta a ponta no Brasil e no México. Ao eliminar intermediários transacionais, a nossa adquirencia direta reduz gargalos de latência e garante as mais altas taxas de conversão técnica do mercado."`;
                 }
                 if (activeBattleCompetitor.id === 'getnet') {
                   return isMX
@@ -1819,19 +1810,8 @@
             setTimeout(() => setShowToastCopied(false), 3000);
           };
 
-          // Geradores de Pesquisa dinâmicos com Google Search (para evitar erros de links obsoletos)
-          const getAlertGoogleSearchUrl = (compName, message) => {
-            const query = `${compName} ${message}`;
-            return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-          };
-
-          const getNewsGoogleSearchUrl = (title, source) => {
-            const query = `${title} ${source}`;
-            return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-          };
-
           return (
-            <div className="min-h-screen bg-slate-50 text-slate-700 flex flex-col antialiased">
+            <div className="min-h-screen bg-slate-50 text-slate-700 flex flex-col antialiased font-sans">
               
               {/* HEADER DO DASHBOARD */}
               <header className="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-40 shadow-sm">
@@ -2086,13 +2066,13 @@
                             {t.fields.pix}
                           </div>
                           <div className="p-4 md:border-r border-slate-200 text-slate-700 leading-relaxed text-justify">
-                            {comp1.pix || "No aplica / Información no disponible"}
+                            {comp1.pix || "Não aplicável / Informação indisponível"}
                           </div>
                           <div className="p-4 md:border-r border-slate-200 text-slate-600 leading-relaxed text-justify">
-                            {comp2.pix || "No aplica / Información no disponible"}
+                            {comp2.pix || "Não aplicável / Informação indisponível"}
                           </div>
                           <div className="p-4 text-slate-600 leading-relaxed text-justify">
-                            {comp3.pix || "No aplica / Información no disponible"}
+                            {comp3.pix || "Não aplicável / Informação indisponível"}
                           </div>
                         </div>
 
@@ -2102,13 +2082,13 @@
                             {t.fields.antecipacao}
                           </div>
                           <div className="p-4 md:border-r border-slate-200 text-slate-700 leading-relaxed text-justify">
-                            {comp1.antecipacao || "No aplica / Información no disponible"}
+                            {comp1.antecipacao || "Não aplicável / Informação indisponível"}
                           </div>
                           <div className="p-4 md:border-r border-slate-200 text-slate-600 leading-relaxed text-justify">
-                            {comp2.antecipacao || "No aplica / Información no disponible"}
+                            {comp2.antecipacao || "Não aplicável / Informação indisponível"}
                           </div>
                           <div className="p-4 text-slate-600 leading-relaxed text-justify">
-                            {comp3.antecipacao || "No aplica / Información no disponible"}
+                            {comp3.antecipacao || "Não aplicável / Informação indisponível"}
                           </div>
                         </div>
 
@@ -2262,7 +2242,7 @@
                               </div>
                               <div>
                                 <span className="font-bold text-slate-700 block">{locale === 'BR' ? 'Antecipação / Financiamento:' : 'Estructura MSI / Plazos:'}</span>
-                                <span className="text-slate-650">{activeSummaryCompetitor.ofertaProdutos?.antecipacao || "Modelos tradicionales sujetos a análisis cambiario."}</span>
+                                <span className="text-slate-650">{activeSummaryCompetitor.ofertaProdutos?.antecipacao || "Modelos tradicionales de cesión de crédito."}</span>
                               </div>
                             </div>
                           </div>
@@ -2385,7 +2365,7 @@
                               }`}
                             >
                               <span>Pix / SPEI (Pagamentos)</span>
-                              <span className="text-[10px] font-mono font-normal">Disponível</span>
+                              <span className="text-[10px] font-mono font-normal">Urgência</span>
                             </button>
 
                             {/* OBJEÇÃO ADICIONAL: ANTECIPAÇÃO */}
@@ -2395,8 +2375,8 @@
                                 selectedObjection === 'antecipacao' ? 'bg-white border-emerald-500 text-emerald-600' : 'bg-slate-100 border-slate-200 text-slate-650'
                               }`}
                             >
-                              <span>{locale === 'BR' ? 'Antecipação Recebíveis' : 'Esquema de MSI'}</span>
-                              <span className="text-[10px] font-mono font-normal">Liquidez</span>
+                              <span>{locale === 'BR' ? 'Antecipação Recebíveis' : 'Meses Sin Intereses (MSI)'}</span>
+                              <span className="text-[10px] font-mono font-normal font-normal">Liquidez</span>
                             </button>
 
                             <button
@@ -2416,7 +2396,7 @@
                               }`}
                             >
                               <span>Antifraude / Risco</span>
-                              <span className="text-[10px] font-mono font-normal">RevenueProtect</span>
+                              <span className="text-[10px] font-mono font-normal font-normal">Adyen Protect</span>
                             </button>
 
                             <button
@@ -2446,7 +2426,7 @@
                           </p>
                         </div>
 
-                        <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-slate-550">
+                        <div className="mt-4 pt-3 border-t border-slate-200 text-[10px] text-slate-505">
                           <span className="font-bold text-slate-700">Calcanhar de Aquiles:</span> {activeBattleCompetitor.weaknesses}
                         </div>
                       </div>
@@ -2483,7 +2463,7 @@
                   </section>
                 )}
 
-                {/* TAB: RADAR DE NOTÍCIAS RECENTES */}
+                {/* TAB: RADAR DE NOTÍCIAS RECENTES COM CONTEÚDO SEMANAL LOCALIZADO */}
                 {activeTab === 'news' && (
                   <div className="space-y-6">
                     
